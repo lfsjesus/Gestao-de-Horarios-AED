@@ -1,7 +1,8 @@
 #include <iostream>
+#include "menus.h"
 using namespace std;
 
 int main() {
-    cout << "Hello, World!" << std::endl;
+    int opcao = firstMenu();
     return 0;
 }
