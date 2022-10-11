@@ -36,5 +36,5 @@ float Horario::getDuration() const {
 }
 
 void Horario::setDuration(float duration) {
-    Horario::duration = duration;
+    this->duration = duration;
 }
