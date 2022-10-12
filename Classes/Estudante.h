@@ -1,7 +1,3 @@
-//
-// Created by luis on 11-10-2022.
-//
-
 #ifndef AED_PROJ_ESTUDANTE_H
 #define AED_PROJ_ESTUDANTE_H
 #include <iostream>
@@ -10,7 +6,9 @@
 
 class Estudante {
 public:
-    Estudante(unsigned int code, const std::string &name, const std::vector<Turma> &turmas);
+    Estudante();
+
+    Estudante(unsigned int code, const std::string &name);
 
     unsigned int getCode() const;
 
@@ -24,10 +22,11 @@ public:
 
     void setTurmas(const std::vector<Turma> &turmas);
 
+    bool operator==(const Estudante& estudante) const;
+
 private:
     unsigned int code;
     std::string name;
-    std::vector<Turma> turmas;
 };
 
 

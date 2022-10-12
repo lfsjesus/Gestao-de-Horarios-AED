@@ -33,3 +33,7 @@ int firstMenu() {
     cin.ignore();
     return escolha;
 }
+
+// Colocar os outros menus
+// Colocar aqui as funções de listagem (que estão relacionadas
+// com as escolhas dos menus

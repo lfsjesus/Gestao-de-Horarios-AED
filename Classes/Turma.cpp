@@ -1,4 +1,5 @@
 #include "Turma.h"
+#include "Horario.h"
 
 Turma::Turma() {
 
@@ -16,3 +17,4 @@ const std::string &Turma::getClassCode() const {
 void Turma::setClassCode(const std::string &classCode) {
     this->classCode = classCode;
 }
+

@@ -6,6 +6,9 @@
 #define AED_PROJ_TURMA_H
 
 #include <iostream>
+#include <vector>
+#include <fstream>
+
 
 class Turma {
 
