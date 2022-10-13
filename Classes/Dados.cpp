@@ -9,6 +9,36 @@
 #include "Inscricao.h"
 #include "Dados.h"
 
+Dados::Dados() {
+    readClasses();
+    readEnrollments();
+    readLectures();
+}
+
+const std::vector<Turma *> &Dados::getTurmas() const {
+    return turmas;
+}
+
+void Dados::setTurmas(const std::vector<Turma *> &turmas) {
+    Dados::turmas = turmas;
+}
+
+const std::vector<Inscricao *> &Dados::getInscricoes() const {
+    return inscricoes;
+}
+
+void Dados::setInscricoes(const std::vector<Inscricao *> &inscricoes) {
+    Dados::inscricoes = inscricoes;
+}
+
+const std::vector<Aula *> &Dados::getAulas() const {
+    return aulas;
+}
+
+void Dados::setAulas(const std::vector<Aula *> &aulas) {
+    Dados::aulas = aulas;
+}
+
 void Dados::readClasses() {
 
     std::vector<Turma*> turmas = {};
