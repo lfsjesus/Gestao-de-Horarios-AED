@@ -28,8 +28,10 @@ public:
 
 private:
     Turma turma;
-    Horario horario;
     std::string type;
+    std::string weekday;
+    float startHour;
+    float duration;
 
 };
 

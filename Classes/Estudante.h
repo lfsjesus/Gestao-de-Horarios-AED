@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "Turma.h"
+#include "Horario.h"
 
 class Estudante {
 public:
@@ -27,6 +28,8 @@ public:
 private:
     unsigned int code;
     std::string name;
+    Horario horario;
+    //horario lista das turmas em que está / aulas
 };
 
 

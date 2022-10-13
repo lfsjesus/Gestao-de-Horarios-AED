@@ -3,6 +3,7 @@
 #define AED_PROJ_HORARIO_H
 
 #include <iostream>
+#include "Aula.h"
 
 class Horario {
 public:
@@ -23,9 +24,8 @@ public:
     void setDuration(float duration);
 
 private:
-    std::string weekday;
-    float startHour;
-    float duration;
+    vector<Aula> Aulas;
+
 
 };
 
