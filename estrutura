@@ -5,15 +5,19 @@ Esta aplicação vai ser "terminal-based"
 
 
 	[1] CONSULTAS
-		[1] Ver ocupação de um ano curricular
-		[2] Ver ocupação de uma UC
-		
-			[1] Ocupação por turmas
-			(ver nome dos estudantes)
+		[1] Ocupação
+			[1] Ver ocupação de um ano curricular
+			[2] Ver ocupação de uma UC
 			
-		[3] Ver horário de estudante (pesquisa incompleta p/ nome; pesquisa pelo up)
+				[1] Ocupação por turmas
+				(ver nome dos estudantes)
+			
+		[2] Horarios (pesquisa incompleta p/ nome; pesquisa pelo up)
+			[1] Por cadeira, mostrar todos os horarios
+			[2] por aluno
+			
 		
-		[4] Estudantes a repetir cadeiras (+ de n UCs, com Arvore Binaria)
+		[3] Estudantes a repetir cadeiras (+ de n UCs, com Arvore Binaria)
 		
 	
 	
