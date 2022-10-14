@@ -12,19 +12,28 @@
 class Aula {
 public:
     Aula();
-    Aula(const Turma &turma, const Horario &horario, const std::string &type);
+    Aula(const Turma &turma, const std::string &type, const std::string &weekday, const float &startHour, const float duration);
+
 
     const Turma &getTurma() const;
 
     void setTurma(const Turma &turma);
 
-    const Horario &getHorario() const;
-
-    void setHorario(const Horario &horario);
-
     const std::string &getType() const;
 
     void setType(const std::string &type);
+
+    const std::string &getWeekday() const;
+
+    void setWeekday(const std::string &weekday);
+
+    float getStartHour() const;
+
+    void setStartHour(float startHour);
+
+    float getDuration() const;
+
+    void setDuration(float duration);
 
 private:
     Turma turma;
