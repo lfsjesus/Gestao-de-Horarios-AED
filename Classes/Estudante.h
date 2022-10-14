@@ -9,7 +9,7 @@ class Estudante {
 public:
     Estudante();
 
-    Estudante(unsigned int code, const std::string &name);
+    Estudante(unsigned int code, const std::string &name, Horario &horario, std::vector<Turma> &turmas);
 
     unsigned int getCode() const;
 
@@ -19,17 +19,21 @@ public:
 
     void setName(const std::string &name);
 
+    const Horario &getHorario() const;
+
     const std::vector<Turma> &getTurmas() const;
 
     void setTurmas(const std::vector<Turma> &turmas);
+
+    void setHorario(const Horario &horario);
 
     bool operator==(const Estudante& estudante) const;
 
 private:
     unsigned int code;
     std::string name;
-    Horario horario;
-    //horario lista das turmas em que está / aulas
+    Horario horario; //horario lista das turmas em que está / aulas
+    std::vector<Turma> turmas; //turmas em que está em diferentes cadeiras
 };
 
 
