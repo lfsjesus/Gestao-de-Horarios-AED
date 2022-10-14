@@ -4,6 +4,7 @@
 #include <vector>
 #include "Turma.h"
 #include "Horario.h"
+using namespace std;
 
 class Estudante {
 public:

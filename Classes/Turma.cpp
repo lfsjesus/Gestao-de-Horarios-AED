@@ -18,3 +18,7 @@ void Turma::setClassCode(const std::string &classCode) {
     this->classCode = classCode;
 }
 
+void Turma::getAlunos() {
+
+}
+

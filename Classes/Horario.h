@@ -4,28 +4,19 @@
 
 #include <iostream>
 #include "Aula.h"
+using namespace std;
 
 class Horario {
 public:
-    Horario(const std::string &weekday, float startHour, float duration);
-
     Horario();
+    Horario(const vector <Aula> &aulas);
 
-    const std::string &getWeekday() const;
+    explicit Horario(const vector<Aula> &aulas);
 
-    void setWeekday(const std::string &weekday);
-
-    float getStartHour() const;
-
-    void setStartHour(float startHour);
-
-    float getDuration() const;
-
-    void setDuration(float duration);
+    void getAulas();
 
 private:
-    vector<Aula> Aulas;
-
+    vector<Aula> aulas;
 
 };
 

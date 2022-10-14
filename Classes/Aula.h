@@ -1,17 +1,15 @@
-//
-// Created by luis on 11-10-2022.
-//
-
 #ifndef AED_PROJ_AULA_H
 #define AED_PROJ_AULA_H
 
 #include <iostream>
 #include "Turma.h"
 #include "Horario.h"
+using namespace std;
 
 class Aula {
 public:
     Aula();
+
     Aula(const Turma &turma, const std::string &type, const std::string &weekday, const float &startHour, const float duration);
 
 

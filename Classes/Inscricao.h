@@ -1,7 +1,3 @@
-//
-// Created by luis on 12-10-2022.
-//
-
 #ifndef AED_PROJ_INSCRICAO_H
 #define AED_PROJ_INSCRICAO_H
 #include <iostream>

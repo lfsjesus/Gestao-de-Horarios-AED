@@ -1,7 +1,3 @@
-//
-// Created by luis on 11-10-2022.
-//
-
 #ifndef AED_PROJ_TURMA_H
 #define AED_PROJ_TURMA_H
 
@@ -18,6 +14,7 @@ public:
     const std::string &getClassCode() const;
     void setClassCode(const std::string &classCode);
 
+    void getAlunos();
 private:
     std::string classCode;
     std::string ucCode;
