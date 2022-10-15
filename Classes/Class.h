@@ -4,9 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "Student.h"
-
-using namespace std;
 
 class Class {
 

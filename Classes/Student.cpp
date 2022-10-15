@@ -1,39 +1,48 @@
-#include "Student.h"
+#include "Estudante.h"
 
-Student::Student() {
+Estudante::Estudante() {
 
 }
 
-Student::Student(unsigned int code, const std::string &name, std::vector<Class> &turmas) {
+Estudante::Estudante(unsigned int code, const std::string &name, Horario &horario, std::vector<Turma> &turmas) {
     this->code = code;
     this->name = name;
+    this->horario = horario;
     this->turmas = turmas;
 }
 
-unsigned int Student::getCode() const {
+unsigned int Estudante::getCode() const {
     return code;
 }
 
-void Student::setCode(unsigned int code) {
+void Estudante::setCode(unsigned int code) {
     this->code = code;
 }
 
-const std::string &Student::getName() const {
+const std::string &Estudante::getName() const {
     return name;
 }
 
-void Student::setName(const std::string &name) {
+void Estudante::setName(const std::string &name) {
     this->name = name;
 }
 
-bool Student::operator==(const Student& Student) const{
-    return this->code == Student.getCode();
+bool Estudante::operator==(const Estudante& estudante) const{
+    return this->code == estudante.getCode();
 }
 
-const std::vector<Class> &Student::getTurmas() const {
+const Horario &Estudante::getHorario() const {
+    return horario;
+}
+
+void Estudante::setHorario(const Horario &horario) {
+    Estudante::horario = horario;
+}
+
+const std::vector<Turma> &Estudante::getTurmas() const {
     return turmas;
 }
 
-void Student::setTurmas(const std::vector<Class> &turmas) {
-    Student::turmas = turmas;
+void Estudante::setTurmas(const std::vector<Turma> &turmas) {
+    Estudante::turmas = turmas;
 }
