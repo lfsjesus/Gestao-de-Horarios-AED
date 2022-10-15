@@ -1,8 +1,9 @@
+/*
 #define CLASSES_FILE "../Data/classes.csv"
 #define UCCLASSES_FILE "../Data/classes_per_uc.csv"
 #define STUDENTS_FILE "../Data/students_classes.csv"
 
-#include "Class.h"
+#include "Turma.h"
 #include "Lecture.h"
 #include "Schedule.h"
 #include "Student.h"
@@ -15,11 +16,11 @@ Dados::Dados() {
     readLectures();
 }
 
-const std::vector<Class *> &Dados::getClasses() const {
+const std::vector<Turma *> &Dados::getClasses() const {
     return turmas;
 }
 
-void Dados::setClasses(const std::vector<Class *> &turmas) {
+void Dados::setClasses(const std::vector<Turma *> &turmas) {
     Dados::turmas = turmas;
 }
 
@@ -41,7 +42,7 @@ void Dados::setLectures(const std::vector<Lecture *> &lectures) {
 
 void Dados::readClasses() {
 
-    vector<Class*> turmas = {};
+    vector<Turma*> turmas = {};
     ifstream file(UCCLASSES_FILE);
 
 
@@ -54,7 +55,7 @@ void Dados::readClasses() {
             getline(file, ucCode, ',');
             getline(file, classCode);
 
-            turmas.push_back(new Class(classCode, ucCode));
+            turmas.push_back(new Turma(classCode, ucCode));
         }
     }
     this->turmas = turmas;
@@ -62,7 +63,7 @@ void Dados::readClasses() {
 
 
 void Dados::readLectures() {
-    vector<Class*> aulas = {};
+    vector<Turma*> aulas = {};
     ifstream file(CLASSES_FILE);
 
     if (file.is_open()) {
@@ -82,7 +83,7 @@ void Dados::readLectures() {
             getline(file, duration, ',');
             getline(file, type);
 
-            Class turma(classCode, ucCode);
+            Turma turma(classCode, ucCode);
             lectures.push_back(new Lecture(turma, type, weekday, stof(startHour), stof(duration)));
         }
     }
@@ -107,9 +108,9 @@ void Dados::readEnrollments() {
             getline(file, ucCode);
 
             Student student(stoi(studentCode), name); //Não temos acesso às turmas do estudante aqui
-            Class turma(classCode, ucCode);
+            Turma turma(classCode, ucCode);
             enrollments.push_back(new Enrollment(student, turma));
         }
     }
     this->enrollments = enrollments;
-}
+}*/

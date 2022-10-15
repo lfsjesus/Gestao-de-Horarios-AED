@@ -3,18 +3,20 @@
 
 #include <iostream>
 #include <vector>
-#include <fstream>
+//#include "Student.h"
 
-class Class {
+using namespace std;
+
+class Turma {
 
 public:
-    Class();
-    Class (const string& classCode, const string& ucCode);
+    Turma();
+    Turma (const string& classCode, const string& ucCode);
 
     const string &getCode() const;
     void setCode(const std::string &classCode);
 
-    const vector<Student *> getStudents();
+    //const vector<Student *> getStudents();
 private:
     string classCode;
     string ucCode;

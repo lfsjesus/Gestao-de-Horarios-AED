@@ -4,7 +4,7 @@ Enrollment::Enrollment() {
 
 }
 
-Enrollment::Enrollment(Student student, Class turma) {
+Enrollment::Enrollment(Student student, Turma turma) {
     this->student = student;
     this->turma = turma;
 }
@@ -17,10 +17,10 @@ void Enrollment::setStudent(const Student &student) {
     Enrollment::student = student;
 }
 
-const Class &Enrollment::getClass() const {
+const Turma &Enrollment::getClass() const {
     return turma;
 }
 
-void Enrollment::setClass(const Class &turma) {
+void Enrollment::setClass(const Turma &turma) {
     Enrollment::turma = turma;
 }
