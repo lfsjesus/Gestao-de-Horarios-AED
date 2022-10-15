@@ -7,11 +7,11 @@
 
 using namespace std;
 
-class Turma {
+class Class {
 
 public:
-    Turma();
-    Turma (const string& classCode, const string& ucCode);
+    Class();
+    Class (const string& classCode, const string& ucCode);
 
     const string &getCode() const;
     void setCode(const std::string &classCode);

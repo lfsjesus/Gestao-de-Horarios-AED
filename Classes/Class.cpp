@@ -1,18 +1,18 @@
-#include "Turma.h"
-Turma::Turma() {
+#include "Class.h"
+Class::Class() {
 
 }
 
-Turma::Turma(const string &classCode, const string &ucCode) {
+Class::Class(const string &classCode, const string &ucCode) {
     this->classCode = classCode;
     this->ucCode = ucCode;
 }
 
-const string &Turma::getCode() const {
+const string &Class::getCode() const {
     return this->classCode;
 }
 /*
-const vector<Student *> Turma::getStudents() {
+const vector<Student *> Class::getStudents() {
     // Ir aos enrollments e encontrar os que têm o código da turma (ucCode e classCode)
 }
 */

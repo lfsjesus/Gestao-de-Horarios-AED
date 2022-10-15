@@ -2,7 +2,7 @@
 #define AED_PROJ_LECTURE_H
 
 #include <iostream>
-#include "Turma.h"
+#include "Class.h"
 
 using namespace std;
 
@@ -10,10 +10,10 @@ class Lecture {
 public:
     Lecture();
 
-    Lecture(const Turma &turma, const std::string &type, const std::string &weekday, const float &startHour, const float duration);
+    Lecture(const Class &turma, const std::string &type, const std::string &weekday, const float &startHour, const float duration);
 
-    const Turma &getClass() const;
-    void setClass(const Turma &turma);
+    const Class &getClass() const;
+    void setClass(const Class &turma);
 
     const string &getType() const;
     void setType(const std::string &type);
@@ -28,7 +28,7 @@ public:
     void setDuration(float duration);
 
 private:
-    Turma turma;
+    Class turma;
     string type;
     string weekday;
     float startHour;

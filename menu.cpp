@@ -102,7 +102,7 @@ void Menu::modificacoesMenu() {
         cout << "=======================================" << endl;
         cout << "[1] Inscrever Estudante" << endl;
         cout << "[2] Desinscrever Estudante" << endl;
-        cout << "[3] Alteraçao de Turma/UC" << endl;
+        cout << "[3] Alteraçao de Class/UC" << endl;
         cout << "[4] Alteração de várias turmas/UCs" << endl;
         cout << endl;
         cout << "[0] Voltar atrás" << endl;

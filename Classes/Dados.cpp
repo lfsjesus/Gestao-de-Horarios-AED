@@ -3,7 +3,7 @@
 #define UCCLASSES_FILE "../Data/classes_per_uc.csv"
 #define STUDENTS_FILE "../Data/students_classes.csv"
 
-#include "Turma.h"
+#include "Class.h"
 #include "Lecture.h"
 #include "Schedule.h"
 #include "Student.h"
@@ -16,11 +16,11 @@ Dados::Dados() {
     readLectures();
 }
 
-const std::vector<Turma *> &Dados::getClasses() const {
+const std::vector<Class *> &Dados::getClasses() const {
     return turmas;
 }
 
-void Dados::setClasses(const std::vector<Turma *> &turmas) {
+void Dados::setClasses(const std::vector<Class *> &turmas) {
     Dados::turmas = turmas;
 }
 
@@ -42,7 +42,7 @@ void Dados::setLectures(const std::vector<Lecture *> &lectures) {
 
 void Dados::readClasses() {
 
-    vector<Turma*> turmas = {};
+    vector<Class*> turmas = {};
     ifstream file(UCCLASSES_FILE);
 
 
@@ -55,7 +55,7 @@ void Dados::readClasses() {
             getline(file, ucCode, ',');
             getline(file, classCode);
 
-            turmas.push_back(new Turma(classCode, ucCode));
+            turmas.push_back(new Class(classCode, ucCode));
         }
     }
     this->turmas = turmas;
@@ -63,7 +63,7 @@ void Dados::readClasses() {
 
 
 void Dados::readLectures() {
-    vector<Turma*> aulas = {};
+    vector<Class*> aulas = {};
     ifstream file(CLASSES_FILE);
 
     if (file.is_open()) {
@@ -83,7 +83,7 @@ void Dados::readLectures() {
             getline(file, duration, ',');
             getline(file, type);
 
-            Turma turma(classCode, ucCode);
+            Class turma(classCode, ucCode);
             lectures.push_back(new Lecture(turma, type, weekday, stof(startHour), stof(duration)));
         }
     }
@@ -108,7 +108,7 @@ void Dados::readEnrollments() {
             getline(file, ucCode);
 
             Student student(stoi(studentCode), name); //Não temos acesso às turmas do estudante aqui
-            Turma turma(classCode, ucCode);
+            Class turma(classCode, ucCode);
             enrollments.push_back(new Enrollment(student, turma));
         }
     }

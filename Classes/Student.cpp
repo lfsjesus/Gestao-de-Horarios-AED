@@ -4,7 +4,7 @@ Student::Student() {
 
 }
 
-Student::Student(unsigned int code, const std::string &name, std::vector<Turma> &turmas) {
+Student::Student(unsigned int code, const std::string &name, std::vector<Class> &turmas) {
     this->code = code;
     this->name = name;
 
@@ -32,10 +32,10 @@ bool Student::operator==(const Student& Student) const{
 }
 
 
-const std::vector<Turma> &Student::getTurmas() const {
+const std::vector<Class> &Student::getTurmas() const {
     return turmas;
 }
 
-void Student::setTurmas(const std::vector<Turma> &turmas) {
+void Student::setTurmas(const std::vector<Class> &turmas) {
     Student::turmas = turmas;
 }

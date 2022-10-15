@@ -1,11 +1,11 @@
 #include "Lecture.h"
 
 
-const Turma &Lecture::getClass() const {
+const Class &Lecture::getClass() const {
     return turma;
 }
 
-void Lecture::setClass(const Turma &turma) {
+void Lecture::setClass(const Class &turma) {
     Lecture::turma = turma;
 }
 
