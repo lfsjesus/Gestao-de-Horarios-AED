@@ -2,9 +2,9 @@
 #define AED_PROJ_DADOS_H
 #include <iostream>
 #include <vector>
-#include "Turma.h"
-#include "Inscricao.h"
-#include "Aula.h"
+#include "Class.h"
+#include "Enrollment.h"
+#include "Lecture.h"
 
 class Dados {
 
@@ -14,23 +14,21 @@ public:
     void readEnrollments();
     void readLectures();
 
-    const std::vector<Turma *> &getTurmas() const;
+    const std::vector<Class *> &getClasses() const;
+    void setClasses(const std::vector<Class *> &turmas);
 
-    void setTurmas(const std::vector<Turma *> &turmas);
+    const std::vector<Enrollment *> &getEnrollments() const;
+    void setEnrollments(const std::vector<Enrollment *> &enrollments);
 
-    const std::vector<Inscricao *> &getInscricoes() const;
-
-    void setInscricoes(const std::vector<Inscricao *> &inscricoes);
-
-    const std::vector<Aula *> &getAulas() const;
-
-    void setAulas(const std::vector<Aula *> &aulas);
+    const std::vector<Lecture *> &getLectures() const;
+    void setLectures(const std::vector<Lecture *> &lectures);
 
 private:
-    std::vector<Turma*> turmas;
-    std::vector<Inscricao*> inscricoes;
-    std::vector<Aula*> aulas;
+    vector<Student> students;
+    vector<Lecture*> lectures;
+    vector<Class*> turmas; // Uma tree: ano->uc->turma?
+    vector<Enrollment*> enrollments;
 };
 
 
-#endif //AED_PROJ_DADOS_H
+#endif

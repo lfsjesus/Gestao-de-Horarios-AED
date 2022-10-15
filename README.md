@@ -1,7 +1,6 @@
-Esta aplicação vai ser "terminal-based"
+Aplicação "terminal-based"
 
 -------------MENU-------------
-
 
 
 	[1] CONSULTAS
@@ -27,7 +26,9 @@ Esta aplicação vai ser "terminal-based"
 		[3] Alteração de turma/UC
 		[4] Alteração de várias turmas/UCs
 	
+
 	[3] EFETIVAÇÃO DE PEDIDOS
 		<Listar os primeiros x pedidos>
 		<satisfazer/recusar pedido em cada um dos pedidos>
 		<colocar os pedidos que não podem ser satisfeitos noutra estrutura>
+		

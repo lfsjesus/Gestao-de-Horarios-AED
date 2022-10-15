@@ -2,11 +2,11 @@
 #define UCCLASSES_FILE "../Data/classes_per_uc.csv"
 #define STUDENTS_FILE "../Data/students_classes.csv"
 
-#include "Turma.h"
-#include "Aula.h"
-#include "Horario.h"
-#include "Estudante.h"
-#include "Inscricao.h"
+#include "Class.h"
+#include "Lecture.h"
+#include "Schedule.h"
+#include "Student.h"
+#include "Enrollment.h"
 #include "Dados.h"
 
 Dados::Dados() {
@@ -15,46 +15,46 @@ Dados::Dados() {
     readLectures();
 }
 
-const std::vector<Turma *> &Dados::getTurmas() const {
+const std::vector<Class *> &Dados::getClasses() const {
     return turmas;
 }
 
-void Dados::setTurmas(const std::vector<Turma *> &turmas) {
+void Dados::setClasses(const std::vector<Class *> &turmas) {
     Dados::turmas = turmas;
 }
 
-const std::vector<Inscricao *> &Dados::getInscricoes() const {
-    return inscricoes;
+const std::vector<Enrollment *> &Dados::getEnrollments() const {
+    return enrollments;
 }
 
-void Dados::setInscricoes(const std::vector<Inscricao *> &inscricoes) {
-    Dados::inscricoes = inscricoes;
+void Dados::setEnrollments(const std::vector<Enrollment *> &enrollments) {
+    Dados::enrollments = enrollments;
 }
 
-const std::vector<Aula *> &Dados::getAulas() const {
-    return aulas;
+const std::vector<Lecture *> &Dados::getLectures() const {
+    return lectures;
 }
 
-void Dados::setAulas(const std::vector<Aula *> &aulas) {
-    Dados::aulas = aulas;
+void Dados::setLectures(const std::vector<Lecture *> &lectures) {
+    Dados::lectures = lectures;
 }
 
 void Dados::readClasses() {
 
-    std::vector<Turma*> turmas = {};
-    std::ifstream file(UCCLASSES_FILE);
+    vector<Class*> turmas = {};
+    ifstream file(UCCLASSES_FILE);
 
 
     if (file.is_open()) {
         file.ignore(17, '\n');
         while (!file.eof()) {
-            std::string classCode;
-            std::string ucCode;
+            string classCode;
+            string ucCode;
 
             getline(file, ucCode, ',');
             getline(file, classCode);
 
-            turmas.push_back(new Turma(classCode, ucCode));
+            turmas.push_back(new Class(classCode, ucCode));
         }
     }
     this->turmas = turmas;
@@ -62,18 +62,18 @@ void Dados::readClasses() {
 
 
 void Dados::readLectures() {
-    std::vector<Aula*> aulas = {};
-    std::ifstream file(CLASSES_FILE);
+    vector<Class*> aulas = {};
+    ifstream file(CLASSES_FILE);
 
     if (file.is_open()) {
         file.ignore(49, '\n');
         while (!file.eof()) {
-            std::string classCode;
-            std::string ucCode;
-            std::string weekday;
-            std::string startHour;
-            std::string duration;
-            std::string type;
+            string classCode;
+            string ucCode;
+            string weekday;
+            string startHour;
+            string duration;
+            string type;
 
             getline(file, ucCode, ',');
             getline(file, classCode, ',');
@@ -82,36 +82,34 @@ void Dados::readLectures() {
             getline(file, duration, ',');
             getline(file, type);
 
-            Turma turma(classCode, ucCode);
-            Horario horario(weekday, stof(startHour), stof(duration));
-            aulas.push_back(new Aula(turma, horario, type));
+            Class turma(classCode, ucCode);
+            lectures.push_back(new Lecture(turma, type, weekday, stof(startHour), stof(duration)));
         }
     }
-    this->aulas = aulas;
+    this->lectures = lectures;
 }
 
 void Dados::readEnrollments() {
-    std::vector<Inscricao*> inscricoes = {};
+    std::vector<Enrollment*> enrollments = {};
     std::ifstream file(STUDENTS_FILE);
 
     if (file.is_open()) {
         file.ignore(49, '\n');
         while (!file.eof()) {
-            std::string studentCode;
-            std::string name;
-            std::string classCode;
-            std::string ucCode;
+            string studentCode;
+            string name;
+            string classCode;
+            string ucCode;
 
             getline(file, studentCode, ',');
             getline(file, name, ',');
             getline(file, classCode, ',');
             getline(file, ucCode);
 
-
-            Estudante estudante(stoi(studentCode), name);
-            Turma turma(classCode, ucCode);
-            inscricoes.push_back(new Inscricao(estudante, turma));
+            Student student(stoi(studentCode), name); //Não temos acesso às turmas do estudante aqui
+            Class turma(classCode, ucCode);
+            enrollments.push_back(new Enrollment(student, turma));
         }
     }
-    this->inscricoes = inscricoes;
+    this->enrollments = enrollments;
 }
