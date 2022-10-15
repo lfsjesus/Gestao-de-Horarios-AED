@@ -1,6 +1,24 @@
 cmake_minimum_required(VERSION 3.23)
-project(AED_Proj)
+project(AED)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(AED_Proj main.cpp menu.h menu.cpp Classes/Aula.h Classes/Turma.h Classes/Turma.cpp Classes/Horario.cpp Classes/Horario.h Classes/Aula.cpp Classes/Estudante.cpp Classes/Estudante.h Classes/Inscricao.cpp Classes/Inscricao.h Classes/Dados.cpp Classes/Dados.h)
+include_directories(.)
+include_directories(Classes)
+
+add_executable(AED
+        Classes/Class.cpp
+        Classes/Class.h
+        Classes/Dados.cpp
+        Classes/Dados.h
+        Classes/Enrollment.cpp
+        Classes/Enrollment.h
+        Classes/Lecture.cpp
+        Classes/Lecture.h
+        Classes/Schedule.cpp
+        Classes/Schedule.h
+        Classes/Student.cpp
+        Classes/Student.h
+        main.cpp
+        menu.cpp
+        menu.h)

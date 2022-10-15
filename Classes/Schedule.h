@@ -12,9 +12,9 @@ public:
     Schedule();
     Schedule(const vector <Lecture> &lectures);
 
-    explicit Schedule(const vector<Lecture> &lectures);
+    const vector<Lecture> &getLectures() const;
 
-    void getLectures();
+    void setLectures(const vector<Lecture> &lectures);
 
     friend ostream& operator<<(ostream& os, const Schedule& schedule); // Faz print de uma tabela toda bonita no terminal
 
