@@ -27,9 +27,10 @@ void Menu::getMenu() {
 }
 
 void Menu::mainMenu() {
-    cout << endl << "--------------------------\n";
-    cout << "Gestão de Horários - FEUP" << endl;
-    cout << "--------------------------\n";
+    cout << endl << "---------------------------------------------\n";
+    cout << "DEI - Departamento de Engenharia Informática" << endl;
+    cout << "\t\tGestão de Horários - FEUP" << endl;
+    cout << "---------------------------------------------\n";
 
     cout << "\t" << "[1] CONSULTAS\n";
     cout << "\t" << "[2] MODIFICAÇÕES\n";
@@ -129,7 +130,7 @@ void Menu::efetivacaoMenu() {
         cout << "[1] Listar Pedidos" << endl;
 
         cout << endl;
-        cout << "[0] Voltar atrás";
+        cout << "[0] Voltar atrás" << endl;
 
 
         cout << "Escolha: ";
