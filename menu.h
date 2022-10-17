@@ -13,6 +13,7 @@
 #define CONSULTAS_MENU 1
 #define MODIFICACOES_MENU 2
 #define EFETIVACAO_MENU 3
+#define OCUPACAO_MENU 4
 
 
 class Menu {
@@ -24,6 +25,7 @@ private:
     void consultasMenu();
     void modificacoesMenu();
     void efetivacaoMenu();
+    void ocupacaoMenu();
     std::stack<short int> menuState;
 
 };

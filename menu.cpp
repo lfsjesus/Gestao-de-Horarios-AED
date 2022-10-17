@@ -67,7 +67,6 @@ void Menu::mainMenu() {
         case 3:
             menuState.push(EFETIVACAO_MENU);
             break;
-
     }
     getMenu();
 }
@@ -93,6 +92,11 @@ void Menu::consultasMenu() {
 
     switch (escolha) {
         case 0: menuState.pop(); break;
+        case 1: {
+            ocupacaoMenu();
+            menuState.push(OCUPACAO_MENU);
+            break;
+        }
     }
     getMenu();
 }
@@ -146,6 +150,35 @@ void Menu::efetivacaoMenu() {
     }
     getMenu();
 }
+
+
+void Menu::ocupacaoMenu() {
+    int escolha;
+    do {
+        cout << "=======================================" << endl;
+        cout << "[1] Listar Alunos Inscritos no Curso " << endl;
+        cout << "[2] Listar Alunos Iscritos por Ano" << endl;
+        cout << "[3] Listar Alunos Inscritos por UC" << endl;
+        cout << "[4] Listar Alunos Inscritos por Turma" << endl;
+        cout << endl;
+        cout << "[0] Voltar atrás" << endl;
+
+
+        cout << "Escolha: ";
+        cin >> escolha;
+        cout << "=======================================" << endl;
+        if (escolha < 0 || escolha > 4) cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (escolha < 0 || escolha > 4);
+
+    switch (escolha) {
+        case 0: menuState.pop(); break;
+    }
+
+    getMenu();
+}
+
 
 // Colocar os outros menus
 // Colocar aqui as funções de listagem (que estão relacionadas
