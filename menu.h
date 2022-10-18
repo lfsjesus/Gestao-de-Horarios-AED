@@ -6,6 +6,7 @@
 #define AED_PROJ_MENU_H
 
 #include <stack>
+#include "Managing.h"
 /*
  * Menus' definition
  */

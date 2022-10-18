@@ -3,21 +3,36 @@
 #define AED_PROJ_SCHEDULE_H
 
 #include <iostream>
-#include "Lecture.h"
+#include <list>
+#include "Class.h"
+#include "Slot.h"
 using namespace std;
 
-// Uma ideia: criar um mapa com {segunda:[ Lectures aqui ], terca:[], quarta:[], quinta:[], sexta:[]} ?
+
 class Schedule {
+
 public:
     Schedule();
-    Schedule(const vector <Lecture> &lectures);
 
-    void getLectures();
+    Schedule(const Class &, const list<Slot> &scheduleClass);
 
-    friend ostream& operator<<(ostream& os, const Schedule& schedule); // Faz print de uma tabela toda bonita no terminal
+    friend ostream& operator<<(ostream& os, const Schedule& schedule);
+
+    const Class &getClass() const;
+
+    void setClass(const Class &_class);
+
+    void addSlot(Slot slot);
+
+    const list<Slot> &getScheduleClass() const;
+
+    void setScheduleClass(const list<Slot> &scheduleClass);
+    // Faz print de uma tabela toda bonita no terminal
 
 private:
-    vector<Lecture> lectures;
+    Class _class;
+    list<Slot> scheduleClass;
+
 };
 
 

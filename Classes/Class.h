@@ -13,8 +13,15 @@ public:
     Class();
     Class (const string& classCode, const string& ucCode);
 
-    const string &getCode() const;
-    void setCode(const std::string &classCode);
+    const string &getClassCode() const;
+
+    void setClassCode(const string &classCode);
+
+    const string &getUcCode() const;
+
+    void setUcCode(const string &ucCode);
+
+    bool operator==(const Class& _class) const;
 
     //const vector<Student *> getStudents();
 private:
