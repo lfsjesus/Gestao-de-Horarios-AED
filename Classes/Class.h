@@ -20,7 +20,7 @@ public:
 private:
     string classCode;
     string ucCode;
+
 };
 
-
-#endif 
+#endif

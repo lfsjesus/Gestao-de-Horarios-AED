@@ -39,11 +39,11 @@ const std::vector<Lecture *> &Dados::getLectures() const {
 void Dados::setLectures(const std::vector<Lecture *> &lectures) {
     Dados::lectures = lectures;
 }
-
+*/
 void Dados::readClasses() {
 
     vector<Class*> turmas = {};
-    ifstream file(UCCLASSES_FILE);
+    ifstream file(UC);
 
 
     if (file.is_open()) {
@@ -60,7 +60,7 @@ void Dados::readClasses() {
     }
     this->turmas = turmas;
 }
-
+/*
 
 void Dados::readLectures() {
     vector<Class*> aulas = {};
