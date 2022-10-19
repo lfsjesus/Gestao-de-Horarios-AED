@@ -5,10 +5,10 @@ Aplicação "terminal-based"
 
 	[1] CONSULTAS
 		[1] Ocupação
-			[1] Alunos no curso (number, press a key to show list)
-			[2] Listar alunos inscritos por ano
-            [3] Listar alunos inscritos por UC
-            [4] Listar alunos inscritos por turma
+                    [1] Alunos no curso (number, press a key to show list)
+                    [2] Listar alunos inscritos por ano
+                    [3] Listar alunos inscritos por UC
+                    [4] Listar alunos inscritos por turma
 
 			
 		[2] Horarios (pesquisa incompleta p/ nome; pesquisa pelo up)
