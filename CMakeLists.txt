@@ -9,16 +9,10 @@ include_directories(Classes)
 add_executable(AED
         Classes/Class.cpp
         Classes/Class.h
-        Classes/Dados.cpp
-        Classes/Dados.h
-        Classes/Enrollment.cpp
-        Classes/Enrollment.h
-        Classes/Lecture.cpp
-        Classes/Lecture.h
         Classes/Schedule.cpp
         Classes/Schedule.h
         Classes/Student.cpp
         Classes/Student.h
         main.cpp
         menu.cpp
-        menu.h)
+        menu.h Classes/Managing.cpp Classes/Managing.h Classes/Request.cpp Classes/Request.h Classes/Slot.cpp Classes/Slot.h)

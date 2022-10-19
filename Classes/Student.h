@@ -2,6 +2,7 @@
 #define AED_PROJ_STUDENT_H
 #include <iostream>
 #include <vector>
+#include <list>
 #include "Class.h"
 
 using namespace std;
@@ -10,16 +11,21 @@ class Student {
 public:
     Student();
 
-    Student(unsigned int code, const std::string &name, vector<Class> &turmas);
+    Student(unsigned code, const std::string &name, list<Class> &turmas);
 
     unsigned int getCode() const;
+
     void setCode(unsigned int code);
 
-    const std::string &getName() const;
-    void setName(const std::string &name);
+    const string &getName() const;
 
-    const vector<Class> &getTurmas() const;
-    void setTurmas(const vector<Class> &turmas);
+    void setName(const string &name);
+
+    const list<Class> &getClasses() const;
+
+    void setClasses(const list<Class> &classes);
+
+    void addClass(Class _class);
 
     bool operator==(const Student& estudante) const;
     /*
@@ -29,8 +35,8 @@ public:
     */
 private:
     unsigned int code;
-    std::string name;
-    std::vector<Class> turmas; //turmas em que está em diferentes cadeiras
+    string name;
+    list<Class> classes; //turmas em que está em diferentes cadeiras
 };
 
 

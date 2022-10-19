@@ -153,6 +153,17 @@ void Menu::efetivacaoMenu() {
 
 
 void Menu::ocupacaoMenu() {
+    Managing m;
+    m.readFiles();
+
+    for (auto obj : m.getStudents()) {
+        cout << obj->getCode() << " " << obj->getName() << endl;
+    }
+
+    for (auto obj : m.getSchedules()) {
+        cout << obj->getClass().getClassCode() << " " << obj->getClass().getUcCode() << endl;
+    }
+    /*
     int escolha;
     do {
         cout << "=======================================" << endl;
@@ -175,7 +186,7 @@ void Menu::ocupacaoMenu() {
     switch (escolha) {
         case 0: menuState.pop(); break;
     }
-
+    */
     getMenu();
 }
 

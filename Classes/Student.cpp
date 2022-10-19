@@ -3,12 +3,10 @@
 Student::Student() {
 
 }
-
-Student::Student(unsigned int code, const std::string &name, std::vector<Class> &turmas) {
+Student::Student(const unsigned code, const std::string &name, list<Class> &classes) {
     this->code = code;
     this->name = name;
-
-    this->turmas = turmas;
+    this->classes = classes;
 }
 
 unsigned int Student::getCode() const {
@@ -16,26 +14,32 @@ unsigned int Student::getCode() const {
 }
 
 void Student::setCode(unsigned int code) {
-    this->code = code;
+    Student::code = code;
 }
 
-const std::string &Student::getName() const {
+const string &Student::getName() const {
     return name;
 }
 
-void Student::setName(const std::string &name) {
-    this->name = name;
+void Student::setName(const string &name) {
+    Student::name = name;
 }
 
-bool Student::operator==(const Student& Student) const{
-    return this->code == Student.getCode();
+const list<Class> &Student::getClasses() const {
+    return classes;
+}
+
+void Student::setClasses(const list<Class> &classes) {
+    Student::classes = classes;
+}
+
+bool Student::operator==(const Student &estudante) const {
+    return code == estudante.getCode();
+}
+
+void Student::addClass(Class _class) {
+    classes.push_back(_class);
 }
 
 
-const std::vector<Class> &Student::getTurmas() const {
-    return turmas;
-}
 
-void Student::setTurmas(const std::vector<Class> &turmas) {
-    Student::turmas = turmas;
-}
