@@ -156,14 +156,7 @@ void Menu::ocupacaoMenu() {
     Managing m;
     m.readFiles();
 
-    for (auto obj : m.getStudents()) {
-        cout << obj->getCode() << " " << obj->getName() << endl;
-    }
 
-    for (auto obj : m.getSchedules()) {
-        cout << obj->getClass().getClassCode() << " " << obj->getClass().getUcCode() << endl;
-    }
-    /*
     int escolha;
     do {
         cout << "=======================================" << endl;
@@ -184,9 +177,24 @@ void Menu::ocupacaoMenu() {
     } while (escolha < 0 || escolha > 4);
 
     switch (escolha) {
-        case 0: menuState.pop(); break;
+        case 0:
+            menuState.pop();
+            break;
+        case 1:
+            int i = 1; // É suposto alterar isto para algo ligeiramente melhor/mais prático. Foi só para testar a listagem.
+            for (auto student: m.getStudents()) {
+                if (i % 10 != 0) {
+                    student->printStudent();
+
+                } else {
+                    do {
+                        cout <<  endl << "TOTAL DE ESTUDANTES: " << m.getStudents().size() << endl;
+                        cout << "Press <ENTER> to show more" << endl;
+                    } while (cin.get() != '\n');
+                }
+                i++;
+            }
     }
-    */
     getMenu();
 }
 
