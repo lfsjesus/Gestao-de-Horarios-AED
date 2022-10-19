@@ -1,7 +1,3 @@
-//
-// Created by luis on 10-10-2022.
-//
-
 #ifndef AED_PROJ_MENU_H
 #define AED_PROJ_MENU_H
 
@@ -15,6 +11,7 @@
 #define MODIFICACOES_MENU 2
 #define EFETIVACAO_MENU 3
 #define OCUPACAO_MENU 4
+#define ESTUDANTES_MENU 5
 
 
 class Menu {
@@ -27,6 +24,7 @@ private:
     void modificacoesMenu();
     void efetivacaoMenu();
     void ocupacaoMenu();
+    void estudantesMenu();
     std::stack<short int> menuState;
 
 };

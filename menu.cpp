@@ -2,9 +2,12 @@
 #include <iostream>
 using namespace std;
 
+Managing m; // Declaring as global variable so all the functions have access
+
 Menu::Menu() {
     this->menuState.push(MAIN_MENU);
     getMenu();
+
 }
 
 void Menu::getMenu() {
@@ -27,6 +30,7 @@ void Menu::getMenu() {
 }
 
 void Menu::mainMenu() {
+    m.readFiles();
     cout << endl << "---------------------------------------------\n";
     cout << "DEI - Departamento de Engenharia Informática" << endl;
     cout << "\t\tGestão de Horários - FEUP" << endl;
@@ -153,9 +157,6 @@ void Menu::efetivacaoMenu() {
 
 
 void Menu::ocupacaoMenu() {
-    Managing m;
-    m.readFiles();
-
 
     int escolha;
     do {
@@ -181,22 +182,19 @@ void Menu::ocupacaoMenu() {
             menuState.pop();
             break;
         case 1:
-            int i = 1; // É suposto alterar isto para algo ligeiramente melhor/mais prático. Foi só para testar a listagem.
-            for (auto student: m.getStudents()) {
-                if (i % 10 != 0) {
-                    student->printStudent();
-
-                } else {
-                    do {
-                        cout <<  endl << "TOTAL DE ESTUDANTES: " << m.getStudents().size() << endl;
-                        cout << "Press <ENTER> to show more" << endl;
-                    } while (cin.get() != '\n');
-                }
-                i++;
-            }
+            estudantesMenu();
+            menuState.push(ESTUDANTES_MENU);
+            break;
     }
     getMenu();
 }
+
+void Menu::estudantesMenu() {
+    for (auto student: m.getStudents())
+        student->printStudent();
+    getMenu();
+}
+
 
 
 // Colocar os outros menus
