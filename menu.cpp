@@ -6,6 +6,7 @@ Managing m; // Declaring as global variable so all the functions have access
 
 Menu::Menu() {
     this->menuState.push(MAIN_MENU);
+    m.readFiles();
     getMenu();
 
 }
@@ -30,7 +31,7 @@ void Menu::getMenu() {
 }
 
 void Menu::mainMenu() {
-    m.readFiles();
+
     cout << endl << "---------------------------------------------\n";
     cout << "DEI - Departamento de Engenharia Informática" << endl;
     cout << "\t\tGestão de Horários - FEUP" << endl;
@@ -190,6 +191,7 @@ void Menu::ocupacaoMenu() {
 }
 
 void Menu::estudantesMenu() {
+
     for (auto student: m.getStudents())
         student->printStudent();
     getMenu();
