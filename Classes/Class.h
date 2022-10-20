@@ -23,6 +23,8 @@ public:
 
     bool operator==(const Class& _class) const;
 
+    void printClass();
+
     //const vector<Student *> getStudents();
 private:
     string classCode;

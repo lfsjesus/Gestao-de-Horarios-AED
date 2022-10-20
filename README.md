@@ -5,11 +5,11 @@ Aplicação "terminal-based"
 
 	[1] CONSULTAS
 		[1] Ocupação
-			[1] Ver ocupação de um ano curricular
-			[2] Ver ocupação de uma UC
-			
-				[1] Ocupação por turmas
-				(ver nome dos estudantes)
+                    [1] Alunos no curso (number, press a key to show list)
+                    [2] Listar alunos inscritos por ano
+                    [3] Listar alunos inscritos por UC
+                    [4] Listar alunos inscritos por turma
+
 			
 		[2] Horarios (pesquisa incompleta p/ nome; pesquisa pelo up)
 			[1] Por cadeira, mostrar todos os horarios

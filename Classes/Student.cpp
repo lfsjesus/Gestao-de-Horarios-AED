@@ -41,5 +41,9 @@ void Student::addClass(Class _class) {
     classes.push_back(_class);
 }
 
+void Student::printStudent() {
+    cout << "(" << code << ") " << name << endl;
+}
+
 
 

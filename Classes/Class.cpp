@@ -28,6 +28,10 @@ const string &Class::getUcCode() const {
 void Class::setUcCode(const string &ucCode) {
     Class::ucCode = ucCode;
 }
+
+void Class::printClass() {
+    cout << "Turma: " << classCode << " UC: " << ucCode << endl;
+}
 /*
 const vector<Student *> Class::getStudents() {
     // Ir aos enrollments e encontrar os que têm o código da turma (ucCode e classCode)

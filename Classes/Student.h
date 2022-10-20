@@ -28,6 +28,10 @@ public:
     void addClass(Class _class);
 
     bool operator==(const Student& estudante) const;
+
+    void printStudent();
+
+
     /*
     const Schedule &getSchedule() const; // O horário seria uma função geradora que faz um loop 
     // por todas as turmas e retorna um lista toda bonita. O que acham?

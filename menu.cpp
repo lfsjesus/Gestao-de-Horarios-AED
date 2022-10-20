@@ -2,9 +2,12 @@
 #include <iostream>
 using namespace std;
 
+Managing m; // Declaring as global variable so all the functions have access
+
 Menu::Menu() {
     this->menuState.push(MAIN_MENU);
     getMenu();
+
 }
 
 void Menu::getMenu() {
@@ -27,6 +30,7 @@ void Menu::getMenu() {
 }
 
 void Menu::mainMenu() {
+    m.readFiles();
     cout << endl << "---------------------------------------------\n";
     cout << "DEI - Departamento de Engenharia Informática" << endl;
     cout << "\t\tGestão de Horários - FEUP" << endl;
@@ -153,17 +157,7 @@ void Menu::efetivacaoMenu() {
 
 
 void Menu::ocupacaoMenu() {
-    Managing m;
-    m.readFiles();
 
-    for (auto obj : m.getStudents()) {
-        cout << obj->getCode() << " " << obj->getName() << endl;
-    }
-
-    for (auto obj : m.getSchedules()) {
-        cout << obj->getClass().getClassCode() << " " << obj->getClass().getUcCode() << endl;
-    }
-    /*
     int escolha;
     do {
         cout << "=======================================" << endl;
@@ -184,11 +178,23 @@ void Menu::ocupacaoMenu() {
     } while (escolha < 0 || escolha > 4);
 
     switch (escolha) {
-        case 0: menuState.pop(); break;
+        case 0:
+            menuState.pop();
+            break;
+        case 1:
+            estudantesMenu();
+            menuState.push(ESTUDANTES_MENU);
+            break;
     }
-    */
     getMenu();
 }
+
+void Menu::estudantesMenu() {
+    for (auto student: m.getStudents())
+        student->printStudent();
+    getMenu();
+}
+
 
 
 // Colocar os outros menus
