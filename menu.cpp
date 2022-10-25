@@ -26,6 +26,12 @@ void Menu::getMenu() {
             case 3:
                 efetivacaoMenu();
                 break;
+            case 4:
+                ocupacaoMenu();
+                break;
+            case 5:
+                estudantesMenu();
+
         }
     }
 }
@@ -98,7 +104,6 @@ void Menu::consultasMenu() {
     switch (escolha) {
         case 0: menuState.pop(); break;
         case 1: {
-            ocupacaoMenu();
             menuState.push(OCUPACAO_MENU);
             break;
         }
@@ -183,7 +188,6 @@ void Menu::ocupacaoMenu() {
             menuState.pop();
             break;
         case 1:
-            estudantesMenu();
             menuState.push(ESTUDANTES_MENU);
             break;
     }
@@ -194,7 +198,7 @@ void Menu::estudantesMenu() {
 
     for (auto student: m.getStudents())
         student->printStudent();
-    getMenu();
+
 }
 
 

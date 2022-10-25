@@ -59,9 +59,6 @@ void Managing::readStudents() {
     }
 }
 
-
-
-
 void Managing::readSchedules() {
     // Reads the file about the students
     vector<Schedule*> _schedules = {};
