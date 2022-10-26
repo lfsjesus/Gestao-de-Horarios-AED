@@ -1,0 +1,26 @@
+name: Build Documentation
+
+on:
+  push:
+    branches: [ "master" ]
+    tags: 
+      - 'build'
+  pull_request:
+    branches: [ "master" ]
+    tags: 
+      - 'build'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: mattnotmitt/doxygen-action@v1.9.4
+      with:
+          doxyfile-path: 'Doxygen'
+    - name: buil documentation
+      run: doxygen Doxyfile
+      
+      #upload the html folder to branch master
