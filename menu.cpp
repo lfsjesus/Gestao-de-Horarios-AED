@@ -361,7 +361,7 @@ void Menu::turmaMenu() {
         cout << "\n\tescolha uma turma: ";
         cin >> turma;
 
-    } while(turma == "");
+    } while(turma == ""); //ok
 
 
 
