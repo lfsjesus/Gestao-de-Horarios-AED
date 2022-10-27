@@ -39,7 +39,9 @@ void Managing::readStudents() {
             getline(file, name, ',');
             getline(file, classCode, ',');
             getline(file, ucCode);
+            ucCode.erase(ucCode.size() - 1); // remove carriage return symbol \r
 
+            this->ucs.insert(ucCode);
             auto it = find_if(_students.begin(), _students.end(), [&studentCode](Student* p) {return p->getCode() == stoi(studentCode);});
             Class turma(classCode, ucCode);
 
@@ -86,6 +88,7 @@ void Managing::readSchedules() {
             getline(file, startHour, ',');
             getline(file, duration, ',');
             getline(file, type);
+            type.erase(type.size() - 1); // remove carriage return symbol \r
 
             Class turma(classCode, ucCode);
             Slot slot(type, weekday, stof(startHour), stof(duration));
@@ -135,4 +138,40 @@ void Managing::setRequests(const queue<Request*> &requests) {
     Managing::requests = requests;
 }
 
+set<string> &Managing::getUcs() {
+    return ucs;
+}
 
+void Managing::setUcs(const set<string> &ucs) {
+    Managing::ucs = ucs;
+}
+
+list<string> Managing::get_ucs1() {
+    list<string> year1;
+    for (string uc : this->ucs) {
+        if (uc[0] == '1') {
+            year1.push_back(uc);
+        }
+    }
+    return year1;
+}
+
+list<string> Managing::get_ucs2() {
+    list<string> year2;
+    for (string uc : this->ucs) {
+        if (uc[0] == '2') {
+            year2.push_back(uc);
+        }
+    }
+    return year2;
+}
+
+list<string> Managing::get_ucs3() {
+    list<string> year3;
+    for (string uc : this->ucs) {
+        if (uc[0] == '3') {
+            year3.push_back(uc);
+        }
+    }
+    return year3;
+}

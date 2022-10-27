@@ -36,11 +36,20 @@ public:
 
     void setRequests(const queue<Request*> &requests);
 
+    list<string> get_ucs1();
+
+    list<string> get_ucs2();
+
+    list<string> get_ucs3();
 
 private:
   set<Student*,studComp> students;
   vector<Schedule*> schedules;
   queue<Request*> requests;
+  set<string> ucs; //useful to show each year's UCs in menuTurma
+public:
+    set<string> &getUcs();
+    void setUcs(const set<string> &ucs);
 
 
 };

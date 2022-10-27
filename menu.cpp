@@ -38,6 +38,15 @@ void Menu::getMenu() {
             case 7:
                 horarioAluno();
                 break;
+            case 8:
+                // add later
+                break;
+            case 9:
+                // add later
+                break;
+            case 10:
+                turmaMenu();
+                break;
         }
     }
 }
@@ -200,6 +209,13 @@ void Menu::ocupacaoMenu() {
         case 1:
             menuState.push(ESTUDANTES_MENU);
             break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            menuState.push(TURMA_MENU);
+            break;
     }
     getMenu();
 }
@@ -265,6 +281,56 @@ void Menu::estudantesMenu() {
         student->printStudent();
     }
 
+}
+
+void Menu::turmaMenu() {
+    int ano;
+    cout << "\t[0] Voltar atrás" << endl << endl;
+
+    do {
+        cout << "\tescolha um ano (1, 2 ou 3): ";
+        cin >> ano;
+        cout << "\n";
+    } while (ano < 1 || ano > 3);
+
+    string uc;
+    list<string> uclist;
+
+    switch(ano) {
+        case 1:
+            uclist = m.get_ucs1();
+            for (auto uc : uclist)
+                cout << "\t" << uc << "\n";
+            break;
+        case 2:
+            uclist = m.get_ucs2();
+            for (auto uc : uclist)
+                cout << "\t" << uc << "\n";
+            break;
+        case 3:
+            uclist = m.get_ucs3();
+            for (auto uc : uclist)
+                cout << "\t" << uc << "\n";
+            break;
+    }
+    do {
+        cout << "\n\tescolha uma das UCs acima (código): ";
+        cin >> uc;
+    } while(find(uclist.begin(), uclist.end(),uc) == uclist.end());
+
+    string turma;
+
+
+    do {
+        cout << "\n\tescolha uma turma: ";
+        cin >> turma;
+
+    } while(turma == "");
+
+
+
+    menuState.pop();
+    getMenu();
 }
 
 

@@ -2,6 +2,7 @@
 #define AED_PROJ_MENU_H
 
 #include <stack>
+#include <algorithm>
 #include "Managing.h"
 /*
  * Menus' definition
@@ -16,6 +17,7 @@
 #define HORARIO_ALUNO 7
 #define HORARIO_TURMA 8
 #define HORARIO_UC 9
+#define TURMA_MENU 10
 
 
 class Menu {
@@ -31,6 +33,7 @@ private:
     void horariosMenu();
     void horarioAluno();
     void estudantesMenu();
+    void turmaMenu();
     std::stack<short int> menuState;
 
 };
