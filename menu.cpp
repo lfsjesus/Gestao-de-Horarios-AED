@@ -122,7 +122,7 @@ void Menu::consultasMenu() {
     switch (escolha) {
         case 0: menuState.pop(); break;
         case 1: {
-            menuState.push(OCUPACAO_MENU);
+            menuState.push(ALUNOS_MENU);
             break;
         }
         case 2: {
