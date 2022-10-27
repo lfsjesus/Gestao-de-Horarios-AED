@@ -341,10 +341,12 @@ void Menu::turmaMenu() {
         cout << "\t" << uc.getUcCode() << "\n";
 
     auto it = ucSet.begin();
+
     do {
         cout << "\n\tescolha uma das UCs acima (código): ";
         cin >> uc;
-        it = find_if(ucSet.begin(), ucSet.end(), [&uc] (CourseUnit UC) {return UC.getUcCode() == uc;});
+        CourseUnit tempUc(uc);
+        it = ucSet.find(tempUc); //logarithmic
     } while(it == ucSet.end());
 
 
