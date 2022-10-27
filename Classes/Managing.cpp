@@ -1,5 +1,5 @@
 #define CLASSES_FILE "../Data/classes.csv"
-#define UCCLASSES_FILE "../Data/classes_per_uc.csv"
+#define COURSE_UNITS "../Data/classes_per_uc.csv"
 #define STUDENTS_FILE "../Data/students_classes.csv"
 #include <fstream>
 #include <algorithm>
@@ -15,6 +15,7 @@ Managing::Managing() {
 void Managing::readFiles() {
     readStudents();
     readSchedules();
+    readCourseUnits();
 
 }
 
@@ -41,7 +42,6 @@ void Managing::readStudents() {
             getline(file, ucCode);
             ucCode.erase(ucCode.size() - 1); // remove carriage return symbol \r
 
-            this->ucs.insert(ucCode);
             auto it = find_if(_students.begin(), _students.end(), [&studentCode](Student* p) {return p->getCode() == stoi(studentCode);});
             Class turma(classCode, ucCode);
 
@@ -66,6 +66,7 @@ void Managing::readStudents() {
 void Managing::readSchedules() {
     // Reads the file about the students
     vector<Schedule*> _schedules = {};
+
     ifstream file(CLASSES_FILE);
 
     list<Slot> slots;
@@ -113,6 +114,52 @@ void Managing::readSchedules() {
     }
 }
 
+void Managing::readCourseUnits() {
+    set<CourseUnit, ucComp> _ucs;
+    CourseUnit lastCourseUnit;
+    ifstream file(COURSE_UNITS);
+    if (file.is_open()) {
+        file.ignore(20, '\n');
+        while (!file.eof()) {
+
+            string ucCode;
+            string classCode;
+
+
+            getline(file, ucCode, ',');
+            if (ucCode.empty()) {
+                _ucs.insert(lastCourseUnit);
+                break;
+            }
+            getline(file, classCode);
+            classCode.erase(classCode.size() - 1); // remove carriage return symbol \r
+
+
+            if (lastCourseUnit.getUcCode() != ucCode) {
+                if (lastCourseUnit.getUcCode() != "-") {
+                    _ucs.insert(lastCourseUnit);
+                    lastCourseUnit = CourseUnit(ucCode);
+                    lastCourseUnit.insertClass(classCode);
+                }
+                else {
+                    lastCourseUnit = CourseUnit(ucCode);
+                    lastCourseUnit.insertClass(classCode);
+                    continue;
+                }
+            }
+            else {
+                lastCourseUnit.insertClass(classCode);
+                continue;
+            }
+
+
+
+        }
+        file.close();
+        this->ucs = _ucs;
+    }
+}
+
 
 const set<Student*, studComp> &Managing::getStudents() const {
     return students;
@@ -138,19 +185,17 @@ void Managing::setRequests(const queue<Request*> &requests) {
     Managing::requests = requests;
 }
 
-void Managing::setUcs(const set<string> &ucs) {
+void Managing::setUcs(const set<CourseUnit, ucComp> &ucs) {
     Managing::ucs = ucs;
 }
 
-set<string> Managing::getUcs() {
-    return ucs;
-}
 
 set<string> Managing::getUcs(char year) {
     set<string> filtered_ucs;
-    for (string uc : this->ucs) {
-        if (uc[0] == '1') {
-            filtered_ucs.insert(uc);
+    
+    for (auto uc : this->ucs) {
+        if ((*uc.getClasses().begin())[0] == year) {
+            filtered_ucs.insert(uc.getUcCode());
         }
     }
     return filtered_ucs;

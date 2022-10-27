@@ -15,4 +15,4 @@ add_executable(AED
         Classes/Student.h
         main.cpp
         menu.cpp
-        menu.h Classes/Managing.cpp Classes/Managing.h Classes/Request.cpp Classes/Request.h Classes/Slot.cpp Classes/Slot.h Classes/BST.h)
+        menu.h Classes/Managing.cpp Classes/Managing.h Classes/Request.cpp Classes/Request.h Classes/Slot.cpp Classes/Slot.h Classes/CourseUnit.cpp Classes/CourseUnit.h)
