@@ -32,7 +32,7 @@ private:
     void consultasMenu();
     void modificacoesMenu();
     void efetivacaoMenu();
-    void ocupacaoMenu();
+    void alunosMenu();
     void horariosMenu();
     void horarioAluno();
     void estudantesMenu();

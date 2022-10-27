@@ -27,7 +27,7 @@ void Menu::getMenu() {
                 efetivacaoMenu();
                 break;
             case 4:
-                ocupacaoMenu();
+                alunosMenu();
                 break;
             case 5:
                 estudantesMenu();
@@ -196,7 +196,7 @@ void Menu::efetivacaoMenu() {
 }
 
 
-void Menu::ocupacaoMenu() {
+void Menu::alunosMenu() {
 
     int escolha;
     do {
@@ -332,6 +332,8 @@ void Menu::turmaMenu() {
         cout << "\n";
     } while (ano < '1' || ano > '3');
 
+    //listagem das UCs
+
     string uc;
 
     set<string> ucSet = m.getUcs(ano);
@@ -346,6 +348,11 @@ void Menu::turmaMenu() {
     //listagem das turmas da uc selecionada
 
     string turma;
+    /*
+    set<string> turmasUcSet = m.getClasses(ucCode uc);
+    for (auto turma : turmasUcSet)
+        cout << "\t" << turma << "\n";
+    */
 
     do {
         cout << "\n\tescolha uma turma: ";
