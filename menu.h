@@ -18,6 +18,9 @@
 #define HORARIO_TURMA 8
 #define HORARIO_UC 9
 #define TURMA_MENU 10
+#define TURMAS_MENU 11
+#define COURSE_UNITS_MENU 12
+#define YEARS_MENU 13
 
 
 class Menu {

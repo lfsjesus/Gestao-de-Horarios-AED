@@ -102,8 +102,11 @@ void Menu::consultasMenu() {
     do {
         cout << "=======================================" << endl;
         cout << "\t[1] Alunos" << endl;
-        cout << "\t[2] Horários" << endl;
-        cout << "\t[3] Repetentes" << endl;
+        cout << "\t[2] Turmas" << endl;
+        cout << "\t[3] Unidades Curriculares" << endl;
+        cout << "\t[4] Anos" << endl;
+        cout << "\t[5] Horários" << endl;
+        //cout << "\t[6] Repetentes" << endl; //commenting for now
         cout << endl;
         cout << "\t[0] Voltar atrás" << endl;
 
@@ -111,7 +114,7 @@ void Menu::consultasMenu() {
         cout << "\tEscolha: ";
         cin >> escolha;
         cout << "=======================================" << endl;
-        if (escolha < 0 || escolha > 3) cout << "Erro, por favor tente novamente!" << endl;
+        if (escolha < 0 || escolha > 6) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
     } while (escolha < 0 || escolha > 3);
@@ -123,9 +126,21 @@ void Menu::consultasMenu() {
             break;
         }
         case 2: {
+            menuState.push(TURMAS_MENU);
+            break;
+        }
+        case 3: {
+            menuState.push(COURSE_UNITS_MENU);
+            break;
+        }
+        case 4: {
+            menuState.push(YEARS_MENU)
+        }
+        case 5: {
             menuState.push(HORARIOS_MENU);
             break;
         }
+
     }
     getMenu();
 }
