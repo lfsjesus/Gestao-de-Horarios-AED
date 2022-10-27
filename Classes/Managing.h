@@ -46,9 +46,8 @@ public:
 
     void setUcs(const set<string> &ucs);
 
-    set<string> getUcs(char year);
+    set<CourseUnit, ucComp> getUcs(char year);
 
-    set<string> getUcs();
 
     list<string> get_student_schedule(unsigned int  code);
 

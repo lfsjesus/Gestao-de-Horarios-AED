@@ -190,14 +190,13 @@ void Managing::setUcs(const set<CourseUnit, ucComp> &ucs) {
 }
 
 
-set<string> Managing::getUcs(char year) {
-    set<string> filtered_ucs;
+set<CourseUnit, ucComp> Managing::getUcs(char year) {
+    set<CourseUnit, ucComp> filtered_ucs;
     
     for (auto uc : this->ucs) {
         if ((*uc.getClasses().begin())[0] == year) {
-            filtered_ucs.insert(uc.getUcCode());
+            filtered_ucs.insert(uc);
         }
     }
     return filtered_ucs;
 }
-

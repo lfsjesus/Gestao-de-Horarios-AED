@@ -336,14 +336,17 @@ void Menu::turmaMenu() {
 
     string uc;
 
-    set<string> ucSet = m.getUcs(ano);
+    set<CourseUnit, ucComp> ucSet = m.getUcs(ano);
     for (auto uc : ucSet)
-        cout << "\t" << uc << "\n";
+        cout << "\t" << uc.getUcCode() << "\n";
 
+    auto it = ucSet.begin();
     do {
         cout << "\n\tescolha uma das UCs acima (código): ";
         cin >> uc;
-    } while(find(ucSet.begin(), ucSet.end(),uc) == ucSet.end());
+        it = find_if(ucSet.begin(), ucSet.end(), [&uc] (CourseUnit UC) {return UC.getUcCode() == uc;});
+    } while(it == ucSet.end());
+
 
     //listagem das turmas da uc selecionada
 
