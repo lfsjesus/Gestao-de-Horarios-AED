@@ -256,6 +256,9 @@ void Menu::horarioAluno(){
 
     cout << "found!" << endl;
 
+    //get student from global BST by up
+    //student
+
     getMenu();
 
 }
