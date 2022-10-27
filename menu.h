@@ -11,7 +11,7 @@
 #define CONSULTAS_MENU 1
 #define MODIFICACOES_MENU 2
 #define EFETIVACAO_MENU 3
-#define OCUPACAO_MENU 4
+#define ALUNOS_MENU 4
 #define ESTUDANTES_MENU 5
 #define HORARIOS_MENU 6
 #define HORARIO_ALUNO 7
@@ -32,7 +32,7 @@ private:
     void consultasMenu();
     void modificacoesMenu();
     void efetivacaoMenu();
-    void ocupacaoMenu();
+    void alunosMenu();
     void horariosMenu();
     void horarioAluno();
     void estudantesMenu();
