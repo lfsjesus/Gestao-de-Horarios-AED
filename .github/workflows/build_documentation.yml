@@ -24,6 +24,8 @@ jobs:
         ref: ${{ github.head_ref }}
 
     - uses: mattnotmitt/doxygen-action@v1.9.4
+      with:
+        working-directory: './'
     - name: build documentation
       run: doxygen Doxyfile
 
