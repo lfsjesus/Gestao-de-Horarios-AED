@@ -11,6 +11,8 @@ class Student {
 public:
     Student();
 
+    Student(unsigned code);
+
     Student(unsigned code, const std::string &name, list<Class> &turmas);
 
     unsigned int getCode() const;

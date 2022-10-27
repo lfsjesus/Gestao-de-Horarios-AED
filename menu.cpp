@@ -273,22 +273,26 @@ void Menu::horariosMenu() {
     getMenu();
 }
 void Menu::horarioAluno(){
-    int escolha;
+    unsigned escolha;
     cout << "\t[0] Voltar atrás" << endl << endl;
+
+    set<Student*, studComp> students = m.getStudents();
+    Student* myStudent;
 
     do {
         cout << "\tup do estudante: ";
         cin >> escolha;
         cout << "=======================================" << endl;
-        //if (estudante not found) cout << "Estudante não encontrado" << endl;
+        if(escolha == 0){
+            menuState.pop();
+            return getMenu();
+        }
         cin.clear();
         cin.ignore(1000, '\n');
-    } while (escolha < 200000000);
+        myStudent = *m.getStudents().find(new Student(escolha));
+    } while (myStudent == nullptr);
 
-    cout << "found!" << endl;
-
-    //get student from global BST by up
-    //student
+    cout << myStudent->getName() << endl;
 
     getMenu();
 

@@ -3,6 +3,9 @@
 Student::Student() {
 
 }
+Student::Student(unsigned code){
+    this->code = code;
+}
 Student::Student(const unsigned code, const std::string &name, list<Class> &classes) {
     this->code = code;
     this->name = name;
