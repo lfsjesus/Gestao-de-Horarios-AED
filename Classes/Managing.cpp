@@ -138,40 +138,21 @@ void Managing::setRequests(const queue<Request*> &requests) {
     Managing::requests = requests;
 }
 
-set<string> &Managing::getUcs() {
-    return ucs;
-}
-
 void Managing::setUcs(const set<string> &ucs) {
     Managing::ucs = ucs;
 }
 
-list<string> Managing::get_ucs1() {
-    list<string> year1;
+set<string> Managing::getUcs() {
+    return ucs;
+}
+
+set<string> Managing::getUcs(char year) {
+    set<string> filtered_ucs;
     for (string uc : this->ucs) {
         if (uc[0] == '1') {
-            year1.push_back(uc);
+            filtered_ucs.insert(uc);
         }
     }
-    return year1;
+    return filtered_ucs;
 }
 
-list<string> Managing::get_ucs2() {
-    list<string> year2;
-    for (string uc : this->ucs) {
-        if (uc[0] == '2') {
-            year2.push_back(uc);
-        }
-    }
-    return year2;
-}
-
-list<string> Managing::get_ucs3() {
-    list<string> year3;
-    for (string uc : this->ucs) {
-        if (uc[0] == '3') {
-            year3.push_back(uc);
-        }
-    }
-    return year3;
-}

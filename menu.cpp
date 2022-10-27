@@ -287,42 +287,29 @@ void Menu::estudantesMenu() {
 }
 
 void Menu::turmaMenu() {
-    int ano;
+    char ano;
     cout << "\t[0] Voltar atrás" << endl << endl;
 
     do {
         cout << "\tescolha um ano (1, 2 ou 3): ";
         cin >> ano;
         cout << "\n";
-    } while (ano < 1 || ano > 3);
+    } while (ano < '1' || ano > '3');
 
     string uc;
-    list<string> uclist;
 
-    switch(ano) {
-        case 1:
-            uclist = m.get_ucs1();
-            for (auto uc : uclist)
-                cout << "\t" << uc << "\n";
-            break;
-        case 2:
-            uclist = m.get_ucs2();
-            for (auto uc : uclist)
-                cout << "\t" << uc << "\n";
-            break;
-        case 3:
-            uclist = m.get_ucs3();
-            for (auto uc : uclist)
-                cout << "\t" << uc << "\n";
-            break;
-    }
+    set<string> ucSet = m.getUcs(ano);
+    for (auto uc : ucSet)
+        cout << "\t" << uc << "\n";
+
     do {
         cout << "\n\tescolha uma das UCs acima (código): ";
         cin >> uc;
-    } while(find(uclist.begin(), uclist.end(),uc) == uclist.end());
+    } while(find(ucSet.begin(), ucSet.end(),uc) == ucSet.end());
+
+    //listagem das turmas da uc selecionada
 
     string turma;
-
 
     do {
         cout << "\n\tescolha uma turma: ";
