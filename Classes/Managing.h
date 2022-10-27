@@ -6,6 +6,14 @@
 #include "Request.h"
 #include "Schedule.h"
 
+/*
+ * orders the STL set by student code
+ */
+struct studComp
+{
+    bool operator()(const Student* s1, const Student* s2) const  { return s1->getCode() < s2->getCode();}
+};
+
 class Managing {
 public:
     Managing();
@@ -16,9 +24,9 @@ public:
 
     void readSchedules();
 
-    const set<Student*> &getStudents() const;
+    const set<Student*, studComp> &getStudents() const;
 
-    void setStudents(const set<Student *> &students);
+    void setStudents(const set<Student *, studComp> &students);
 
     const vector<Schedule*> &getSchedules() const;
 
@@ -30,7 +38,7 @@ public:
 
 
 private:
-  set<Student*> students;
+  set<Student*,studComp> students;
   vector<Schedule*> schedules;
   queue<Request*> requests;
 

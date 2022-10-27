@@ -195,9 +195,10 @@ void Menu::ocupacaoMenu() {
 }
 
 void Menu::estudantesMenu() {
-
-    for (auto student: m.getStudents())
+    int i = 1;
+    for (auto student: m.getStudents()) {
         student->printStudent();
+    }
 
 }
 
