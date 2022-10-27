@@ -117,7 +117,7 @@ void Menu::consultasMenu() {
         if (escolha < 0 || escolha > 6) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
-    } while (escolha < 0 || escolha > 3);
+    } while (escolha < 0 || escolha > 6);
 
     switch (escolha) {
         case 0: menuState.pop(); break;
@@ -134,7 +134,7 @@ void Menu::consultasMenu() {
             break;
         }
         case 4: {
-            menuState.push(YEARS_MENU)
+            menuState.push(YEARS_MENU);
         }
         case 5: {
             menuState.push(HORARIOS_MENU);
@@ -298,6 +298,27 @@ void Menu::estudantesMenu() {
     for (auto student: m.getStudents()) {
         student->printStudent();
     }
+
+    int escolha;
+    do {
+        cout << "=======================================" << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+
+
+        cout << "\tEscolha: ";
+        cin >> escolha;
+        cout << "=======================================" << endl;
+        if (escolha < 0 || escolha > 4) cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (escolha < 0 || escolha > 4);
+
+    switch (escolha) {
+        case 0:
+            menuState.pop();
+            break;
+    }
+    getMenu();
 
 }
 
