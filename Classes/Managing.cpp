@@ -65,7 +65,7 @@ void Managing::readStudents() {
 
 void Managing::readSchedules() {
     // Reads the file about the students
-    vector<Schedule*> _schedules = {};
+    set<Schedule*> _schedules = {};
 
     ifstream file(CLASSES_FILE);
 
@@ -93,6 +93,7 @@ void Managing::readSchedules() {
 
             Class turma(classCode, ucCode);
             Slot slot(type, weekday, stof(startHour), stof(duration));
+            //TODO: Change find_if to find
             auto it = find_if(_schedules.begin(), _schedules.end(), [&turma](Schedule* p) {return p->getClass() == turma;});
 
 
@@ -103,7 +104,7 @@ void Managing::readSchedules() {
             else {
                 slots.clear();
                 slots.push_back(slot);
-                _schedules.push_back(new Schedule(turma, slots));
+                _schedules.insert(new Schedule(turma, slots));
 
             }
 
@@ -169,11 +170,11 @@ void Managing::setStudents(const set<Student*, studComp> &students) {
     Managing::students = students;
 }
 
-const vector<Schedule*> &Managing::getSchedules() const {
+const set<Schedule*> &Managing::getSchedules() const {
     return schedules;
 }
 
-void Managing::setSchedules(const vector<Schedule*> &schedules) {
+void Managing::setSchedules(const set<Schedule*> &schedules) {
     Managing::schedules = schedules;
 }
 

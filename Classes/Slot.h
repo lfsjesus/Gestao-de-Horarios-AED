@@ -22,6 +22,8 @@ public:
 
     void setDuration(float duration);
 
+    friend ostream& operator<<(ostream& os, const Slot& slot);
+
 public:
     Slot(const string &type, const string &weekday, float startHour, float duration);
 

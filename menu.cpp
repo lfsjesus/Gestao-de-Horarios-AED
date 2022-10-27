@@ -295,7 +295,6 @@ void Menu::horarioAluno(){
     cout << myStudent->getName() << endl;
 
     getMenu();
-
 }
 void Menu::estudantesMenu() {
     int i = 1;

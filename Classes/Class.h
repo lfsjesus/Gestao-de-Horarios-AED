@@ -25,6 +25,8 @@ public:
 
     void printClass();
 
+    bool operator<(const Class& _class) const;
+
     //const vector<Student *> getStudents();
 private:
     string classCode;

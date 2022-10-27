@@ -4,10 +4,13 @@ using namespace std;
 
 
 Schedule::Schedule() {}
-
-Schedule::Schedule(const Class &_class, const list<Slot> &scheduleClass) {
+Schedule::Schedule(const Class &_class){
     this->_class = _class;
-    this->scheduleClass = scheduleClass;
+}
+
+Schedule::Schedule(const Class &_class, const list<Slot> &slots) {
+    this->_class = _class;
+    this->slots = slots;
 }
 
 ostream& operator<<(ostream& os, const Schedule& schedule)
@@ -15,7 +18,6 @@ ostream& operator<<(ostream& os, const Schedule& schedule)
     //print here of the schedule
     return os;
 }
-
 
 const Class &Schedule::getClass() const {
     return _class;
@@ -25,16 +27,19 @@ void Schedule::setClass(const Class &_class) {
     this->_class = _class;
 }
 
-const list<Slot> &Schedule::getScheduleClass() const {
-    return scheduleClass;
+const list<Slot> &Schedule::getSlots() const {
+    return slots;
 }
 
-void Schedule::setScheduleClass(const list<Slot> &scheduleClass) {
-    Schedule::scheduleClass = scheduleClass;
+void Schedule::setSlots(const list<Slot> &slots) {
+    Schedule::slots = slots;
 }
 
 void Schedule::addSlot(Slot slot) {
-    scheduleClass.push_back(slot);
+    slots.push_back(slot);
+}
+bool Schedule::operator<(const Schedule& _class) const{
+    return this->_class < _class._class;
 }
 
 

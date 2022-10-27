@@ -36,9 +36,9 @@ public:
 
     void setStudents(const set<Student *, studComp> &students);
 
-    const vector<Schedule*> &getSchedules() const;
+    const set<Schedule*> &getSchedules() const;
 
-    void setSchedules(const vector<Schedule*> &schedules);
+    void setSchedules(const set<Schedule *> &schedules);
 
     const queue<Request*> &getRequests() const;
 
@@ -48,14 +48,13 @@ public:
 
     set<CourseUnit, ucComp> getUcs(char year);
 
-
-    list<string> get_student_schedule(unsigned int  code);
+    list<string> get_student_schedule(unsigned int code);
 
     void setUcs(const set<CourseUnit, ucComp> &ucs);
 
 private:
   set<Student*,studComp> students;
-  vector<Schedule*> schedules;
+  set<Schedule*> schedules;
   queue<Request*> requests;
   set<CourseUnit, ucComp> ucs; //useful to show each year's UCs in menuTurma
 
