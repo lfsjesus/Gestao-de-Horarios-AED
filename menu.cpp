@@ -331,13 +331,14 @@ void Menu::turmaMenu() {
     cout << "\t[0] Voltar atrás" << endl << endl;
 
     do {
-        cout << "\tescolha um ano (1, 2 ou 3): ";
+        cout << "\tEscolha um ano (1, 2 ou 3): ";
         cin >> ano;
         cout << "\n";
     } while (ano < '1' || ano > '3');
 
     //listagem das UCs
 
+    cout << "\tUCs do " << ano << "º ano:" << "\n";
     string uc;
 
     set<CourseUnit, ucComp> ucSet = m.getUcs(ano);
@@ -349,26 +350,38 @@ void Menu::turmaMenu() {
     do {
         cout << "\n\tescolha uma das UCs acima (código): ";
         cin >> uc;
+        if (uc == "0"){  //isto devia voltar atrás para escolher o ano de novo, mas não faz isso
+            menuState.pop();
+            getMenu();
+        }
         CourseUnit tempUc(uc);
         it = ucSet.find(tempUc); //logarithmic
     } while(it == ucSet.end());
 
+    CourseUnit UC = *it; // A UC escolhida pelo utilizador
 
     //listagem das turmas da uc selecionada
 
     string turma;
-    /*
-    set<string> turmasUcSet = m.getClasses(ucCode uc);
-    for (auto turma : turmasUcSet)
-        cout << "\t" << turma << "\n";
-    */
+    cout << endl;
+    for (auto TURMA : it->getClasses())
+        cout << "\t" << TURMA << "\n";
 
+    auto itr = UC.getClasses().begin();
     do {
         cout << "\n\tescolha uma turma: ";
         cin >> turma;
+        if (turma == "0"){  //isto devia voltar atrás para escolher a UC de novo, mas não faz isso
+            menuState.pop();
+            getMenu();
+        }
+        itr = UC.getClasses().find(turma);
+        //set.find(turmaTemp); //logarithmic
+    } while(itr == UC.getClasses().end()); //ok
 
-    } while(turma == ""); //ok
+    Class Turma(turma, uc);
 
+    cout << "\n\tALunos da Turma " << Turma.getClassCode() << " da UC " << Turma.getUcCode() << ":" << endl;
 
 
     menuState.pop();
