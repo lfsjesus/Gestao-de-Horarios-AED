@@ -71,7 +71,7 @@ void Managing::readSchedules() {
     list<Slot> slots;
 
     if (file.is_open()) {
-        file.ignore(49, '\n');
+        file.ignore(100, '\n');
         while (!file.eof()) {
 
             string classCode;
