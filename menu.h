@@ -37,7 +37,6 @@ private:
     void horarioAluno();
     void estudantesMenu();
     void turmaMenu();
-    void printSchedule(vector<Slot> slots);
     std::stack<short int> menuState;
 
 };

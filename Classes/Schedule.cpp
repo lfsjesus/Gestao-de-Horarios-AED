@@ -13,7 +13,10 @@ Schedule::Schedule(const Class &_class, const list<Slot> &slots) {
 
 ostream& operator<<(ostream& os, const Schedule& schedule)
 {
-    //print here of the schedule
+    printf("\n  -------Horário-------- \n");
+    for(Slot slot : schedule.slots){
+        os << slot << endl;
+    }
     return os;
 }
 

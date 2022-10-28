@@ -28,6 +28,8 @@ public:
 
     bool operator<(const Schedule& _class) const;
 
+    friend ostream& operator<<(ostream& os, const Schedule& schedule);
+
 private:
     Class _class;
     list<Slot> slots;

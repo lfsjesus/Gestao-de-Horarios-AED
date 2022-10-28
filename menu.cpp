@@ -296,18 +296,18 @@ void Menu::horarioAluno(){
     set<Schedule*, schedComp> schedules = m.getSchedules();
     set<Schedule*, schedComp>::iterator mySchedule;
 
-    vector<Slot> studentSlots = {};
+    Schedule studentSchedule = Schedule();
     for(Class _class : (*myStudent)->getClasses()){
         mySchedule = schedules.find(new Schedule(_class));
         if(mySchedule != schedules.end()){
             for(Slot slot : (*mySchedule)->getSlots()){
-                studentSlots.push_back(slot);
+                studentSchedule.addSlot(slot);
             }
         }
     }
 
     cout << "Horário de: " << (*myStudent)->getName() << endl;
-    Menu::printSchedule(studentSlots);
+    cout << studentSchedule << endl;
 
     getMenu();
 }
@@ -387,13 +387,6 @@ void Menu::turmaMenu() {
 
     menuState.pop();
     getMenu();
-}
-
-void Menu::printSchedule(vector<Slot> slots){
-    printf("\n  -------Horário-------- \n");
-    for(Slot slot : slots){
-        cout << slot << endl;
-    }
 }
 
 // Colocar os outros menus
