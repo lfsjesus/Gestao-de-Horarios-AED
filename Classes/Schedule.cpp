@@ -1,8 +1,6 @@
 #include "Schedule.h"
 using namespace std;
 
-
-
 Schedule::Schedule() {}
 Schedule::Schedule(const Class &_class){
     this->_class = _class;

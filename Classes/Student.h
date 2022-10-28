@@ -13,7 +13,7 @@ public:
 
     Student(unsigned code);
 
-    Student(unsigned code, const std::string &name, list<Class> &turmas);
+    Student(unsigned code, const std::string &name, list<Class> &classes);
 
     unsigned int getCode() const;
 
@@ -29,6 +29,7 @@ public:
 
     void addClass(Class _class);
 
+    bool operator<(const Student &s) const;
     bool operator==(const Student& student) const;
 
     void printStudent();

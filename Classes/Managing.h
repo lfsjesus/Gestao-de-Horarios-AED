@@ -20,6 +20,11 @@ struct ucComp
     bool operator()(const CourseUnit u1, const CourseUnit u2) const  { return u1.getUcCode() < u2.getUcCode();}
 };
 
+struct schedComp
+{
+    bool operator()(const Schedule* s1, const Schedule* s2) const  { return s1->getClass() < s2->getClass();}
+};
+
 class Managing {
 public:
     Managing();
@@ -34,11 +39,11 @@ public:
 
     const set<Student*, studComp> &getStudents() const;
 
-    void setStudents(const set<Student *, studComp> &students);
+    void setStudents(const set<Student*, studComp> &students);
 
-    const set<Schedule*> &getSchedules() const;
+    const set<Schedule*, schedComp> &getSchedules() const;
 
-    void setSchedules(const set<Schedule *> &schedules);
+    void setSchedules(const set<Schedule*, schedComp> &schedules);
 
     const queue<Request*> &getRequests() const;
 
@@ -53,8 +58,8 @@ public:
     void setUcs(const set<CourseUnit, ucComp> &ucs);
 
 private:
-  set<Student*,studComp> students;
-  set<Schedule*> schedules;
+  set<Student*, studComp> students;
+  set<Schedule*, schedComp> schedules;
   queue<Request*> requests;
   set<CourseUnit, ucComp> ucs; //useful to show each year's UCs in menuTurma
 

@@ -8,7 +8,6 @@
 using namespace std;
 
 class Class {
-
 public:
     Class();
     Class (const string& classCode, const string& ucCode);
@@ -21,9 +20,9 @@ public:
 
     void setUcCode(const string &ucCode);
 
-    bool operator==(const Class& _class) const;
-
     void printClass();
+
+    bool operator==(const Class& _class) const;
 
     bool operator<(const Class& _class) const;
 
@@ -31,7 +30,6 @@ public:
 private:
     string classCode;
     string ucCode;
-
 };
 
 #endif

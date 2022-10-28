@@ -21,7 +21,7 @@ void Managing::readFiles() {
 
 void Managing::readStudents() {
     // Reads the file about the students
-    set<Student*, studComp> _students = {};
+    set<Student *, studComp> _students = {};
     ifstream file(STUDENTS_FILE);
 
     list<Class> studentclasses;
@@ -42,18 +42,17 @@ void Managing::readStudents() {
             getline(file, ucCode);
             ucCode.erase(ucCode.size() - 1); // remove carriage return symbol \r
 
-            auto it = find_if(_students.begin(), _students.end(), [&studentCode](Student* p) {return p->getCode() == stoi(studentCode);});
-            Class turma(classCode, ucCode);
+            auto it = _students.find(new Student(stoi(studentCode)));
+
+            Class _class = Class(classCode, ucCode);
 
             if (it != _students.end()) {
-                (*it)->addClass(turma);
+                (*it)->addClass(_class);
             }
-
             else {
                 studentclasses.clear();
-                studentclasses.push_back(turma);
+                studentclasses.push_back(_class);
                 _students.insert(new Student(stoi(studentCode), name, studentclasses));
-
             }
 
         }
@@ -65,7 +64,7 @@ void Managing::readStudents() {
 
 void Managing::readSchedules() {
     // Reads the file about the students
-    set<Schedule*> _schedules = {};
+    set<Schedule*, schedComp> _schedules = {};
 
     ifstream file(CLASSES_FILE);
 
@@ -91,11 +90,10 @@ void Managing::readSchedules() {
             getline(file, type);
             type.erase(type.size() - 1); // remove carriage return symbol \r
 
-            Class turma(classCode, ucCode);
+            Class _class(classCode, ucCode);
             Slot slot(type, weekday, stof(startHour), stof(duration));
-            //TODO: Change find_if to find
-            auto it = find_if(_schedules.begin(), _schedules.end(), [&turma](Schedule* p) {return p->getClass() == turma;});
 
+            auto it = _schedules.find(new Schedule(_class));
 
             if (it != _schedules.end()) {
                 (*it)->addSlot(slot);
@@ -104,8 +102,7 @@ void Managing::readSchedules() {
             else {
                 slots.clear();
                 slots.push_back(slot);
-                _schedules.insert(new Schedule(turma, slots));
-
+                _schedules.insert(new Schedule(_class, slots));
             }
 
         }
@@ -170,11 +167,11 @@ void Managing::setStudents(const set<Student*, studComp> &students) {
     Managing::students = students;
 }
 
-const set<Schedule*> &Managing::getSchedules() const {
+const set<Schedule*, schedComp> &Managing::getSchedules() const {
     return schedules;
 }
 
-void Managing::setSchedules(const set<Schedule*> &schedules) {
+void Managing::setSchedules(const set<Schedule*, schedComp> &schedules) {
     Managing::schedules = schedules;
 }
 
