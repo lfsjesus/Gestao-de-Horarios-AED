@@ -36,10 +36,13 @@ void Student::setClasses(const list<Class> &classes) {
     Student::classes = classes;
 }
 
-bool Student::operator==(const Student &estudante) const {
-    return code == estudante.getCode();
-}
 
+bool Student::operator<(const Student &s) const {
+    return this->code < s.code;
+}
+bool Student::operator==(const Student &student) const {
+    return code == student.getCode();
+}
 void Student::addClass(Class _class) {
     classes.push_back(_class);
 }

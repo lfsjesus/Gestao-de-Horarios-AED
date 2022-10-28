@@ -277,8 +277,7 @@ void Menu::horarioAluno(){
     cout << "\t[0] Voltar atrás" << endl << endl;
 
     set<Student*, studComp> students = m.getStudents();
-    Student* myStudent;
-
+    set<Student*, studComp>::iterator myStudent;
     do {
         cout << "\tup do estudante: ";
         cin >> escolha;
@@ -289,17 +288,32 @@ void Menu::horarioAluno(){
         }
         cin.clear();
         cin.ignore(1000, '\n');
-        myStudent = *m.getStudents().find(new Student(escolha));
-    } while (myStudent == nullptr);
+        myStudent = students.find(new Student(escolha));
+    } while (myStudent == students.end());
 
-    cout << myStudent->getName() << endl;
+    cout << (*myStudent)->getName() << endl;
+
+    set<Schedule*, schedComp> schedules = m.getSchedules();
+    set<Schedule*, schedComp>::iterator mySchedule;
+
+    Schedule studentSchedule = Schedule();
+    for(Class _class : (*myStudent)->getClasses()){
+        mySchedule = schedules.find(new Schedule(_class));
+        if(mySchedule != schedules.end()){
+            for(Slot slot : (*mySchedule)->getSlots()){
+                studentSchedule.addSlot(slot);
+            }
+        }
+    }
+
+    cout << "Horário de: " << (*myStudent)->getName() << endl;
+    cout << studentSchedule << endl;
 
     getMenu();
-
 }
 void Menu::estudantesMenu() {
     int i = 1;
-    for (auto student: m.getStudents()) {
+    for (Student* student: m.getStudents()) {
         student->printStudent();
     }
 
@@ -387,8 +401,6 @@ void Menu::turmaMenu() {
     menuState.pop();
     getMenu();
 }
-
-
 
 // Colocar os outros menus
 // Colocar aqui as funções de listagem (que estão relacionadas

@@ -8,11 +8,6 @@ Class::Class(const string &classCode, const string &ucCode) {
     this->ucCode = ucCode;
 }
 
-
-bool Class::operator==(const Class &_class) const {
-    return (ucCode == _class.getUcCode() && classCode == _class.getClassCode());
-}
-
 const string &Class::getClassCode() const {
     return classCode;
 }
@@ -32,8 +27,15 @@ void Class::setUcCode(const string &ucCode) {
 void Class::printClass() {
     cout << "Turma: " << classCode << " UC: " << ucCode << endl;
 }
-/*
-const vector<Student *> Class::getStudents() {
-    // Ir aos enrollments e encontrar os que têm o código da turma (ucCode e classCode)
+
+bool Class::operator==(const Class &_class) const {
+    return (ucCode == _class.ucCode && classCode == _class.classCode);
 }
-*/
+bool Class::operator<(const Class& _class) const {
+    if (ucCode < _class.ucCode)
+        return true;
+    else if (ucCode == _class.ucCode)
+        return classCode < _class.classCode;
+    else
+        return false;
+}
