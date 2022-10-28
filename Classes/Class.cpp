@@ -32,10 +32,11 @@ bool Class::operator==(const Class &_class) const {
     return (ucCode == _class.ucCode && classCode == _class.classCode);
 }
 bool Class::operator<(const Class& _class) const {
-    if (ucCode < _class.ucCode)
+    if (ucCode < _class.ucCode && classCode < _class.classCode)
         return true;
+    else if (ucCode < _class.ucCode && classCode > _class.classCode)
+        return false;
     else if (ucCode == _class.ucCode)
         return classCode < _class.classCode;
-    else
-        return false;
+    return false;
 }

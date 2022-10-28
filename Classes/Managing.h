@@ -40,7 +40,9 @@ struct classComp{
 
 struct schedComp
 {
-    bool operator()(const Schedule* s1, const Schedule* s2) const  { return s1->getClass() < s2->getClass();}
+    bool operator()(const Schedule* s1, const Schedule* s2) const  {
+        return s1->getClass() < s2->getClass();
+    }
 };
 
 

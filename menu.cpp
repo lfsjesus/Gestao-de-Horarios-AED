@@ -294,11 +294,11 @@ void Menu::horarioAluno(){
     cout << (*myStudent)->getName() << endl;
 
     set<Schedule*, schedComp> schedules = m.getSchedules();
-    set<Schedule*, schedComp>::iterator mySchedule;
+
 
     Schedule studentSchedule = Schedule();
     for(Class _class : (*myStudent)->getClasses()){
-        mySchedule = schedules.find(new Schedule(_class));
+        auto mySchedule = schedules.find(new Schedule(_class));
         if(mySchedule != schedules.end()){
             for(Slot slot : (*mySchedule)->getSlots()){
                 studentSchedule.addSlot(slot);

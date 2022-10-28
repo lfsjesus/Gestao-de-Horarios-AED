@@ -24,9 +24,6 @@ public:
     void addSlot(Slot slot);
 
     // Faz print de uma tabela toda bonita no terminal
-    friend ostream& operator<<(ostream& os, const Schedule& schedule);
-
-    bool operator<(const Schedule& _class) const;
 
     friend ostream& operator<<(ostream& os, const Schedule& schedule);
 

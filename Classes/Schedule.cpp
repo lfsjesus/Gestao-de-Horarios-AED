@@ -39,9 +39,7 @@ void Schedule::setSlots(const list<Slot> &slots) {
 void Schedule::addSlot(Slot slot) {
     slots.push_back(slot);
 }
-bool Schedule::operator<(const Schedule& _class) const{
-    return this->_class < _class._class;
-}
+
 
 
 
