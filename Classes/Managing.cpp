@@ -170,6 +170,19 @@ void Managing::setStudents(const set<Student*, studComp> &students) {
     Managing::students = students;
 }
 
+bool Managing::addStudent(const Student* student) {
+    students.insert(new Student(*student));
+    //TODO: insert in file of students
+    ofstream file(STUDENTS_FILE,ios::app);
+    //inserting multiple lines
+    for(Class _class : student->getClasses()) {
+        file << student->getCode() << "," << student->getName() << "," << _class.getUcCode() << "," << _class.getClassCode() << endl;
+    }
+    file.close();
+
+    return true;
+}
+
 const set<Schedule*> &Managing::getSchedules() const {
     return schedules;
 }

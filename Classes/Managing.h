@@ -45,6 +45,8 @@ public:
 
     void setStudents(const set<Student *, studComp> &students);
 
+    bool addStudent(const Student* student);
+
     const set<Schedule*> &getSchedules() const;
 
     void setSchedules(const set<Schedule *> &schedules);

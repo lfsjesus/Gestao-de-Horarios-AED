@@ -47,6 +47,9 @@ void Menu::getMenu() {
             case 10:
                 turmaMenu();
                 break;
+            case INSCREVER_ALUNO_MENU:
+                inscreverAluno();
+                break;
         }
     }
 }
@@ -167,6 +170,7 @@ void Menu::modificacoesMenu() {
 
     switch (escolha) {
         case 0: menuState.pop(); break;
+        case 1: menuState.push(INSCREVER_ALUNO_MENU); break;
     }
     getMenu();
 }
@@ -387,6 +391,35 @@ void Menu::turmaMenu() {
     getMenu();
 }
 
+//TODO: refactor disto e inserir turmas
+void Menu::inscreverAluno(){
+    unsigned upCode;
+    string name;
+    list<Class> _classes;
+
+    cout << "\t[0] Voltar atrás" << endl << endl;
+
+    cout << "\tUP do aluno: ";
+    cin >> upCode;
+    cin.clear();
+    cin.ignore(1000, '\n');
+
+    cout << "\tNome do aluno: ";
+    getline(cin, name);
+    cin.clear();
+    cin.ignore(1000, '\n');
+
+    Student * newStudent = new Student(upCode, name, _classes);
+
+    //TODO: add classes to student
+
+    bool inserted = m.addStudent(newStudent);
+    if(inserted) cout << "Aluno Instrito com sucesso!" << endl;
+    else cout << "Perdemos a conexão ao Sigarra :/" << endl;
+
+    menuState.pop();
+    getMenu();
+}
 
 
 // Colocar os outros menus
