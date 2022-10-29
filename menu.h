@@ -36,6 +36,7 @@ private:
     void alunosMenu();
     void horariosMenu();
     void horarioAluno();
+    void horarioTurma();
     void estudantesMenu();
     void turmaMenu();
     void printSchedule(vector<Slot> slots);
