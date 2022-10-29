@@ -50,6 +50,9 @@ void Menu::getMenu() {
             case INSCREVER_ALUNO_MENU:
                 inscreverAluno();
                 break;
+            case DESINSCREVER_ALUNO_MENU:
+                desinscreverAluno();
+                break;
         }
     }
 }
@@ -171,6 +174,7 @@ void Menu::modificacoesMenu() {
     switch (escolha) {
         case 0: menuState.pop(); break;
         case 1: menuState.push(INSCREVER_ALUNO_MENU); break;
+        case 2: menuState.push(DESINSCREVER_ALUNO_MENU); break;
     }
     getMenu();
 }
@@ -436,6 +440,56 @@ void Menu::inscreverAluno(){
     getMenu();
 }
 
+void Menu::desinscreverAluno() {
+    unsigned upcode;
+
+    cout << "\t[0] Voltar atrás" << endl << endl;
+
+    do {
+        cout << "\tUP do aluno: ";
+        cin >> upcode;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while(m.getStudents().find(new Student(upcode)) == m.getStudents().end());
+
+    Student* newStudent = *m.getStudents().find(new Student(upcode));
+
+    cout << "\nO estudante (" << upcode << ") " << newStudent->getName()
+         << " está inscrito nas seguintes turmas (UC/Turma):\n\n";
+
+    newStudent->printClasses();
+
+    list<Turma> newStudentClasses = newStudent->getClasses();
+
+    cout << "\n" << "[" << newStudent->getClasses().size() + 1 << "] " << "REMOVER DE TODAS AS TURMAS";
+
+    int choice;
+    do {
+        cout << "\n\n De qual delas quer remover o estudante? ";
+        cin >> choice;
+    } while (choice < 0 || choice > newStudentClasses.size() + 1);
+
+    auto index = newStudentClasses.begin(); // listas não têm [], temos de usar advance() que é O(1)
+
+    if (choice != 0 && (choice != newStudentClasses.size() + 1)) {
+
+        advance(index, choice - 1); //avançar para o index certo da lista
+        newStudent->removeClass(*index);
+
+        if (newStudent->getClasses().size() == 0)
+            m.eraseStudent(newStudent); // Remover totalmente o estudante se não estiver em nenhuma turma
+            cout << "\nEstudante desinscrito com sucesso!";
+    }
+
+    else if (choice == newStudentClasses.size() + 1) {
+        m.eraseStudent(newStudent);
+        cout << "\nEstudante desinscrito com sucesso!";
+    }
+
+    // !!!!!!FALTA ATUALIZAR O FICHEIRO -> talvez seja util uma função updateFile() que atualize inscriçoes/desinscriçoes
+
+    getMenu();
+}
 
 // Colocar os outros menus
 // Colocar aqui as funções de listagem (que estão relacionadas

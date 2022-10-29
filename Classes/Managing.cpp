@@ -211,3 +211,7 @@ set<CourseUnit, ucComp> Managing::getUcs(char year) {
     }
     return filtered_ucs;
 }
+
+void Managing::eraseStudent(Student *s) {
+    students.erase(s);
+}

@@ -51,5 +51,18 @@ void Student::printStudent() {
     cout << "(" << code << ") " << name << endl;
 }
 
+void Student::printClasses() {
+    int i = 1;
+    for (Turma c : classes) {
+        cout << "[" << i << "]" << " ";
+        c.printClass();
+        i++;
+    }
+}
+
+void Student::removeClass(Turma _class) {
+    classes.remove(_class);
+}
+
 
 

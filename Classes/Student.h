@@ -29,10 +29,13 @@ public:
 
     void addClass(Turma _class);
 
+    void removeClass(Turma _class);
+
     bool operator<(const Student &s) const;
     bool operator==(const Student& student) const;
 
     void printStudent();
+    void printClasses();
 
     /*
     const Schedule &getSchedule() const; // O horário seria uma função geradora que faz um loop 

@@ -80,6 +80,8 @@ public:
 
     void setUcs(const set<CourseUnit, ucComp> &ucs);
 
+    void eraseStudent(Student* s);
+
 
 
 private:

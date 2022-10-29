@@ -22,6 +22,7 @@
 #define COURSE_UNITS_MENU 12
 #define YEARS_MENU 13
 #define INSCREVER_ALUNO_MENU 14
+#define DESINSCREVER_ALUNO_MENU 15
 
 class Menu {
 public:
@@ -39,6 +40,7 @@ private:
     void turmaMenu();
     void printSchedule(vector<Slot> slots);
     void inscreverAluno();
+    void desinscreverAluno();
     std::stack<short int> menuState;
 
 };
