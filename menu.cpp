@@ -281,8 +281,7 @@ void Menu::horarioAluno(){
     cout << "\t[0] Voltar atrás" << endl << endl;
 
     set<Student*, studComp> students = m.getStudents();
-    Student* myStudent;
-
+    set<Student*, studComp>::iterator myStudent;
     do {
         cout << "\tup do estudante: ";
         cin >> escolha;
@@ -293,16 +292,32 @@ void Menu::horarioAluno(){
         }
         cin.clear();
         cin.ignore(1000, '\n');
-        myStudent = *m.getStudents().find(new Student(escolha));
-    } while (myStudent == nullptr);
+        myStudent = students.find(new Student(escolha));
+    } while (myStudent == students.end());
 
-    cout << myStudent->getName() << endl;
+    cout << (*myStudent)->getName() << endl;
+
+    set<Schedule*, schedComp> schedules = m.getSchedules();
+
+
+    Schedule studentSchedule = Schedule();
+    for(Turma _class : (*myStudent)->getClasses()){
+        auto mySchedule = schedules.find(new Schedule(_class));
+        if(mySchedule != schedules.end()){
+            for(Slot slot : (*mySchedule)->getSlots()){
+                studentSchedule.addSlot(slot);
+            }
+        }
+    }
+
+    cout << "Horário de: " << (*myStudent)->getName() << endl;
+    cout << studentSchedule << endl;
 
     getMenu();
 }
 void Menu::estudantesMenu() {
     int i = 1;
-    for (auto student: m.getStudents()) {
+    for (Student* student: m.getStudents()) {
         student->printStudent();
     }
 
@@ -353,7 +368,7 @@ void Menu::turmaMenu() {
     do {
         cout << "\n\tescolha uma das UCs acima (código): ";
         cin >> uc;
-        if (uc == "0"){  //isto devia voltar atrás para escolher o ano de novo, mas não faz isso
+        if (uc == "0"){
             menuState.pop();
             getMenu();
         }
@@ -374,7 +389,7 @@ void Menu::turmaMenu() {
     do {
         cout << "\n\tescolha uma turma: ";
         cin >> turma;
-        if (turma == "0"){  //isto devia voltar atrás para escolher a UC de novo, mas não faz isso
+        if (turma == "0"){
             menuState.pop();
             getMenu();
         }
@@ -382,7 +397,7 @@ void Menu::turmaMenu() {
         //set.find(turmaTemp); //logarithmic
     } while(itr == UC.getClasses().end()); //ok
 
-    Class Turma(turma, uc);
+    Turma Turma(turma, uc);
 
     cout << "\n\tALunos da Turma " << Turma.getClassCode() << " da UC " << Turma.getUcCode() << ":" << endl;
 
@@ -395,7 +410,7 @@ void Menu::turmaMenu() {
 void Menu::inscreverAluno(){
     unsigned upCode;
     string name;
-    list<Class> _classes;
+    list<Turma> _classes;
 
     cout << "\t[0] Voltar atrás" << endl << endl;
 

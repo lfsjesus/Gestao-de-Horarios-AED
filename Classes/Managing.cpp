@@ -21,10 +21,10 @@ void Managing::readFiles() {
 
 void Managing::readStudents() {
     // Reads the file about the students
-    set<Student*, studComp> _students = {};
+    set<Student *, studComp> _students = {};
     ifstream file(STUDENTS_FILE);
 
-    list<Class> studentclasses;
+    list<Turma> studentclasses;
 
     if (file.is_open()) {
         file.ignore(49, '\n');
@@ -38,22 +38,21 @@ void Managing::readStudents() {
             getline(file, studentCode, ',');
             if (studentCode.empty()) break;
             getline(file, name, ',');
-            getline(file, classCode, ',');
-            getline(file, ucCode);
-            ucCode.erase(ucCode.size() - 1); // remove carriage return symbol \r
+            getline(file, ucCode, ',');
+            getline(file, classCode);
+            classCode.erase(classCode.size() - 1); // remove carriage return symbol \r
 
-            auto it = find_if(_students.begin(), _students.end(), [&studentCode](Student* p) {return p->getCode() == stoi(studentCode);});
-            Class turma(classCode, ucCode);
+            auto it = _students.find(new Student(stoi(studentCode)));
+
+            Turma _class = Turma(classCode, ucCode);
 
             if (it != _students.end()) {
-                (*it)->addClass(turma);
+                (*it)->addClass(_class);
             }
-
             else {
                 studentclasses.clear();
-                studentclasses.push_back(turma);
+                studentclasses.push_back(_class);
                 _students.insert(new Student(stoi(studentCode), name, studentclasses));
-
             }
 
         }
@@ -65,14 +64,14 @@ void Managing::readStudents() {
 
 void Managing::readSchedules() {
     // Reads the file about the students
-    set<Schedule*> _schedules = {};
+    set<Schedule*, schedComp> _schedules = {};
 
     ifstream file(CLASSES_FILE);
 
     list<Slot> slots;
 
     if (file.is_open()) {
-        file.ignore(49, '\n');
+        file.ignore(100, '\n');
         while (!file.eof()) {
 
             string classCode;
@@ -91,11 +90,10 @@ void Managing::readSchedules() {
             getline(file, type);
             type.erase(type.size() - 1); // remove carriage return symbol \r
 
-            Class turma(classCode, ucCode);
+            Turma _class(classCode, ucCode);
             Slot slot(type, weekday, stof(startHour), stof(duration));
-            //TODO: Change find_if to find
-            auto it = find_if(_schedules.begin(), _schedules.end(), [&turma](Schedule* p) {return p->getClass() == turma;});
 
+            auto it = _schedules.find(new Schedule(_class));
 
             if (it != _schedules.end()) {
                 (*it)->addSlot(slot);
@@ -104,8 +102,7 @@ void Managing::readSchedules() {
             else {
                 slots.clear();
                 slots.push_back(slot);
-                _schedules.insert(new Schedule(turma, slots));
-
+                _schedules.insert(new Schedule(_class, slots));
             }
 
         }
@@ -172,22 +169,22 @@ void Managing::setStudents(const set<Student*, studComp> &students) {
 
 bool Managing::addStudent(const Student* student) {
     students.insert(new Student(*student));
-    //TODO: insert in file of students
+
     ofstream file(STUDENTS_FILE,ios::app);
     //inserting multiple lines
-    for(Class _class : student->getClasses()) {
+    for(Turma _class : student->getClasses()) {
         file << student->getCode() << "," << student->getName() << "," << _class.getUcCode() << "," << _class.getClassCode() << endl;
     }
     file.close();
 
-    return true;
+    return true; //TODO: if there is no problem
 }
 
-const set<Schedule*> &Managing::getSchedules() const {
+const set<Schedule*, schedComp> &Managing::getSchedules() const {
     return schedules;
 }
 
-void Managing::setSchedules(const set<Schedule*> &schedules) {
+void Managing::setSchedules(const set<Schedule*, schedComp> &schedules) {
     Managing::schedules = schedules;
 }
 

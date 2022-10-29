@@ -6,7 +6,7 @@
 #include "Request.h"
 #include "Schedule.h"
 #include "CourseUnit.h"
-#include "Class.h"
+#include "Turma.h"
 /*
  * orders the STL set by Student Code
  */
@@ -28,11 +28,20 @@ struct ucComp
  */
 struct classComp{
 
-    bool operator()(const Class c1, const Class c2) const  {
+    bool operator()(const Turma c1, const Turma c2) const  {
         if(c1.getClassCode()== c2.getClassCode()){
             return c1.getUcCode() < c2.getUcCode();
         }
         return c1.getClassCode() < c2.getClassCode();
+    }
+};
+
+
+
+struct schedComp
+{
+    bool operator()(const Schedule* s1, const Schedule* s2) const  {
+        return s1->getClass() < s2->getClass();
     }
 };
 
@@ -51,13 +60,13 @@ public:
 
     const set<Student*, studComp> &getStudents() const;
 
-    void setStudents(const set<Student *, studComp> &students);
+    void setStudents(const set<Student*, studComp> &students);
 
     bool addStudent(const Student* student);
 
-    const set<Schedule*> &getSchedules() const;
+    const set<Schedule*, schedComp> &getSchedules() const;
 
-    void setSchedules(const set<Schedule *> &schedules);
+    void setSchedules(const set<Schedule*, schedComp> &schedules);
 
     const queue<Request*> &getRequests() const;
 
@@ -74,11 +83,11 @@ public:
 
 
 private:
-  set<Student*,studComp> students;
-  set<Schedule*> schedules;
+  set<Student*, studComp> students;
+  set<Schedule*, schedComp> schedules;
   queue<Request*> requests;
   set<CourseUnit, ucComp> ucs; //useful to show each year's UCs in menuTurma
-  set<Class, classComp> classes; //useful to show which students belong to a class
+  set<Turma, classComp> classes; //useful to show which students belong to a class
 
 };
 
