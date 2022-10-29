@@ -52,6 +52,7 @@ struct schedComp
 };
 
 
+
 class Managing {
 public:
     Managing();

@@ -350,7 +350,7 @@ void Menu::horarioTurma(){
 
     string primeira = classesYear.begin()->getClassCode();
     printed.insert(primeira);
-
+    //ISTO É PARA VER SE A TURMA JA FOI IMPRESSA E PARA NAO REPETIR TURMAS COM UCS DIFERENTES
     cout << "\t" << *printed.begin() << endl;
     for(Turma turma1 : classesYear){
         it = printed.find(turma1.getClassCode());
@@ -362,14 +362,12 @@ void Menu::horarioTurma(){
     }
     cout << endl << endl;
 
-    //MOSTRAR HORARIO DA TURMA ESCOLHIDA
+    //Parte de escolher a turma e mostrar o horario
 
     string turma;
     cout << "\t[0] Voltar atrás" << endl << endl;
-    auto itr_turma = classesYear.begin(); //este set tem todas as turmas (classCode, ucCode)
-
+    auto itr_turma = classesYear.begin(); //este set tem todas as turmas daquele ano (classCode, ucCode)
     vector<Turma> turmasParaHorario;
-
     do {
         cout << "\tEscolha uma turma: ";
         cin >> turma;
@@ -381,27 +379,32 @@ void Menu::horarioTurma(){
         cin.clear();
         cin.ignore(1000, '\n');
 
-        Turma turmaTemp(turma,"L.EIC001"); //criei uma turma temporaria com o classCode da string
 
+    } while (printed.find(turma) == printed.end());
 
-        itr_turma = classesYear.find(turmaTemp); //procuro o primeiro objeto turma com aquela classCode
-        //se itr_turma != fim, remover aquela turma do set quero guarda-la fora e depois ver o horario dela
-
-        if(itr_turma != classesYear.end()){ //quer dizer que encontrei uma turma com aquele classCode
-
-            turmasParaHorario.push_back(*itr_turma);
-            classesYear.erase(itr_turma);
-            itr_turma = classesYear.begin();
+    for(Turma t : classesYear){
+        if(t.getClassCode() == turma){
+            turmasParaHorario.push_back(t);
         }
-
-        //getSchedules(turma)
-
-    } while (itr_turma == classesYear.end());
-
-    for(Turma TURMA : turmasParaHorario){
-        cout << TURMA.getClassCode() << TURMA.getUcCode() << endl;
     }
 
+
+    set<Schedule*, schedComp> schedules = m.getSchedules();
+    Schedule classSchedule = Schedule();
+    for(Turma _class : turmasParaHorario){
+        auto mySchedule = schedules.find(new Schedule(_class));
+        if(mySchedule != schedules.end()){
+            for(Slot slot : (*mySchedule)->getSlots()){
+                classSchedule.addSlot(slot);
+
+
+            }
+
+        }
+
+
+    }
+    cout << classSchedule << endl;
 }
 
 

@@ -6,6 +6,8 @@
 #include <list>
 #include "Turma.h"
 #include "Slot.h"
+//#include "CourseUnit.h"
+
 using namespace std;
 
 class Schedule {
@@ -28,8 +30,10 @@ public:
     friend ostream& operator<<(ostream& os, const Schedule& schedule);
 
 private:
-    Turma _class;
-    list<Slot> slots;
+    //CourseUnit uc;
+    Turma _class; //ESTA CLASSE É PARA MOSTRAR O HORARIO DE CADA TURMA, MAS CADA AULA PRECISA DE ESTAR LIGADA A UMA TURMA - ver comentario da class Slot
+    list<Slot> slots; //falta ordenar esta lista amanha implementar uma função comparadar para dar sort da lista :D #forçaequipa
+
 };
 
 

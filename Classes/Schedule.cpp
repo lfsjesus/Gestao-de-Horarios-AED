@@ -15,6 +15,7 @@ ostream& operator<<(ostream& os, const Schedule& schedule)
 {
     printf("\n  -------Horário-------- \n");
     for(Slot slot : schedule.slots){
+
         os << slot << endl;
     }
     return os;

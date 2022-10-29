@@ -3,10 +3,8 @@
 //
 
 #include "Slot.h"
-
-Slot::Slot(const string &type, const string &weekday, float startHour, float duration) : type(type), weekday(weekday),
-                                                                                         startHour(startHour),
-                                                                                         duration(duration) {}
+Slot::Slot(const Turma &turma, const string &type, const string &weekday, float startHour, float duration) : turma(
+        turma), type(type), weekday(weekday), startHour(startHour), duration(duration) {}
 
 const string &Slot::getType() const {
     return type;
@@ -41,6 +39,15 @@ void Slot::setDuration(float duration) {
 }
 
 ostream& operator<<(ostream& os, const Slot& slot){
-    os << slot.weekday << " " << slot.type << " " << slot.startHour << " " << slot.duration;
+    os << slot.weekday << " " << slot.type << " " << slot.startHour << " " << slot.duration << " ---> ( Turma: "<< slot.turma.getClassCode() << " | " << slot.turma.getUcCode() << " )";
     return os;
+}
+
+
+const Turma &Slot::getTurma() const {
+    return turma;
+}
+
+void Slot::setTurma(const Turma &turma) {
+    Slot::turma = turma;
 }

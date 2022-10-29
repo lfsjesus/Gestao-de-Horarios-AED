@@ -92,8 +92,7 @@ void Managing::readSchedules() {
             type.erase(type.size() - 1); // remove carriage return symbol \r
 
             Turma _class(classCode, ucCode);
-            Slot slot(type, weekday, stof(startHour), stof(duration));
-
+            Slot slot(_class, type, weekday, stof(startHour), stof(duration));
             auto it = _schedules.find(new Schedule(_class));
 
             if (it != _schedules.end()) {
