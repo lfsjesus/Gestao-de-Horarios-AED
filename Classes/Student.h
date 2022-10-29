@@ -17,6 +17,8 @@ public:
 
     unsigned int getCode() const;
 
+    unsigned int getYear() const;
+
     void setCode(unsigned int code);
 
     const string &getName() const;

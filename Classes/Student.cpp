@@ -64,5 +64,14 @@ void Student::removeClass(Turma _class) {
     classes.remove(_class);
 }
 
+unsigned int Student::getYear() const {
+    unsigned int max = 1;
+    for (Turma t : classes) {
+        if (t.getClassCode().at(0) - '0' > max)
+            max = t.getClassCode().at(0) - '0';
+    }
+    return max;
+}
+
 
 
