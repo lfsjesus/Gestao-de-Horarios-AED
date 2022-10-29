@@ -65,8 +65,8 @@ void Menu::mainMenu() {
     cout << "---------------------------------------------\n";
 
     cout << "\t" << "[1] CONSULTAS\n";
-    cout << "\t" << "[2] MODIFICAÇÕES\n";
-    cout << "\t" << "[3] EFETIVAÇÃO DE PEDIDOS\n";
+    cout << "\t" << "[2] MODIFICAR TURMAS DE ESTUDANTES\n";
+    cout << "\t" << "[3] GESTÃO DE PEDIDOS\n";
 
     cout << "\n\t" << "[0] Exit\n";
 
@@ -97,7 +97,7 @@ void Menu::mainMenu() {
             menuState.push(MODIFICACOES_MENU);
             break;
         case 3:
-            menuState.push(EFETIVACAO_MENU);
+            menuState.push(PEDIDOS_MENU);
             break;
     }
     getMenu();
@@ -155,10 +155,11 @@ void Menu::modificacoesMenu() {
     int escolha;
     do {
         cout << "=======================================" << endl;
-        cout << "\t[1] Inscrever Estudante" << endl;
-        cout << "\t[2] Desinscrever Estudante" << endl;
-        cout << "\t[3] Alteraçao de Class/UC" << endl;
-        cout << "\t[4] Alteração de várias turmas/UCs" << endl;
+        cout << "\t[1] Inscrever estudante numa turma" << endl;
+        cout << "\t[2] Remover estudante de uma turma" << endl;
+        cout << "\t[3] Trocar estudantes de turma" << endl;
+        //cout << "\t[3] Alteraçao de Class/UC" << endl;
+        //cout << "\t[4] Alteração de várias turmas/UCs" << endl;
         cout << endl;
         cout << "\t[0] Voltar atrás" << endl;
 
@@ -175,6 +176,7 @@ void Menu::modificacoesMenu() {
         case 0: menuState.pop(); break;
         case 1: menuState.push(INSCREVER_ALUNO_MENU); break;
         case 2: menuState.push(DESINSCREVER_ALUNO_MENU); break;
+        case 3: /* TODO: */; break;
     }
     getMenu();
 }
@@ -183,7 +185,9 @@ void Menu::efetivacaoMenu() {
     int escolha;
     do {
         cout << "=======================================" << endl;
-        cout << "\t[1] Listar Pedidos" << endl;
+        cout << "\t[1] Listar pedidos" << endl;
+        cout << "\t[2] Listar pedidos arquivados" << endl;
+        cout << "\t[3] Efetivação de pedidos" << endl;
 
         cout << endl;
         cout << "\t[0] Voltar atrás" << endl;
@@ -192,10 +196,10 @@ void Menu::efetivacaoMenu() {
         cout << "\tEscolha: ";
         cin >> escolha;
         cout << "=======================================" << endl;
-        if (escolha < 0 || escolha > 1) cout << "Erro, por favor tente novamente!" << endl;
+        if (escolha < 0 || escolha > 3) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
-    } while (escolha < 0 || escolha > 1);
+    } while (escolha < 0 || escolha > 3);
 
     switch (escolha) {
         case 0: menuState.pop(); break;

@@ -7,10 +7,10 @@ A documentação do código pode ser encontrada [aqui](https://lfsjesus.github.i
 
 	[1] CONSULTAS
 		[1] Ocupação
-                    [1] Alunos no curso (number, press a key to show list)
-                    [2] Listar alunos inscritos por ano
-                    [3] Listar alunos inscritos por UC
-                    [4] Listar alunos inscritos por turma
+            [1] Alunos no curso (number, press a key to show list)
+            [2] Listar alunos inscritos por ano
+            [3] Listar alunos inscritos por UC
+            [4] Listar alunos inscritos por turma
 
 			
 		[2] Horarios (pesquisa incompleta p/ nome; pesquisa pelo up)
@@ -22,15 +22,12 @@ A documentação do código pode ser encontrada [aqui](https://lfsjesus.github.i
 		
 	
 	
-	[2] MODIFICAÇÕES
-		[1] Inscrever Estudante
-		[2] Remover Estudante
-		[3] Alteração de turma/UC
-		[4] Alteração de várias turmas/UCs
-	
+	[2] MODIFICAR TURMAS DE ESTUDANTES
+		[1] Inscrever estudante numa turma
+		[2] Remover estudante duma turma
+		[3] Trocar estudantes de turma
 
-	[3] EFETIVAÇÃO DE PEDIDOS
-		<Listar os primeiros x pedidos>
-		<satisfazer/recusar pedido em cada um dos pedidos>
-		<colocar os pedidos que não podem ser satisfeitos noutra estrutura>
-		
+	[3] GESTÃO DE PEDIDOS
+		[1] Listar pedidos
+		[2] Listar pedidos arquivados
+		[3] Efetivação de pedidos
