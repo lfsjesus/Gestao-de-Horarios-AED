@@ -2,7 +2,9 @@
 Turma::Turma() {
 
 }
-
+Turma::Turma(const string& classCode){
+    this->classCode = classCode;
+}
 Turma::Turma(const string &classCode, const string &ucCode) {
     this->classCode = classCode;
     this->ucCode = ucCode;

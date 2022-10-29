@@ -11,7 +11,7 @@ class Turma {
 public:
     Turma();
     Turma (const string& classCode, const string& ucCode);
-
+    Turma (const string& classCode);
     const string &getClassCode() const;
 
     void setClassCode(const string &classCode);

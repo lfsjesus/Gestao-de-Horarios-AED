@@ -45,6 +45,7 @@ void Managing::readStudents() {
             auto it = _students.find(new Student(stoi(studentCode)));
 
             Turma _class = Turma(classCode, ucCode);
+            this->classes.insert(_class);
 
             if (it != _students.end()) {
                 (*it)->addClass(_class);
@@ -212,6 +213,26 @@ set<CourseUnit, ucComp> Managing::getUcs(char year) {
     return filtered_ucs;
 }
 
+set<Turma, classComp> Managing::getClassesByYear(char year) {
+    set<Turma, classComp> filtered_classes;
+
+    for (auto turma : this->classes) {
+        if (turma.getClassCode()[0] == year) {
+            filtered_classes.insert(turma);
+        }
+    }
+    return filtered_classes;
+}
+
 void Managing::eraseStudent(Student *s) {
     students.erase(s);
 }
+
+const set<Turma, classComp> &Managing::getClasses() const {
+    return classes;
+}
+
+void Managing::setClasses(const set<Turma, classComp> &classes) {
+    Managing::classes = classes;
+}
+

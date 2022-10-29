@@ -321,17 +321,82 @@ void Menu::horarioAluno(){
 }
 void Menu::horarioTurma(){
 
-    unsigned ano;
+    char ano;
     cout << "\t[0] Voltar atrás" << endl << endl;
 
     do {
         cout << "\tEscolha um ano (1, 2 ou 3): ";
         cin >> ano;
         cout << "\n";
+        if(ano == 0){
+            menuState.pop();
+            return getMenu();
+        }
+        cin.clear();
+        cin.ignore(1000, '\n');
+
     } while (ano < '1' || ano > '3');
+
+    set<Turma, classComp> classesYear = m.getClassesByYear(ano);
 
     //listagem das turmas
 
+    set<string> printed;
+    auto it = printed.begin();
+
+    string primeira = classesYear.begin()->getClassCode();
+    printed.insert(primeira);
+
+    cout << "\t" << *printed.begin() << endl;
+    for(Turma turma1 : classesYear){
+        it = printed.find(turma1.getClassCode());
+        if(it != printed.end()){
+            continue;
+        }
+        printed.insert(turma1.getClassCode());
+        cout << "\t"<< turma1.getClassCode()<< endl;
+    }
+    cout << endl << endl;
+
+    //MOSTRAR HORARIO DA TURMA ESCOLHIDA
+
+    string turma;
+    cout << "\t[0] Voltar atrás" << endl << endl;
+    auto itr_turma = classesYear.begin(); //este set tem todas as turmas (classCode, ucCode)
+
+    vector<Turma> turmasParaHorario;
+
+    do {
+        cout << "\tEscolha uma turma: ";
+        cin >> turma;
+        cout << "\n";
+        if(turma == "0"){
+            menuState.pop();
+            return getMenu();
+        }
+        cin.clear();
+        cin.ignore(1000, '\n');
+
+        Turma turmaTemp(turma,"L.EIC001"); //criei uma turma temporaria com o classCode da string
+
+
+        itr_turma = classesYear.find(turmaTemp); //procuro o primeiro objeto turma com aquela classCode
+        //se itr_turma != fim, remover aquela turma do set quero guarda-la fora e depois ver o horario dela
+
+        if(itr_turma != classesYear.end()){ //quer dizer que encontrei uma turma com aquele classCode
+
+            turmasParaHorario.push_back(*itr_turma);
+            classesYear.erase(itr_turma);
+            itr_turma = classesYear.begin();
+        }
+
+        //getSchedules(turma)
+
+    } while (itr_turma == classesYear.end());
+
+    for(Turma TURMA : turmasParaHorario){
+        cout << TURMA.getClassCode() << TURMA.getUcCode() << endl;
+    }
 
 }
 

@@ -35,8 +35,14 @@ struct classComp{
         return c1.getClassCode() < c2.getClassCode();
     }
 };
+/*
+struct classCodeComp{
 
-
+    bool operator()(const Turma c1, const Turma c2) const  {
+        return c1.getClassCode() < c2.getClassCode();
+    }
+};
+*/
 
 struct schedComp
 {
@@ -82,6 +88,11 @@ public:
 
     void eraseStudent(Student* s);
 
+    const set<Turma, classComp> &getClasses() const;
+
+    void setClasses(const set<Turma, classComp> &classes);
+
+    set<Turma, classComp> getClassesByYear(char year);
 
 
 private:
@@ -89,7 +100,7 @@ private:
   set<Schedule*, schedComp> schedules;
   queue<Request*> requests;
   set<CourseUnit, ucComp> ucs; //useful to show each year's UCs in menuTurma
-  set<Turma, classComp> classes; //useful to show which students belong to a class
+  set<Turma, classComp> classes;
 
 };
 
