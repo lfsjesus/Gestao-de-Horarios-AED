@@ -41,5 +41,6 @@ void Slot::setDuration(float duration) {
 }
 
 ostream& operator<<(ostream& os, const Slot& slot){
-    cout << slot.weekday << " " << slot.type << " " << slot.startHour << " " << slot.duration << endl;
+    os << slot.weekday << " " << slot.type << " " << slot.startHour << " " << slot.duration;
+    return os;
 }

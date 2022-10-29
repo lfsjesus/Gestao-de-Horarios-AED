@@ -7,10 +7,10 @@
 
 using namespace std;
 
-class Class {
+class Turma {
 public:
-    Class();
-    Class (const string& classCode, const string& ucCode);
+    Turma();
+    Turma (const string& classCode, const string& ucCode);
 
     const string &getClassCode() const;
 
@@ -22,9 +22,9 @@ public:
 
     void printClass();
 
-    bool operator==(const Class& _class) const;
+    bool operator==(const Turma& turma) const;
 
-    bool operator<(const Class& _class) const;
+    bool operator<(const Turma& turma) const;
 
     //const vector<Student *> getStudents();
 private:

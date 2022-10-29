@@ -6,7 +6,7 @@
 #include "Request.h"
 #include "Schedule.h"
 #include "CourseUnit.h"
-#include "Class.h"
+#include "Turma.h"
 /*
  * orders the STL set by Student Code
  */
@@ -28,7 +28,7 @@ struct ucComp
  */
 struct classComp{
 
-    bool operator()(const Class c1, const Class c2) const  {
+    bool operator()(const Turma c1, const Turma c2) const  {
         if(c1.getClassCode()== c2.getClassCode()){
             return c1.getUcCode() < c2.getUcCode();
         }
@@ -85,7 +85,7 @@ private:
   set<Schedule*, schedComp> schedules;
   queue<Request*> requests;
   set<CourseUnit, ucComp> ucs; //useful to show each year's UCs in menuTurma
-  set<Class, classComp> classes; //useful to show which students belong to a class
+  set<Turma, classComp> classes; //useful to show which students belong to a class
 
 };
 

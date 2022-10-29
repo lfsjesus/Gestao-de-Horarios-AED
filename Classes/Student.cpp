@@ -6,7 +6,7 @@ Student::Student() {
 Student::Student(unsigned code){
     this->code = code;
 }
-Student::Student(const unsigned code, const std::string &name, list<Class> &classes) {
+Student::Student(const unsigned code, const std::string &name, list<Turma> &classes) {
     this->code = code;
     this->name = name;
     this->classes = classes;
@@ -28,11 +28,11 @@ void Student::setName(const string &name) {
     Student::name = name;
 }
 
-const list<Class> &Student::getClasses() const {
+const list<Turma> &Student::getClasses() const {
     return classes;
 }
 
-void Student::setClasses(const list<Class> &classes) {
+void Student::setClasses(const list<Turma> &classes) {
     Student::classes = classes;
 }
 
@@ -43,7 +43,7 @@ bool Student::operator<(const Student &s) const {
 bool Student::operator==(const Student &student) const {
     return code == student.getCode();
 }
-void Student::addClass(Class _class) {
+void Student::addClass(Turma _class) {
     classes.push_back(_class);
 }
 

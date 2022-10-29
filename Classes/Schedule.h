@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <list>
-#include "Class.h"
+#include "Turma.h"
 #include "Slot.h"
 using namespace std;
 
@@ -12,12 +12,12 @@ class Schedule {
 
 public:
     Schedule();
-    Schedule(const Class &);
-    Schedule(const Class &, const list<Slot> &scheduleClass);
+    Schedule(const Turma &);
+    Schedule(const Turma &, const list<Slot> &scheduleClass);
 
-    const Class &getClass() const;
+    const Turma &getClass() const;
 
-    void setClass(const Class &_class);
+    void setClass(const Turma &_class);
 
     const list<Slot> &getSlots() const;
     void setSlots(const list<Slot> &slots);
@@ -28,7 +28,7 @@ public:
     friend ostream& operator<<(ostream& os, const Schedule& schedule);
 
 private:
-    Class _class;
+    Turma _class;
     list<Slot> slots;
 };
 

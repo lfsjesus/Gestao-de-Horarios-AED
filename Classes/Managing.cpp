@@ -24,7 +24,7 @@ void Managing::readStudents() {
     set<Student *, studComp> _students = {};
     ifstream file(STUDENTS_FILE);
 
-    list<Class> studentclasses;
+    list<Turma> studentclasses;
 
     if (file.is_open()) {
         file.ignore(49, '\n');
@@ -38,13 +38,13 @@ void Managing::readStudents() {
             getline(file, studentCode, ',');
             if (studentCode.empty()) break;
             getline(file, name, ',');
-            getline(file, classCode, ',');
-            getline(file, ucCode);
-            ucCode.erase(ucCode.size() - 1); // remove carriage return symbol \r
+            getline(file, ucCode, ',');
+            getline(file, classCode);
+            classCode.erase(classCode.size() - 1); // remove carriage return symbol \r
 
             auto it = _students.find(new Student(stoi(studentCode)));
 
-            Class _class = Class(classCode, ucCode);
+            Turma _class = Turma(classCode, ucCode);
 
             if (it != _students.end()) {
                 (*it)->addClass(_class);
@@ -90,7 +90,7 @@ void Managing::readSchedules() {
             getline(file, type);
             type.erase(type.size() - 1); // remove carriage return symbol \r
 
-            Class _class(classCode, ucCode);
+            Turma _class(classCode, ucCode);
             Slot slot(type, weekday, stof(startHour), stof(duration));
 
             auto it = _schedules.find(new Schedule(_class));

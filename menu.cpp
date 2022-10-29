@@ -297,7 +297,7 @@ void Menu::horarioAluno(){
 
 
     Schedule studentSchedule = Schedule();
-    for(Class _class : (*myStudent)->getClasses()){
+    for(Turma _class : (*myStudent)->getClasses()){
         auto mySchedule = schedules.find(new Schedule(_class));
         if(mySchedule != schedules.end()){
             for(Slot slot : (*mySchedule)->getSlots()){
@@ -364,7 +364,7 @@ void Menu::turmaMenu() {
     do {
         cout << "\n\tescolha uma das UCs acima (código): ";
         cin >> uc;
-        if (uc == "0"){  //isto devia voltar atrás para escolher o ano de novo, mas não faz isso
+        if (uc == "0"){
             menuState.pop();
             getMenu();
         }
@@ -385,7 +385,7 @@ void Menu::turmaMenu() {
     do {
         cout << "\n\tescolha uma turma: ";
         cin >> turma;
-        if (turma == "0"){  //isto devia voltar atrás para escolher a UC de novo, mas não faz isso
+        if (turma == "0"){
             menuState.pop();
             getMenu();
         }
@@ -393,7 +393,7 @@ void Menu::turmaMenu() {
         //set.find(turmaTemp); //logarithmic
     } while(itr == UC.getClasses().end()); //ok
 
-    Class Turma(turma, uc);
+    Turma Turma(turma, uc);
 
     cout << "\n\tALunos da Turma " << Turma.getClassCode() << " da UC " << Turma.getUcCode() << ":" << endl;
 

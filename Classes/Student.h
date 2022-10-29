@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
-#include "Class.h"
+#include "Turma.h"
 
 using namespace std;
 
@@ -13,7 +13,7 @@ public:
 
     Student(unsigned code);
 
-    Student(unsigned code, const std::string &name, list<Class> &classes);
+    Student(unsigned code, const std::string &name, list<Turma> &classes);
 
     unsigned int getCode() const;
 
@@ -23,11 +23,11 @@ public:
 
     void setName(const string &name);
 
-    const list<Class> &getClasses() const;
+    const list<Turma> &getClasses() const;
 
-    void setClasses(const list<Class> &classes);
+    void setClasses(const list<Turma> &classes);
 
-    void addClass(Class _class);
+    void addClass(Turma _class);
 
     bool operator<(const Student &s) const;
     bool operator==(const Student& student) const;
@@ -42,7 +42,7 @@ public:
 private:
     unsigned int code;
     string name;
-    list<Class> classes; //turmas em que está em diferentes cadeiras
+    list<Turma> classes; //turmas em que está em diferentes cadeiras
 };
 
 

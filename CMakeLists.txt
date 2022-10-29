@@ -7,8 +7,8 @@ include_directories(.)
 include_directories(Classes)
 
 add_executable(AED
-        Classes/Class.cpp
-        Classes/Class.h
+        Classes/Turma.cpp
+        Classes/Turma.h
         Classes/Schedule.cpp
         Classes/Schedule.h
         Classes/Student.cpp
