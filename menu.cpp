@@ -39,7 +39,7 @@ void Menu::getMenu() {
                 horarioAluno();
                 break;
             case 8:
-                // add later
+                horarioTurma();
                 break;
             case 9:
                 // add later
@@ -315,6 +315,25 @@ void Menu::horarioAluno(){
 
     getMenu();
 }
+void Menu::horarioTurma(){
+
+    unsigned ano;
+    cout << "\t[0] Voltar atrás" << endl << endl;
+
+    do {
+        cout << "\tEscolha um ano (1, 2 ou 3): ";
+        cin >> ano;
+        cout << "\n";
+    } while (ano < '1' || ano > '3');
+
+    //listagem das turmas
+
+
+}
+
+
+
+
 void Menu::estudantesMenu() {
     int i = 1;
     for (Student* student: m.getStudents()) {
@@ -352,25 +371,32 @@ void Menu::turmaMenu() {
         cout << "\tEscolha um ano (1, 2 ou 3): ";
         cin >> ano;
         cout << "\n";
+        if (ano == '0'){
+            cin.clear();
+            menuState.pop();
+            return getMenu(); //isto deu fix ao bug , alguem sabe pq? se virem isto perguntem me pela print que eu tirei -> Miguel
+
+        }
     } while (ano < '1' || ano > '3');
 
     //listagem das UCs
 
     cout << "\tUCs do " << ano << "º ano:" << "\n";
-    string uc;
+
 
     set<CourseUnit, ucComp> ucSet = m.getUcs(ano);
     for (auto uc : ucSet)
         cout << "\t" << uc.getUcCode() << "\n";
 
     auto it = ucSet.begin();
-
+    string uc;
     do {
         cout << "\n\tescolha uma das UCs acima (código): ";
         cin >> uc;
         if (uc == "0"){
+            cin.clear();
             menuState.pop();
-            getMenu();
+            return getMenu();
         }
         CourseUnit tempUc(uc);
         it = ucSet.find(tempUc); //logarithmic
@@ -390,11 +416,11 @@ void Menu::turmaMenu() {
         cout << "\n\tescolha uma turma: ";
         cin >> turma;
         if (turma == "0"){
+            cin.clear();
             menuState.pop();
-            getMenu();
+            return getMenu();
         }
-        itr = UC.getClasses().find(turma);
-        //set.find(turmaTemp); //logarithmic
+        itr = UC.getClasses().find(turma); //logarithmic
     } while(itr == UC.getClasses().end()); //ok
 
     Turma Turma(turma, uc);

@@ -1,0 +1,5 @@
+No menu dos alunos, ao listar alunos por turma, na parte de escolher o ano / UC / turma,
+se eu escolher a opção "0" para voltar atras, ele volta atras mas no menu principal se
+tentarmos fechar o programa ao escolher "0" ele volta ao estado de escolher turma /uc/ano
+
+resolvi ao dar return , será que é má prática? - questionar ao stor.
