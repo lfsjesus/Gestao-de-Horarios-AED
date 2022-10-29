@@ -9,6 +9,7 @@ using namespace std;
 
 class Student {
 public:
+
     Student();
 
     Student(unsigned code);

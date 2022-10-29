@@ -26,6 +26,7 @@
 
 class Menu {
 public:
+
     Menu();
     void mainMenu();
 private:
