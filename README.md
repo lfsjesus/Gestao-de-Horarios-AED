@@ -29,5 +29,5 @@ A documentação do código pode ser encontrada [aqui](https://lfsjesus.github.i
 
 	[3] GESTÃO DE PEDIDOS
 		[1] Listar pedidos
-		[2] Listar pedidos arquivados
+		[2] Listar pedidos rejeitados
 		[3] Efetivação de pedidos

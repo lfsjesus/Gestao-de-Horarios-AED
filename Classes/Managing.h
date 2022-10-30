@@ -67,6 +67,8 @@ public:
 
     void readRequests();
 
+    void readRejectedRequests();
+
     const set<Student*, studComp> &getStudents() const;
 
     void setStudents(const set<Student*, studComp> &students);
@@ -79,17 +81,17 @@ public:
 
     void setSchedules(const set<Schedule*, schedComp> &schedules);
 
+    void setRequests(const queue<Request> &requests);
     const queue<Request> &getRequests() const;
 
-    void setRequests(const queue<Request> &requests);
+    void setRejectedRequests(const queue<Request> &requests);
+    const queue<Request> &getRejectedRequests() const;
 
-    void setUcs(const set<string> &ucs);
-
+    void setUcs(const set<CourseUnit, ucComp> &ucs);
     set<CourseUnit, ucComp> getUcs(char year);
 
     list<string> get_student_schedule(unsigned int code);
 
-    void setUcs(const set<CourseUnit, ucComp> &ucs);
 
     void eraseStudent(Student* s);
 
@@ -104,6 +106,7 @@ private:
   set<Student*, studComp> students;
   set<Schedule*, schedComp> schedules;
   queue<Request> requests;
+  queue<Request> rejected_requests;
   set<CourseUnit, ucComp> ucs; //useful to show each year's UCs in menuTurma
   set<Turma, classComp> classes; //useful to show which students belong to a class
 };

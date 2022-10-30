@@ -172,7 +172,7 @@ void Menu::efetivacaoMenu() {
     do {
         cout << "=======================================" << endl;
         cout << "\t[1] Listar pedidos" << endl;
-        cout << "\t[2] Listar pedidos arquivados" << endl;
+        cout << "\t[2] Listar pedidos rejeitados" << endl;
         cout << "\t[3] Efetivação de pedidos" << endl;
 
         cout << endl;
@@ -192,6 +192,7 @@ void Menu::efetivacaoMenu() {
     switch (escolha) {
         case 0: menuState.pop(); break;
         case 1: requests = m.getRequests(); break;
+        case 2: requests = m.getRejectedRequests(); break;
     }
 
     while (!requests.empty()) {

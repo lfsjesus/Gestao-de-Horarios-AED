@@ -2,7 +2,7 @@
 #define COURSE_UNITS "../Data/classes_per_uc.csv"
 #define STUDENTS_FILE "../Data/students_classes.csv"
 #define REQUESTS_FILE "../Data/requests.csv"
-#define ARCHIVED_REQUESTS_FILE "../Data/archived_requests.csv"
+#define REJECTED_REQUESTS_FILE "../Data/rejected_requests.csv"
 
 #include <fstream>
 #include <algorithm>
@@ -21,6 +21,7 @@ void Managing::readFiles() {
     readSchedules();
     readCourseUnits();
     readRequests();
+    readRejectedRequests();
 }
 
 void Managing::readStudents() {
@@ -193,6 +194,36 @@ void Managing::readRequests() {
     this->requests = _requests;
 }
 
+void Managing::readRejectedRequests() {
+    queue<Request> _requests;
+
+    ifstream file(REJECTED_REQUESTS_FILE);
+    string line;
+
+    string studentCode;
+    string ucCode;
+    string classCode;
+    list<Turma> new_classes;
+
+    getline(file, line);    //ignoring the first file line
+
+    while (getline(file, line)){
+        istringstream iss(line);
+
+        getline(iss, studentCode, ',');
+        if (studentCode.empty()) break;
+
+        while(getline(iss, ucCode, ',')){
+            getline(iss, classCode, ',');
+            new_classes.push_back(Turma(classCode, ucCode));
+        }
+        Request new_request(stoi(studentCode), new_classes);
+        _requests.push(new_request);
+        new_classes.clear();
+    }
+    file.close();
+    this->rejected_requests = _requests;
+}
 
 const set<Student*, studComp> &Managing::getStudents() const {
     return students;
@@ -240,6 +271,14 @@ const queue<Request> &Managing::getRequests() const {
 
 void Managing::setRequests(const queue<Request> &requests) {
     Managing::requests = requests;
+}
+
+const queue<Request> &Managing::getRejectedRequests() const {
+    return rejected_requests;
+}
+
+void Managing::setRejectedRequests(const queue<Request> &requests) {
+    Managing::rejected_requests = requests;
 }
 
 void Managing::setUcs(const set<CourseUnit, ucComp> &ucs) {
