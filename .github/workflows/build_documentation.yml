@@ -17,11 +17,17 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
 
-    - uses: mattnotmitt/doxygen-action@v1.9.4
-      with:
-        working-directory: './'
-    - name: build documentation
+    - name: Install Doxygen
+      run: sudo apt-get install doxygen -y
+      shell: bash
+
+    - name: Generate Doxygen Documentation
       run: doxygen
+      shell: bash
+    
+    - name: Create .nojekyll
+      run: touch docs/html/.nojekyll
+      shell: bash
 
    # - uses: stefanzweifel/git-auto-commit-action@v4
    #   with:
