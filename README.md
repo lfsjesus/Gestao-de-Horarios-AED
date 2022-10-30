@@ -1,6 +1,6 @@
 Aplicação "terminal-based"
 
-A documentação do código pode ser encontrada [aqui](https://lfsjesus.github.io/AED_Horarios/docs/html)
+A documentação do código pode ser encontrada [aqui](https://lfsjesus.github.io/AED_Horarios/html)
 
 -------------MENU-------------
 
