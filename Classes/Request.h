@@ -15,6 +15,8 @@ public:
     const list<Turma> &getClasses() const;
     void setClasses(const list<Turma> &newClasses);
 
+    friend ostream& operator<<(ostream& os, const Request& r);
+
 private:
     unsigned int studentCode;
     list<Turma> new_classes;

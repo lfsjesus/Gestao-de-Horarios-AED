@@ -187,9 +187,19 @@ void Menu::efetivacaoMenu() {
         cin.ignore(1000, '\n');
     } while (escolha < 0 || escolha > 3);
 
+    queue<Request> requests;
+
     switch (escolha) {
         case 0: menuState.pop(); break;
+        case 1: requests = m.getRequests(); break;
     }
+
+    while (!requests.empty()) {
+        Request r = requests.front();
+        cout << r << endl;
+        requests.pop();
+    }
+
     getMenu();
 }
 

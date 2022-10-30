@@ -23,3 +23,11 @@ const list<Turma>& Request::getClasses() const{
 void Request::setClasses(const list<Turma> &new_classes){
     this->new_classes = new_classes;
 }
+
+ostream& operator<<(ostream& os, const Request& request){
+    os << request.studentCode << ":";
+    for (Turma c : request.new_classes) {
+        os << " (" << c.getUcCode() << "," << c.getClassCode() << ")";
+    }
+    return os;
+}
