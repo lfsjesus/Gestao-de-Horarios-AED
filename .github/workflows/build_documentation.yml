@@ -6,12 +6,6 @@ permissions:
 on:
   push:
     branches: [ "master" ]
-    tags: 
-      - 'build'
-  pull_request:
-    branches: [ "master" ]
-    tags: 
-      - 'build'
 
 jobs:
   build:
@@ -27,9 +21,9 @@ jobs:
       with:
         working-directory: './'
     - name: build documentation
-      run: doxygen Doxyfile
+      run: doxygen
 
-    - uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: "Build documentation"
+   # - uses: stefanzweifel/git-auto-commit-action@v4
+   #   with:
+   #     commit_message: "Build documentation"
 
