@@ -65,19 +65,23 @@ public:
 
     void readCourseUnits();
 
+    void readRequests();
+
     const set<Student*, studComp> &getStudents() const;
 
     void setStudents(const set<Student*, studComp> &students);
 
     bool addStudent(const Student* student);
 
+    void addRequest(const Request request);
+
     const set<Schedule*, schedComp> &getSchedules() const;
 
     void setSchedules(const set<Schedule*, schedComp> &schedules);
 
-    const queue<Request*> &getRequests() const;
+    const queue<Request> &getRequests() const;
 
-    void setRequests(const queue<Request*> &requests);
+    void setRequests(const queue<Request> &requests);
 
     void setUcs(const set<string> &ucs);
 
@@ -99,10 +103,9 @@ public:
 private:
   set<Student*, studComp> students;
   set<Schedule*, schedComp> schedules;
-  queue<Request*> requests;
+  queue<Request> requests;
   set<CourseUnit, ucComp> ucs; //useful to show each year's UCs in menuTurma
-  set<Turma, classComp> classes;
-
+  set<Turma, classComp> classes; //useful to show which students belong to a class
 };
 
 

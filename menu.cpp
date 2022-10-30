@@ -8,50 +8,36 @@ Menu::Menu() {
     this->menuState.push(MAIN_MENU);
     m.readFiles();
     getMenu();
-
 }
 
 void Menu::getMenu() {
     if (!menuState.empty()) {
         switch (menuState.top()) {
-            case 0:
-                mainMenu();
+            case MAIN_MENU: mainMenu(); 
                 break;
-            case 1:
-                consultasMenu();
+            case CONSULTAS_MENU: consultasMenu(); 
                 break;
-            case 2:
-                modificacoesMenu();
+            case MODIFICACOES_MENU: modificacoesMenu();
                 break;
-            case 3:
-                efetivacaoMenu();
+            case PEDIDOS_MENU: efetivacaoMenu();
                 break;
-            case 4:
-                alunosMenu();
+            case ALUNOS_MENU: alunosMenu();
                 break;
-            case 5:
-                estudantesMenu();
+            case ESTUDANTES_MENU: estudantesMenu();
                 break;
-            case 6:
-                horariosMenu();
+            case HORARIOS_MENU: horariosMenu();
                 break;
-            case 7:
-                horarioAluno();
+            case HORARIO_ALUNO: horarioAluno();
                 break;
-            case 8:
-                horarioTurma();
+            case HORARIO_TURMA: horarioTurma();
                 break;
-            case 9:
-                // add later
+            case HORARIO_UC: //TODO: add later
                 break;
-            case 10:
-                turmaMenu();
+            case TURMA_MENU: turmaMenu();
                 break;
-            case INSCREVER_ALUNO_MENU:
-                inscreverAluno();
+            case INSCREVER_ALUNO_MENU: inscreverAluno();
                 break;
-            case DESINSCREVER_ALUNO_MENU:
-                desinscreverAluno();
+            case DESINSCREVER_ALUNO_MENU: desinscreverAluno();
                 break;
         }
     }

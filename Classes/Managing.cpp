@@ -1,8 +1,12 @@
 #define CLASSES_FILE "../Data/classes.csv"
 #define COURSE_UNITS "../Data/classes_per_uc.csv"
 #define STUDENTS_FILE "../Data/students_classes.csv"
+#define REQUESTS_FILE "../Data/requests.csv"
+#define ARCHIVED_REQUESTS_FILE "../Data/archived_requests.csv"
+
 #include <fstream>
 #include <algorithm>
+#include <sstream>
 #include "Managing.h"
 #include "Student.h"
 
@@ -16,7 +20,7 @@ void Managing::readFiles() {
     readStudents();
     readSchedules();
     readCourseUnits();
-
+    readRequests();
 }
 
 void Managing::readStudents() {
@@ -158,6 +162,37 @@ void Managing::readCourseUnits() {
     }
 }
 
+void Managing::readRequests() {
+    queue<Request> _requests;
+
+    ifstream file(REQUESTS_FILE);
+    string line;
+
+    string studentCode;
+    string ucCode;
+    string classCode;
+    list<Turma> new_classes;
+
+    getline(file, line);    //ignoring the first file line
+
+    while (getline(file, line)){
+        istringstream iss(line);
+
+        getline(iss, studentCode, ',');
+        if (studentCode.empty()) break;
+
+        while(getline(iss, ucCode, ',')){
+            getline(iss, classCode, ',');
+            new_classes.push_back(Turma(classCode, ucCode));
+        }
+        Request new_request(stoi(studentCode), new_classes);
+        _requests.push(new_request);
+        new_classes.clear();
+    }
+    file.close();
+    this->requests = _requests;
+}
+
 
 const set<Student*, studComp> &Managing::getStudents() const {
     return students;
@@ -179,6 +214,17 @@ bool Managing::addStudent(const Student* student) {
 
     return true; //TODO: if there is no problem
 }
+void Managing::addRequest(const Request request) {
+    requests.push(request);
+
+    ofstream file(REQUESTS_FILE,ios::app);
+
+    file << request.getStudentCode();
+    for(Turma _class : request.getClasses()) {
+        file << "," << _class.getUcCode() << "," << _class.getClassCode();
+    }
+    file.close();
+}
 
 const set<Schedule*, schedComp> &Managing::getSchedules() const {
     return schedules;
@@ -188,11 +234,11 @@ void Managing::setSchedules(const set<Schedule*, schedComp> &schedules) {
     Managing::schedules = schedules;
 }
 
-const queue<Request*> &Managing::getRequests() const {
+const queue<Request> &Managing::getRequests() const {
     return requests;
 }
 
-void Managing::setRequests(const queue<Request*> &requests) {
+void Managing::setRequests(const queue<Request> &requests) {
     Managing::requests = requests;
 }
 
