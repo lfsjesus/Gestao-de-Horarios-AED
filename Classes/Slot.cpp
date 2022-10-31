@@ -47,11 +47,20 @@ const Turma &Slot::getTurma() const {
 void Slot::setTurma(const Turma &turma) {
     Slot::turma = turma;
 }
-bool Slot::operator<(const Slot& slot) const{
-    vector<string> weekdays = {"Monday", "Tuesday", "Wednesday", "Thursday","Friday"};
 
+unsigned Slot::weekdayToNum(const string weekday) const{
+    if (weekday == "Monday") return 1;
+    if (weekday == "Tuesday") return 2;
+    if (weekday == "Wednesday") return 3;
+    if (weekday == "Thursday") return 4;
+    if (weekday == "Friday") return 5;
+}
+
+bool Slot::operator<(const Slot& slot) const{
     if (weekday == slot.weekday){
         return startHour < slot.startHour;
     }
-    return find(weekdays.begin(), weekdays.end(), weekday) < find(weekdays.begin(), weekdays.end(),slot.weekday);
+    return weekdayToNum(weekday) < weekdayToNum(slot.getWeekday());
 }
+
+
