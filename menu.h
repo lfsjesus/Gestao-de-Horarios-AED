@@ -23,6 +23,8 @@
 #define YEARS_MENU 13
 #define INSCREVER_ALUNO_MENU 14
 #define DESINSCREVER_ALUNO_MENU 15
+#define ALUNOS_ANO 16
+#define ALUNOS_UC 17
 
 class Menu {
 public:
@@ -43,6 +45,8 @@ private:
     void printSchedule(vector<Slot> slots);
     void inscreverAluno();
     void desinscreverAluno();
+    void alunosAno();
+    void alunosUC();
     std::stack<short int> menuState;
 
 };

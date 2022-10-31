@@ -53,6 +53,12 @@ void Menu::getMenu() {
             case DESINSCREVER_ALUNO_MENU:
                 desinscreverAluno();
                 break;
+            case ALUNOS_ANO:
+                alunosAno();
+                break;
+            case ALUNOS_UC:
+                alunosUC();
+                break;
         }
     }
 }
@@ -237,8 +243,10 @@ void Menu::alunosMenu() {
             menuState.push(ESTUDANTES_MENU);
             break;
         case 2:
+            menuState.push(ALUNOS_ANO);
             break;
         case 3:
+            menuState.push(ALUNOS_UC);
             break;
         case 4:
             menuState.push(TURMA_MENU);
@@ -586,6 +594,61 @@ void Menu::desinscreverAluno() {
 
     // !!!!!!FALTA ATUALIZAR O FICHEIRO -> talvez seja util uma função updateFile() que atualize inscriçoes/desinscriçoes
 
+    getMenu();
+}
+
+void Menu::alunosAno() {
+    unsigned year;
+    do {
+        cout << "Introduza um ano: ";
+        cin >> year;
+
+    } while (year < 0 || year > 3);
+
+    int count = 1;
+    for (Student* s : m.getStudents()) {
+        if (s->getYear() == year) {
+            cout << "\t[" << count << "] ";
+            s->printStudent();
+            count++;
+        }
+    }
+    menuState.pop();
+    getMenu();
+
+}
+
+void Menu::alunosUC() {
+    char year;
+
+    do {
+        cout << "Introduza um ano: ";
+        cin >> year;
+
+    } while (year < '0' || year > '3');
+
+    string uc;
+    set<CourseUnit, ucComp> UCs = m.getUcs(year);
+    CourseUnit c;
+
+    for (CourseUnit uc : UCs) {
+        cout << uc.getUcCode()<< endl;
+    }
+
+    do {
+        cout << "Escolha uma UC: ";
+        cin >> uc;
+        c.setUcCode(uc);
+
+    } while( UCs.find(c) == UCs.end());
+
+    for (Student* s : m.getStudents()) {
+        for (Turma t : s->getClasses()) {
+            if (t.getUcCode() == uc)
+                s->printStudent();
+        }
+    }
+    menuState.pop();
     getMenu();
 }
 
