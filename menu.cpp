@@ -17,34 +17,34 @@ void Menu::getMenu() {
             case 0:
                 mainMenu();
                 break;
-            case 1:
+            case CONSULTAS_MENU:
                 consultasMenu();
                 break;
-            case 2:
+            case MODIFICACOES_MENU:
                 modificacoesMenu();
                 break;
-            case 3:
+            case PEDIDOS_MENU:
                 efetivacaoMenu();
                 break;
-            case 4:
+            case ALUNOS_MENU:
                 alunosMenu();
                 break;
-            case 5:
+            case ESTUDANTES_MENU:
                 estudantesMenu();
                 break;
-            case 6:
+            case HORARIOS_MENU:
                 horariosMenu();
                 break;
-            case 7:
+            case HORARIO_ALUNO:
                 horarioAluno();
                 break;
-            case 8:
+            case HORARIO_TURMA:
                 horarioTurma();
                 break;
-            case 9:
+            case HORARIO_UC:
                 horarioUc();
                 break;
-            case 10:
+            case TURMA_MENU:
                 turmaMenu();
                 break;
             case INSCREVER_ALUNO_MENU:
@@ -53,6 +53,16 @@ void Menu::getMenu() {
             case DESINSCREVER_ALUNO_MENU:
                 desinscreverAluno();
                 break;
+            case PERMUTACAO_MENU:
+                permutacaoMenu();
+                break;
+            case TROCA_SINGULAR:
+                trocaSingular();
+                break;
+            case TROCA_DUPLA:
+                trocaDupla();
+                break;
+
         }
     }
 }
@@ -176,7 +186,7 @@ void Menu::modificacoesMenu() {
         case 0: menuState.pop(); break;
         case 1: menuState.push(INSCREVER_ALUNO_MENU); break;
         case 2: menuState.push(DESINSCREVER_ALUNO_MENU); break;
-        case 3: /* TODO: */; break;
+        case 3: menuState.push(PERMUTACAO_MENU); break;
     }
     getMenu();
 }
@@ -651,6 +661,68 @@ void Menu::desinscreverAluno() {
     // !!!!!!FALTA ATUALIZAR O FICHEIRO -> talvez seja util uma função updateFile() que atualize inscriçoes/desinscriçoes
 
     getMenu();
+}
+
+void Menu::permutacaoMenu() {
+    cout << "----------------- TROCAS DE TURMAS ---------------------" << endl << endl;
+    cout << "\t [1] Trocar turma de um estudante" << endl;
+    cout << "\t [2] Trocar turma entre dois estudantes" << endl << endl;
+    cout << "\t [0] Voltar atrás" << endl;
+    unsigned choice;
+    do {
+        cout << "\n\tEscolha uma opção: ";
+        cin >> choice;
+    } while (choice < 0 || choice > 2);
+
+
+    switch(choice) {
+        case 0:
+            menuState.pop();
+            break;
+        case 1:
+            menuState.push(TROCA_SINGULAR);
+            break;
+        case 2:
+            menuState.push(TROCA_DUPLA);
+            break;
+    }
+    getMenu();
+
+}
+
+void Menu::trocaSingular() {
+    cout << "-------------TROCAR UM ESTUDANTE--------------" << endl;
+    unsigned upcode;
+
+    do {
+        cout << "UP do estudante: ";
+        cin >> upcode;
+    } while(m.getStudents().find(new Student(upcode)) == m.getStudents().end());
+
+    // VERIFICAR SOBREPOSIÇÃO
+    // ADICIONAR PEDIDO A m.getRequests()
+    getMenu();
+}
+
+void Menu::trocaDupla() {
+    cout << "-------------TROCAR DOIS ESTUDANTES--------------" << endl;
+    unsigned upcode1;
+    unsigned upcode2;
+
+    do {
+        cout << "UP do estudante 1: ";
+        cin >> upcode1;
+    } while(m.getStudents().find(new Student(upcode1)) == m.getStudents().end());
+
+
+    do {
+        cout << "UP do estudante 2: ";
+        cin >> upcode2;
+    } while(m.getStudents().find(new Student(upcode2)) == m.getStudents().end() || upcode2 == upcode1);
+
+    // VERIFICAR SOBREPOSIÇÃO
+    // ADICIONAR PEDIDO A m.getRequests()
+
 }
 
 // Colocar os outros menus
