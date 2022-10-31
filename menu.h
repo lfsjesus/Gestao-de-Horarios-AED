@@ -37,6 +37,7 @@ private:
     void alunosMenu();
     void horariosMenu();
     void horarioAluno();
+    void horarioUc();
     void horarioTurma();
     void estudantesMenu();
     void turmaMenu();

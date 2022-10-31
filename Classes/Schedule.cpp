@@ -1,6 +1,10 @@
 #include "Schedule.h"
 using namespace std;
 
+bool compareSlot(Slot& s1, Slot& s2){ //isto serve para a sobreposição de aulas
+    return (s1.getWeekday() == s2.getWeekday() && s1.getStartHour() == s2.getStartHour() && s1.getDuration() == s2.getDuration() && s1.getType() == s2.getType());
+}
+
 Schedule::Schedule() {}
 Schedule::Schedule(const Turma &_class){
     this->_class = _class;
@@ -39,6 +43,14 @@ void Schedule::setSlots(const list<Slot> &slots) {
 
 void Schedule::addSlot(Slot slot) {
     slots.push_back(slot);
+}
+
+
+
+void Schedule::sort() {
+    slots.sort();
+    slots.unique(compareSlot);
+
 }
 
 

@@ -3,6 +3,9 @@
 #define AED_SLOT_H
 #include <iostream>
 #include "Turma.h"
+#include <algorithm>
+
+
 using namespace std;
 
 class Slot {
@@ -31,6 +34,8 @@ public:
     const Turma &getTurma() const;
 
     void setTurma(const Turma &turma);
+
+    bool operator<(const Slot& slot) const;
 
 
 private:

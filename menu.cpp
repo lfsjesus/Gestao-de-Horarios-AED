@@ -42,7 +42,7 @@ void Menu::getMenu() {
                 horarioTurma();
                 break;
             case 9:
-                // add later
+                horarioUc();
                 break;
             case 10:
                 turmaMenu();
@@ -257,10 +257,10 @@ void Menu::horariosMenu() {
     for(int i=0; i<options.size(); i++){
         cout << "\t[" << i+1 << "] " << options[i] << endl;
     }
-    cout << "\n[0] Voltar atrás" << endl;
+    cout << "\n\t[0] Voltar atrás" << endl;
 
     do {
-        cout << "Escolha: ";
+        cout << "\tEscolha: ";
         cin >> escolha;
         cout << "=======================================" << endl;
         if (escolha < 0 || escolha > 3) cout << "Erro, por favor tente novamente!" << endl;
@@ -319,6 +319,7 @@ void Menu::horarioAluno(){
     }
 
     cout << "Horário de: " << (*myStudent)->getName() << endl;
+    studentSchedule.sort();
     cout << studentSchedule << endl;
 
     getMenu();
@@ -396,18 +397,81 @@ void Menu::horarioTurma(){
         if(mySchedule != schedules.end()){
             for(Slot slot : (*mySchedule)->getSlots()){
                 classSchedule.addSlot(slot);
-
-
             }
-
         }
-
-
     }
+    classSchedule.sort();
     cout << classSchedule << endl;
+    menuState.pop();
+    getMenu();
 }
 
+void Menu::horarioUc(){
+    char ano;
+    cout << "\t[0] Voltar atrás" << endl << endl;
 
+    do {
+        cout << "\tEscolha um ano (1, 2 ou 3): ";
+        cin >> ano;
+        cout << "\n";
+        if (ano == '0'){
+            cin.clear();
+            menuState.pop();
+            return getMenu();
+
+        }
+    } while (ano < '1' || ano > '3');
+
+    //listagem das UCs
+
+    cout << "\tUCs do " << ano << "º ano:" << "\n";
+
+
+    set<CourseUnit, ucComp> ucSet = m.getUcs(ano);
+    for (auto uc : ucSet)
+        cout << "\t" << uc.getUcCode() << "\n";
+
+    auto it = ucSet.begin();
+    string uc;
+    do {
+        cout << "\n\tescolha uma das UCs acima (código): ";
+        cin >> uc;
+        if (uc == "0"){
+            cin.clear();
+            menuState.pop();
+            return getMenu();
+        }
+        CourseUnit tempUc(uc);
+        it = ucSet.find(tempUc); //logarithmic
+    } while(it == ucSet.end());
+
+    CourseUnit UC = *it; // A UC escolhida pelo utilizador
+
+    //listagem das turmas da uc selecionada
+
+    string turma;
+    cout << endl;
+    set<Schedule*, schedComp> schedules = m.getSchedules();
+    Schedule ucSchedule = Schedule(); //Devia ter so uma turma associada (tem mts)?
+
+    for (auto TURMA : UC.getClasses()){
+        Turma _class(TURMA, uc); //fisica
+        auto mySchedule = schedules.find(new Schedule(_class)); //procura os slots de fisica
+        if(mySchedule != schedules.end()) {
+            for (Slot slot: (*mySchedule)->getSlots()) {
+                ucSchedule.addSlot(slot);
+            }
+        }
+    }
+    ucSchedule.sort(); //aqui ordena todos os slots da UC
+    //o ucSchedule nao tem turma associada, uma vez que aqui estamos a falar de uma UC e nao de uma turma
+    cout << ucSchedule << endl;
+
+    menuState.pop();
+    getMenu();
+
+
+}
 
 
 void Menu::estudantesMenu() {

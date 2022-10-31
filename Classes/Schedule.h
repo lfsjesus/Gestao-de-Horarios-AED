@@ -28,6 +28,7 @@ public:
     // Faz print de uma tabela toda bonita no terminal
 
     friend ostream& operator<<(ostream& os, const Schedule& schedule);
+    void sort();
 
 private:
     //CourseUnit uc;
