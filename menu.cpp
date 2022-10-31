@@ -411,7 +411,7 @@ void Menu::horarioTurma(){
 
 
 void Menu::estudantesMenu() {
-    int i = 1;
+
     for (Student* student: m.getStudents()) {
         student->printStudent();
     }

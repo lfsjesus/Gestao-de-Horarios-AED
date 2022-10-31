@@ -52,6 +52,16 @@ struct schedComp
 };
 
 
+struct studentByName
+{
+    bool operator()(const Student* s1, const Student* s2) const {
+        if (s1->getName() == s2->getName())
+            return s1->getCode() < s2->getCode();
+        return s1->getName() < s2->getName();
+    }
+
+};
+
 
 class Managing {
 public:
@@ -94,6 +104,8 @@ public:
     void setClasses(const set<Turma, classComp> &classes);
 
     set<Turma, classComp> getClassesByYear(char year);
+
+    set<Student*, studentByName> sortStudentsByName(const set<Student *, studComp> s);
 
 
 private:

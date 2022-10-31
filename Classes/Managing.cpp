@@ -6,8 +6,6 @@
 #include "Managing.h"
 #include "Student.h"
 
-
-
 Managing::Managing() {
 
 }
@@ -16,7 +14,6 @@ void Managing::readFiles() {
     readStudents();
     readSchedules();
     readCourseUnits();
-
 }
 
 void Managing::readStudents() {
@@ -149,9 +146,6 @@ void Managing::readCourseUnits() {
                 lastCourseUnit.insertClass(classCode);
                 continue;
             }
-
-
-
         }
         file.close();
         this->ucs = _ucs;
@@ -215,7 +209,7 @@ set<CourseUnit, ucComp> Managing::getUcs(char year) {
 set<Turma, classComp> Managing::getClassesByYear(char year) {
     set<Turma, classComp> filtered_classes;
 
-    for (auto turma : this->classes) {
+    for (Turma turma : this->classes) {
         if (turma.getClassCode()[0] == year) {
             filtered_classes.insert(turma);
         }
@@ -235,3 +229,10 @@ void Managing::setClasses(const set<Turma, classComp> &classes) {
     Managing::classes = classes;
 }
 
+set<Student*, studentByName> Managing::sortStudentsByName(const set<Student *, studComp> s) {
+    set<Student*, studentByName> sortedByName;
+    for (Student* student : s) {
+        sortedByName.insert(student);
+    }
+    return sortedByName;
+}
