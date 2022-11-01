@@ -421,7 +421,7 @@ void Menu::horarioTurma(){
 void Menu::estudantesMenu() {
 
     for (Student* student: m.getStudents()) {
-        student->printStudent();
+        cout << '\t' << *student << endl;
     }
 
     int escolha;
@@ -608,8 +608,7 @@ void Menu::alunosAno() {
     int count = 1;
     for (Student* s : m.getStudents()) {
         if (s->getYear() == year) {
-            cout << "\t[" << count << "] ";
-            s->printStudent();
+            cout << "\t[" << count << "] " << (*s) << endl;
             count++;
         }
     }
@@ -645,7 +644,7 @@ void Menu::alunosUC() {
     for (Student* s : m.getStudents()) {
         for (Turma t : s->getClasses()) {
             if (t.getUcCode() == uc)
-                s->printStudent();
+                cout << (*s) << endl;
         }
     }
     menuState.pop();
