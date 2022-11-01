@@ -305,7 +305,7 @@ void Menu::horarioAluno(){
     unsigned escolha;
     cout << "\t[0] Voltar atrás" << endl << endl;
 
-    set<Student*> students = m.getStudents();
+    set<Student*, studComp> students = m.getStudents();
     set<Student*>::iterator myStudent;
     do {
         cout << "\tup do estudante: ";

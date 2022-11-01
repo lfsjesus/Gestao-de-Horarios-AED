@@ -72,23 +72,7 @@ unsigned int Student::getYear() const {
 }
 
 bool Student::operator<(const Student &rhs) const {
-    if (code < rhs.code)
-        return true;
-    if (rhs.code < code)
-        return false;
     return code < rhs.code;
-}
-
-bool Student::operator>(const Student &rhs) const {
-    return rhs < *this;
-}
-
-bool Student::operator<=(const Student &rhs) const {
-    return !(rhs < *this);
-}
-
-bool Student::operator>=(const Student &rhs) const {
-    return !(*this < rhs);
 }
 
 

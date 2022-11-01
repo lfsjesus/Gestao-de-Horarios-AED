@@ -7,6 +7,10 @@
 #include "CourseUnit.h"
 #include "Turma.h"
 
+struct studComp
+{
+    bool operator()(const Student* s1, const Student* s2) const  { return s1->getCode() < s2->getCode();}
+};
 struct schedComp
 {
     bool operator()(const Schedule* s1, const Schedule* s2) const  {
@@ -30,9 +34,9 @@ public:
 
     void readFiles();
 
-    const set<Student*> &getStudents() const;
+    const set<Student*, studComp> &getStudents() const;
 
-    void setStudents(const set<Student*> &students);
+    void setStudents(const set<Student*, studComp> &students);
 
     bool addStudent(const Student* student);
 
@@ -64,7 +68,7 @@ public:
 
 
 private:
-  set<Student*> students;
+  set<Student*, studComp> students;
   set<Schedule*, schedComp> schedules;
   queue<Request*> requests;
   set<CourseUnit> ucs; //useful to show each year's UCs in menuTurma

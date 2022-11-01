@@ -18,7 +18,7 @@ void Managing::readFiles() {
 
 void Managing::readStudents() {
     // Reads the file about the students
-    set<Student *> _students = {};
+    set<Student *, studComp> _students = {};
     ifstream file(STUDENTS_FILE);
 
     list<Turma> studentclasses;
@@ -153,11 +153,11 @@ void Managing::readCourseUnits() {
 }
 
 
-const set<Student*> &Managing::getStudents() const {
+const set<Student*, studComp> &Managing::getStudents() const {
     return students;
 }
 
-void Managing::setStudents(const set<Student*> &students) {
+void Managing::setStudents(const set<Student*, studComp> &students) {
     Managing::students = students;
 }
 
