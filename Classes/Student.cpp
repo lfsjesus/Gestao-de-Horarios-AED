@@ -44,8 +44,9 @@ void Student::addClass(Turma _class) {
     classes.push_back(_class);
 }
 
-void Student::printStudent() {
-    cout << "(" << code << ") " << name << endl;
+ostream& operator<<(ostream& os, const Student& student){
+    os << "(" << student.code << ") " << student.name;
+    return os;
 }
 
 void Student::printClasses() {

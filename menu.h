@@ -22,9 +22,11 @@
 #define YEARS_MENU 13
 #define INSCREVER_ALUNO_MENU 14
 #define DESINSCREVER_ALUNO_MENU 15
-#define PERMUTACAO_MENU 16
-#define TROCA_SINGULAR 17
-#define TROCA_DUPLA 18
+#define ALUNOS_ANO 16
+#define ALUNOS_UC 17
+#define PERMUTACAO_MENU 18
+#define TROCA_SINGULAR 19
+#define TROCA_DUPLA 20
 
 class Menu {
 public:
@@ -46,9 +48,10 @@ private:
     void printSchedule(vector<Slot> slots);
     void inscreverAluno();
     void desinscreverAluno();
+    void alunosAno();
+    void alunosUC();
     void permutacaoMenu();
     void trocaSingular();
     void trocaDupla();
     std::stack<short int> menuState;
-
 };

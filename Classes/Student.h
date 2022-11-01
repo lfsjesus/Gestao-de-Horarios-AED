@@ -32,9 +32,10 @@ public:
 
     void removeClass(Turma _class);
 
-        bool operator==(const Student& student) const;
+    bool operator<(const Student &s) const;
+    bool operator==(const Student& student) const;
+    friend ostream& operator<<(ostream& os, const Student& student);
 
-    void printStudent();
     void printClasses();
 
     bool operator<(const Student &rhs) const;
@@ -44,14 +45,8 @@ public:
     bool operator<=(const Student &rhs) const;
 
     bool operator>=(const Student &rhs) const;
-
-    /*
-    const Schedule &getSchedule() const; // O horário seria uma função geradora que faz um loop 
-    // por todas as turmas e retorna um lista toda bonita. O que acham?
-    // assim não seria necessário estar a gerar o horário para todos os estudantes na construção do objecto
-    */
 private:
     unsigned int code;
     string name;
-    list<Turma> classes; //turmas em que está em diferentes cadeiras
+    list<Turma> classes;
 };
