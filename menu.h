@@ -53,5 +53,6 @@ private:
     void permutacaoMenu();
     void trocaSingular();
     void trocaDupla();
+    void inscricao(char& year, string& courseUnit, string& turma, vector<Turma>& turmas);
     std::stack<short int> menuState;
 };

@@ -236,3 +236,7 @@ set<Student*, studentByName> Managing::sortStudentsByName(const set<Student *> s
     }
     return sortedByName;
 }
+
+bool Managing::addRequest(Request* request) {
+    requests.push(request);
+}

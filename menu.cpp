@@ -593,7 +593,10 @@ void Menu::turmaMenu() {
 void Menu::inscreverAluno(){
     unsigned upCode;
     string name;
-    list<Turma> _classes;
+    string courseUnit;
+    string turma;
+    char year;
+    vector<Turma> turmas;
 
     cout << "\t[0] Voltar atrás" << endl << endl;
 
@@ -602,18 +605,39 @@ void Menu::inscreverAluno(){
     cin.clear();
     cin.ignore(1000, '\n');
 
-    cout << "\tNome do aluno: ";
-    getline(cin, name);
-    cin.clear();
-    cin.ignore(1000, '\n');
+    if (m.getStudents().find(new Student(upCode)) == m.getStudents().end()) {
 
-    Student * newStudent = new Student(upCode, name, _classes);
+        cout << "\t ! Está a inscrever um aluno novo no sistema !" << endl << endl;
+        cout << "\tNome do aluno: ";
+        getline(cin, name);
+        cin.clear();
+        cin.ignore(1000, '\n');
+        while (true) {
+            inscricao(year, courseUnit, turma, turmas);
+            char answer;
+            cout << "\t Pedido efetuado. Deseja inscrever em mais turmas? (S/N) ";
+            cin >> answer;
 
-    //TODO: add classes to student
+            if (answer != 'S')
+                break;
 
-    bool inserted = m.addStudent(newStudent);
-    if(inserted) cout << "Aluno Instrito com sucesso!" << endl;
-    else cout << "Perdemos a conexão ao Sigarra :/" << endl;
+        }
+        m.addRequest(new Request(upCode, name, turmas));
+    }
+
+    else {
+        while(true) {
+            inscricao(year, courseUnit, turma, turmas);
+            char answer;
+            cout << "\t Pedido efetuado. Deseja inscrever em mais turmas? (S/N) ";
+            cin >> answer;
+
+            if (answer != 'S')
+                break;
+        }
+        m.addRequest(new Request(upCode,  turmas));
+    }
+    // Falta impedir que ele se inscreva numa turma que já esteja inscrito ou que já tenha no vector de novas turmas
 
     menuState.pop();
     getMenu();
@@ -793,3 +817,37 @@ void Menu::trocaDupla() {
 // Colocar os outros menus
 // Colocar aqui as funções de listagem (que estão relacionadas
 // com as escolhas dos menus
+
+
+
+void Menu::inscricao(char& year, string& courseUnit, string& turma, vector<Turma>& turmas) {
+    cout << "\tEm que ano quer inscrever: ";
+    cin >> year;
+
+    set<CourseUnit> ucSet = m.getUcs(year);
+    auto it = ucSet.begin();
+
+    for (CourseUnit uc: ucSet)
+        cout << "\t" << uc.getUcCode() << endl;
+
+    do {
+        cout << "\tEscolha uma UC: ";
+        cin >> courseUnit;
+        CourseUnit tempUc(courseUnit);
+        it = ucSet.find(courseUnit);
+
+    } while (it == ucSet.end());
+
+
+
+    for (string s: (*it).getClasses())
+        cout << "\t" << s << endl;
+
+    do {
+        cout << "\tEscolha uma Turma: ";
+        cin >> turma;
+    } while ((*it).getClasses().find(turma) == (*it).getClasses().end());
+
+    turmas.push_back(Turma(turma, courseUnit));
+
+}

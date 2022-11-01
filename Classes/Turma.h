@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <vector>
-//#include "Student.h"
 
 using namespace std;
 
@@ -30,7 +29,7 @@ public:
 
     bool operator==(const Turma& turma) const;
 
-        //const vector<Student *> getStudents();
+
 private:
     string classCode;
     string ucCode;
