@@ -906,7 +906,7 @@ void Menu::trocaDupla() {
     }
 
     if (!possible) {
-        cout << "\n\tERRO: O estudante 1 náo está inscrito nessa UC." << endl;
+        cout << "\n\tERRO: O estudante 1 não está inscrito nessa UC." << endl;
         menuState.pop();
         return getMenu();
     }

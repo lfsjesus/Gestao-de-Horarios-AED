@@ -1,6 +1,7 @@
 #define CLASSES_FILE "../Data/classes.csv"
 #define COURSE_UNITS "../Data/classes_per_uc.csv"
 #define STUDENTS_FILE "../Data/students_classes.csv"
+#define REQUESTS_FILE "../Data/requests.csv"
 #include <fstream>
 #include <algorithm>
 #include "Managing.h"
@@ -152,6 +153,32 @@ void Managing::readCourseUnits() {
     }
 }
 
+void Managing::readRequests() {
+    queue<Request*> _requests;
+
+    ifstream file(REQUESTS_FILE);
+
+    if(file.is_open()) {
+        while(!file.eof()) {
+            string studentCode1;
+            string studentCode2;
+            string ucCode;
+            string classCode;
+            vector<Turma> new_classes;
+
+            getline(file, studentCode1, ',');
+            getline(file, studentCode2, ',');
+            
+        }
+
+
+
+    }
+    file.close();
+    this->requests = _requests;
+
+}
+
 
 const set<Student*, studComp> &Managing::getStudents() const {
     return students;
@@ -243,3 +270,5 @@ set<Student*, studentByName> Managing::sortStudentsByName(const set<Student *> s
 bool Managing::addRequest(Request* request) {
     requests.push(request);
 }
+
+

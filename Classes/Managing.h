@@ -49,6 +49,7 @@ public:
     set<Student*, studentByName> sortStudentsByName(const set<Student *> s);
 
 
+
 private:
   set<Student*, studComp> students;
   set<Schedule*, schedComp> schedules;
@@ -59,5 +60,6 @@ private:
   void readStudents();
   void readSchedules();
   void readCourseUnits();
+  void readRequests();
 
 };
