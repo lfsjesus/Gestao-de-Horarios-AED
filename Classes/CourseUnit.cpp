@@ -34,11 +34,7 @@ CourseUnit::CourseUnit() {
     this->ucCode = "-";
 }
 bool CourseUnit::operator<(const CourseUnit &rhs) const {
-    if (ucCode < rhs.ucCode)
-        return true;
-    if (rhs.ucCode < ucCode)
-        return false;
-    return classes < rhs.classes;
+    return ucCode < rhs.ucCode;
 }
 
 bool CourseUnit::operator>(const CourseUnit &rhs) const {

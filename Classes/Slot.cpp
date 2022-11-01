@@ -34,11 +34,14 @@ void Slot::setDuration(float duration) {
     Slot::duration = duration;
 }
 
+bool Slot::operator==(const Slot& slot) const{
+    return (this->getWeekday() == slot.getWeekday() && this->getStartHour() == slot.getStartHour() && this->getDuration() == slot.getDuration() && this->getType() == slot.getType());
+}
+
 ostream& operator<<(ostream& os, const Slot& slot){
     os << slot.weekday << " " << slot.type << " " << slot.startHour << " " << slot.duration << " ---> ( Turma: "<< slot.turma.getClassCode() << " | " << slot.turma.getUcCode() << " )";
     return os;
 }
-
 
 const Turma &Slot::getTurma() const {
     return turma;

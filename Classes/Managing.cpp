@@ -62,7 +62,7 @@ void Managing::readStudents() {
 
 void Managing::readSchedules() {
     // Reads the file about the students
-    set<Schedule*> _schedules = {};
+    set<Schedule*, schedComp> _schedules = {};
 
     ifstream file(CLASSES_FILE);
 
@@ -174,11 +174,11 @@ bool Managing::addStudent(const Student* student) {
     return true; //TODO: if there is no problem
 }
 
-const set<Schedule*> &Managing::getSchedules() const {
+const set<Schedule*, schedComp> &Managing::getSchedules() const {
     return schedules;
 }
 
-void Managing::setSchedules(const set<Schedule*> &schedules) {
+void Managing::setSchedules(const set<Schedule*, schedComp> &schedules) {
     Managing::schedules = schedules;
 }
 

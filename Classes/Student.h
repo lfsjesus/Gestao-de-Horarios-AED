@@ -32,7 +32,6 @@ public:
 
     void removeClass(Turma _class);
 
-    bool operator<(const Student &s) const;
     bool operator==(const Student& student) const;
     friend ostream& operator<<(ostream& os, const Student& student);
 

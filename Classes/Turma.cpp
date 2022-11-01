@@ -43,18 +43,6 @@ bool Turma::operator==(const Turma &turma) const {
 }
 
 bool Turma::operator<(const Turma &rhs) const {
-    if (ucCode == rhs.ucCode) return classCode < rhs.classCode;
-    return ucCode < rhs.ucCode;
-}
-
-bool Turma::operator>(const Turma &rhs) const {
-    return rhs < *this;
-}
-
-bool Turma::operator<=(const Turma &rhs) const {
-    return !(rhs < *this);
-}
-
-bool Turma::operator>=(const Turma &rhs) const {
-    return !(*this < rhs);
+    if (classCode == rhs.classCode) return ucCode < rhs.ucCode;
+    return classCode < rhs.classCode;
 }

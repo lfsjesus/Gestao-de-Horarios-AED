@@ -322,7 +322,7 @@ void Menu::horarioAluno(){
 
     cout << (*myStudent)->getName() << endl;
 
-    set<Schedule*> schedules = m.getSchedules();
+    set<Schedule*, schedComp> schedules = m.getSchedules();
 
 
     Schedule studentSchedule = Schedule();
@@ -407,7 +407,7 @@ void Menu::horarioTurma(){
     }
 
 
-    set<Schedule*> schedules = m.getSchedules();
+    set<Schedule*,schedComp> schedules = m.getSchedules();
     Schedule classSchedule = Schedule();
     for(Turma _class : turmasParaHorario){
         auto mySchedule = schedules.find(new Schedule(_class));
@@ -418,7 +418,7 @@ void Menu::horarioTurma(){
         }
     }
     classSchedule.sort();
-    cout << classSchedule << endl;
+    cout << '\t' << classSchedule << endl;
     menuState.pop();
     getMenu();
 }
@@ -468,7 +468,7 @@ void Menu::horarioUc(){
 
     string turma;
     cout << endl;
-    set<Schedule*> schedules = m.getSchedules();
+    set<Schedule*, schedComp> schedules = m.getSchedules();
     Schedule ucSchedule = Schedule(); //Devia ter so uma turma associada (tem mts)?
 
     for (auto TURMA : UC.getClasses()){
@@ -482,7 +482,7 @@ void Menu::horarioUc(){
     }
     ucSchedule.sort(); //aqui ordena todos os slots da UC
     //o ucSchedule nao tem turma associada, uma vez que aqui estamos a falar de uma UC e nao de uma turma
-    cout << ucSchedule << endl;
+    cout << '\t' << ucSchedule << endl;
 
     menuState.pop();
     getMenu();
@@ -727,7 +727,7 @@ void Menu::alunosUC() {
     } while (year < '0' || year > '3');
 
     string uc;
-    set<CourseUnit, ucComp> UCs = m.getUcs(year);
+    set<CourseUnit> UCs = m.getUcs(year);
     CourseUnit c;
 
     for (CourseUnit uc : UCs) {

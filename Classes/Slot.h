@@ -35,6 +35,7 @@ public:
 
     unsigned weekdayToNum(const string weekday) const;
 
+    bool operator==(const Slot& slot) const;
     bool operator<(const Slot& slot) const;
 
 
