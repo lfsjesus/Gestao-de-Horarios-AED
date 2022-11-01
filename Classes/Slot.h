@@ -1,8 +1,9 @@
-
-#ifndef AED_SLOT_H
-#define AED_SLOT_H
+#pragma once
 #include <iostream>
 #include "Turma.h"
+#include <algorithm>
+
+
 using namespace std;
 
 class Slot {
@@ -32,6 +33,10 @@ public:
 
     void setTurma(const Turma &turma);
 
+    unsigned weekdayToNum(const string weekday) const;
+
+    bool operator<(const Slot& slot) const;
+
 
 private:
     Turma turma; //CADA AULA (SLOT) TEM DE TER UMA TURMA ASSOCIADA, CASO CONTRARIO, NAO PODERIAM HAVER AULAS SIMULTANEAS, POIS SERIAM A MESMA AULA (EX FISICA ÀS 10 E AED ÀS 10 NAO SÃO O MESMO SLOT)
@@ -41,6 +46,3 @@ private:
     float duration;
 
 };
-
-
-#endif //AED_SLOT_H

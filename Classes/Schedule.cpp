@@ -1,6 +1,10 @@
 #include "Schedule.h"
 using namespace std;
 
+bool compareSlot(Slot& s1, Slot& s2){
+    return (s1.getWeekday() == s2.getWeekday() && s1.getStartHour() == s2.getStartHour() && s1.getDuration() == s2.getDuration() && s1.getType() == s2.getType());
+}
+
 Schedule::Schedule() {}
 Schedule::Schedule(const Turma &_class){
     this->_class = _class;
@@ -13,7 +17,7 @@ Schedule::Schedule(const Turma &_class, const list<Slot> &slots) {
 
 ostream& operator<<(ostream& os, const Schedule& schedule)
 {
-    printf("\n  -------Horário-------- \n");
+    printf("\n  ---------------Horário---------------- \n");
     for(Slot slot : schedule.slots){
 
         os << slot << endl;
@@ -39,6 +43,27 @@ void Schedule::setSlots(const list<Slot> &slots) {
 
 void Schedule::addSlot(Slot slot) {
     slots.push_back(slot);
+}
+
+void Schedule::sort() {
+    slots.sort();
+    slots.unique(compareSlot);
+}
+
+bool Schedule::operator<(const Schedule &rhs) const {
+    return _class < rhs._class;
+}
+
+bool Schedule::operator>(const Schedule &rhs) const {
+    return rhs < *this;
+}
+
+bool Schedule::operator<=(const Schedule &rhs) const {
+    return !(rhs < *this);
+}
+
+bool Schedule::operator>=(const Schedule &rhs) const {
+    return !(*this < rhs);
 }
 
 

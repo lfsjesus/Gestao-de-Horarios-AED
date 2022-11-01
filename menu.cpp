@@ -17,34 +17,34 @@ void Menu::getMenu() {
             case 0:
                 mainMenu();
                 break;
-            case 1:
+            case CONSULTAS_MENU:
                 consultasMenu();
                 break;
-            case 2:
+            case MODIFICACOES_MENU:
                 modificacoesMenu();
                 break;
-            case 3:
+            case PEDIDOS_MENU:
                 efetivacaoMenu();
                 break;
-            case 4:
+            case ALUNOS_MENU:
                 alunosMenu();
                 break;
-            case 5:
+            case ESTUDANTES_MENU:
                 estudantesMenu();
                 break;
-            case 6:
+            case HORARIOS_MENU:
                 horariosMenu();
                 break;
-            case 7:
+            case HORARIO_ALUNO:
                 horarioAluno();
                 break;
-            case 8:
+            case HORARIO_TURMA:
                 horarioTurma();
                 break;
-            case 9:
-                // add later
+            case HORARIO_UC:
+                horarioUc();
                 break;
-            case 10:
+            case TURMA_MENU:
                 turmaMenu();
                 break;
             case INSCREVER_ALUNO_MENU:
@@ -58,6 +58,15 @@ void Menu::getMenu() {
                 break;
             case ALUNOS_UC:
                 alunosUC();
+                break;
+            case PERMUTACAO_MENU:
+                permutacaoMenu();
+                break;
+            case TROCA_SINGULAR:
+                trocaSingular();
+                break;
+            case TROCA_DUPLA:
+                trocaDupla();
                 break;
         }
     }
@@ -182,7 +191,7 @@ void Menu::modificacoesMenu() {
         case 0: menuState.pop(); break;
         case 1: menuState.push(INSCREVER_ALUNO_MENU); break;
         case 2: menuState.push(DESINSCREVER_ALUNO_MENU); break;
-        case 3: /* TODO: */; break;
+        case 3: menuState.push(PERMUTACAO_MENU); break;
     }
     getMenu();
 }
@@ -265,10 +274,10 @@ void Menu::horariosMenu() {
     for(int i=0; i<options.size(); i++){
         cout << "\t[" << i+1 << "] " << options[i] << endl;
     }
-    cout << "\n[0] Voltar atrás" << endl;
+    cout << "\n\t[0] Voltar atrás" << endl;
 
     do {
-        cout << "Escolha: ";
+        cout << "\tEscolha: ";
         cin >> escolha;
         cout << "=======================================" << endl;
         if (escolha < 0 || escolha > 3) cout << "Erro, por favor tente novamente!" << endl;
@@ -296,8 +305,8 @@ void Menu::horarioAluno(){
     unsigned escolha;
     cout << "\t[0] Voltar atrás" << endl << endl;
 
-    set<Student*, studComp> students = m.getStudents();
-    set<Student*, studComp>::iterator myStudent;
+    set<Student*> students = m.getStudents();
+    set<Student*>::iterator myStudent;
     do {
         cout << "\tup do estudante: ";
         cin >> escolha;
@@ -313,7 +322,7 @@ void Menu::horarioAluno(){
 
     cout << (*myStudent)->getName() << endl;
 
-    set<Schedule*, schedComp> schedules = m.getSchedules();
+    set<Schedule*> schedules = m.getSchedules();
 
 
     Schedule studentSchedule = Schedule();
@@ -327,6 +336,7 @@ void Menu::horarioAluno(){
     }
 
     cout << "Horário de: " << (*myStudent)->getName() << endl;
+    studentSchedule.sort();
     cout << studentSchedule << endl;
 
     getMenu();
@@ -349,7 +359,7 @@ void Menu::horarioTurma(){
 
     } while (ano < '1' || ano > '3');
 
-    set<Turma, classComp> classesYear = m.getClassesByYear(ano);
+    set<Turma> classesYear = m.getClassesByYear(ano);
 
     //listagem das turmas
 
@@ -397,25 +407,88 @@ void Menu::horarioTurma(){
     }
 
 
-    set<Schedule*, schedComp> schedules = m.getSchedules();
+    set<Schedule*> schedules = m.getSchedules();
     Schedule classSchedule = Schedule();
     for(Turma _class : turmasParaHorario){
         auto mySchedule = schedules.find(new Schedule(_class));
         if(mySchedule != schedules.end()){
             for(Slot slot : (*mySchedule)->getSlots()){
                 classSchedule.addSlot(slot);
-
-
             }
-
         }
-
-
     }
+    classSchedule.sort();
     cout << classSchedule << endl;
+    menuState.pop();
+    getMenu();
 }
 
+void Menu::horarioUc(){
+    char ano;
+    cout << "\t[0] Voltar atrás" << endl << endl;
 
+    do {
+        cout << "\tEscolha um ano (1, 2 ou 3): ";
+        cin >> ano;
+        cout << "\n";
+        if (ano == '0'){
+            cin.clear();
+            menuState.pop();
+            return getMenu();
+
+        }
+    } while (ano < '1' || ano > '3');
+
+    //listagem das UCs
+
+    cout << "\tUCs do " << ano << "º ano:" << "\n";
+
+
+    set<CourseUnit> ucSet = m.getUcs(ano);
+    for (auto uc : ucSet)
+        cout << "\t" << uc.getUcCode() << "\n";
+
+    auto it = ucSet.begin();
+    string uc;
+    do {
+        cout << "\n\tescolha uma das UCs acima (código): ";
+        cin >> uc;
+        if (uc == "0"){
+            cin.clear();
+            menuState.pop();
+            return getMenu();
+        }
+        CourseUnit tempUc(uc);
+        it = ucSet.find(tempUc); //logarithmic
+    } while(it == ucSet.end());
+
+    CourseUnit UC = *it; // A UC escolhida pelo utilizador
+
+    //listagem das turmas da uc selecionada
+
+    string turma;
+    cout << endl;
+    set<Schedule*> schedules = m.getSchedules();
+    Schedule ucSchedule = Schedule(); //Devia ter so uma turma associada (tem mts)?
+
+    for (auto TURMA : UC.getClasses()){
+        Turma _class(TURMA, uc); //fisica
+        auto mySchedule = schedules.find(new Schedule(_class)); //procura os slots de fisica
+        if(mySchedule != schedules.end()) {
+            for (Slot slot: (*mySchedule)->getSlots()) {
+                ucSchedule.addSlot(slot);
+            }
+        }
+    }
+    ucSchedule.sort(); //aqui ordena todos os slots da UC
+    //o ucSchedule nao tem turma associada, uma vez que aqui estamos a falar de uma UC e nao de uma turma
+    cout << ucSchedule << endl;
+
+    menuState.pop();
+    getMenu();
+
+
+}
 
 
 void Menu::estudantesMenu() {
@@ -468,7 +541,7 @@ void Menu::turmaMenu() {
     cout << "\tUCs do " << ano << "º ano:" << "\n";
 
 
-    set<CourseUnit, ucComp> ucSet = m.getUcs(ano);
+    set<CourseUnit> ucSet = m.getUcs(ano);
     for (auto uc : ucSet)
         cout << "\t" << uc.getUcCode() << "\n";
 
@@ -597,6 +670,7 @@ void Menu::desinscreverAluno() {
     getMenu();
 }
 
+
 void Menu::alunosAno() {
     unsigned year;
     do {
@@ -614,8 +688,34 @@ void Menu::alunosAno() {
     }
     menuState.pop();
     getMenu();
-
 }
+
+void Menu::permutacaoMenu() {
+    cout << "----------------- TROCAS DE TURMAS ---------------------" << endl << endl;
+    cout << "\t [1] Trocar turma de um estudante" << endl;
+    cout << "\t [2] Trocar turma entre dois estudantes" << endl << endl;
+    cout << "\t [0] Voltar atrás" << endl;
+    unsigned choice;
+    do {
+        cout << "\n\tEscolha uma opção: ";
+        cin >> choice;
+    } while (choice < 0 || choice > 2);
+
+
+    switch(choice) {
+        case 0:
+            menuState.pop();
+            break;
+        case 1:
+            menuState.push(TROCA_SINGULAR);
+            break;
+        case 2:
+            menuState.push(TROCA_DUPLA);
+            break;
+    }
+    getMenu();
+}
+
 
 void Menu::alunosUC() {
     char year;
@@ -648,6 +748,42 @@ void Menu::alunosUC() {
         }
     }
     menuState.pop();
+    getMenu();
+}
+
+void Menu::trocaSingular() {
+    cout << "-------------TROCAR UM ESTUDANTE--------------" << endl;
+    unsigned upcode;
+
+    do {
+        cout << "UP do estudante: ";
+        cin >> upcode;
+    } while(m.getStudents().find(new Student(upcode)) == m.getStudents().end());
+
+    // VERIFICAR SOBREPOSIÇÃO
+    // ADICIONAR PEDIDO A m.getRequests()
+    getMenu();
+}
+
+void Menu::trocaDupla() {
+    cout << "-------------TROCAR DOIS ESTUDANTES--------------" << endl;
+    unsigned upcode1;
+    unsigned upcode2;
+
+    do {
+        cout << "UP do estudante 1: ";
+        cin >> upcode1;
+    } while(m.getStudents().find(new Student(upcode1)) == m.getStudents().end());
+
+
+    do {
+        cout << "UP do estudante 2: ";
+        cin >> upcode2;
+    } while(m.getStudents().find(new Student(upcode2)) == m.getStudents().end() || upcode2 == upcode1);
+
+    // VERIFICAR SOBREPOSIÇÃO
+    // ADICIONAR PEDIDO A m.getRequests()
+
     getMenu();
 }
 

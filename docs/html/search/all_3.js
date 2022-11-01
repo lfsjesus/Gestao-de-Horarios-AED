@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['schedcomp_6',['schedComp',['../structschedComp.html',1,'']]],
-  ['schedule_7',['Schedule',['../classSchedule.html',1,'']]],
-  ['slot_8',['Slot',['../classSlot.html',1,'']]],
-  ['studcomp_9',['studComp',['../structstudComp.html',1,'']]],
-  ['student_10',['Student',['../classStudent.html',1,'']]],
-  ['studentbyname_11',['studentByName',['../structstudentByName.html',1,'']]]
+  ['schedule_5',['Schedule',['../classSchedule.html',1,'']]],
+  ['slot_6',['Slot',['../classSlot.html',1,'']]],
+  ['student_7',['Student',['../classStudent.html',1,'']]],
+  ['studentbyname_8',['studentByName',['../structstudentByName.html',1,'']]]
 ];

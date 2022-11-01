@@ -1,6 +1,4 @@
-#ifndef AED_PROJ_CLASS_H
-#define AED_PROJ_CLASS_H
-
+#pragma once
 #include <iostream>
 #include <vector>
 //#include "Student.h"
@@ -16,6 +14,14 @@ public:
 
     void setClassCode(const string &classCode);
 
+    bool operator<(const Turma &rhs) const;
+
+    bool operator>(const Turma &rhs) const;
+
+    bool operator<=(const Turma &rhs) const;
+
+    bool operator>=(const Turma &rhs) const;
+
     const string &getUcCode() const;
 
     void setUcCode(const string &ucCode);
@@ -24,12 +30,8 @@ public:
 
     bool operator==(const Turma& turma) const;
 
-    bool operator<(const Turma& turma) const;
-
-    //const vector<Student *> getStudents();
+        //const vector<Student *> getStudents();
 private:
     string classCode;
     string ucCode;
 };
-
-#endif

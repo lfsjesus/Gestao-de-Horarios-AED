@@ -1,5 +1,4 @@
-#ifndef AED_PROJ_STUDENT_H
-#define AED_PROJ_STUDENT_H
+#pragma once
 #include <iostream>
 #include <vector>
 #include <list>
@@ -39,11 +38,15 @@ public:
 
     void printClasses();
 
+    bool operator<(const Student &rhs) const;
+
+    bool operator>(const Student &rhs) const;
+
+    bool operator<=(const Student &rhs) const;
+
+    bool operator>=(const Student &rhs) const;
 private:
     unsigned int code;
     string name;
     list<Turma> classes;
 };
-
-
-#endif //AED_PROJ_ESTUDANTE_H

@@ -37,9 +37,6 @@ void Student::setClasses(const list<Turma> &classes) {
 }
 
 
-bool Student::operator<(const Student &s) const {
-    return this->code < s.code;
-}
 bool Student::operator==(const Student &student) const {
     return code == student.getCode();
 }
@@ -72,6 +69,26 @@ unsigned int Student::getYear() const {
             max = t.getClassCode().at(0) - '0';
     }
     return max;
+}
+
+bool Student::operator<(const Student &rhs) const {
+    if (code < rhs.code)
+        return true;
+    if (rhs.code < code)
+        return false;
+    return code < rhs.code;
+}
+
+bool Student::operator>(const Student &rhs) const {
+    return rhs < *this;
+}
+
+bool Student::operator<=(const Student &rhs) const {
+    return !(rhs < *this);
+}
+
+bool Student::operator>=(const Student &rhs) const {
+    return !(*this < rhs);
 }
 
 

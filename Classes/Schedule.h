@@ -1,12 +1,9 @@
-
-#ifndef AED_PROJ_SCHEDULE_H
-#define AED_PROJ_SCHEDULE_H
+#pragma once
 
 #include <iostream>
 #include <list>
 #include "Turma.h"
 #include "Slot.h"
-//#include "CourseUnit.h"
 
 using namespace std;
 
@@ -19,6 +16,14 @@ public:
 
     const Turma &getClass() const;
 
+    bool operator<(const Schedule &rhs) const;
+
+    bool operator>(const Schedule &rhs) const;
+
+    bool operator<=(const Schedule &rhs) const;
+
+    bool operator>=(const Schedule &rhs) const;
+
     void setClass(const Turma &_class);
 
     const list<Slot> &getSlots() const;
@@ -28,6 +33,7 @@ public:
     // Faz print de uma tabela toda bonita no terminal
 
     friend ostream& operator<<(ostream& os, const Schedule& schedule);
+    void sort();
 
 private:
     //CourseUnit uc;
@@ -35,6 +41,3 @@ private:
     list<Slot> slots; //falta ordenar esta lista amanha implementar uma função comparadar para dar sort da lista :D #forçaequipa
 
 };
-
-
-#endif 

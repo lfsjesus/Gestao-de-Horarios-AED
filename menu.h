@@ -1,5 +1,4 @@
-#ifndef AED_PROJ_MENU_H
-#define AED_PROJ_MENU_H
+#pragma once
 
 #include <stack>
 #include <algorithm>
@@ -25,6 +24,9 @@
 #define DESINSCREVER_ALUNO_MENU 15
 #define ALUNOS_ANO 16
 #define ALUNOS_UC 17
+#define PERMUTACAO_MENU 18
+#define TROCA_SINGULAR 19
+#define TROCA_DUPLA 20
 
 class Menu {
 public:
@@ -39,6 +41,7 @@ private:
     void alunosMenu();
     void horariosMenu();
     void horarioAluno();
+    void horarioUc();
     void horarioTurma();
     void estudantesMenu();
     void turmaMenu();
@@ -47,9 +50,8 @@ private:
     void desinscreverAluno();
     void alunosAno();
     void alunosUC();
+    void permutacaoMenu();
+    void trocaSingular();
+    void trocaDupla();
     std::stack<short int> menuState;
-
 };
-
-
-#endif //AED_PROJ_MENU_H

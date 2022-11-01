@@ -1,7 +1,3 @@
-//
-// Created by luis on 18-10-2022.
-//
-
 #include "Slot.h"
 Slot::Slot(const Turma &turma, const string &type, const string &weekday, float startHour, float duration) : turma(
         turma), type(type), weekday(weekday), startHour(startHour), duration(duration) {}
@@ -51,3 +47,20 @@ const Turma &Slot::getTurma() const {
 void Slot::setTurma(const Turma &turma) {
     Slot::turma = turma;
 }
+
+unsigned Slot::weekdayToNum(const string weekday) const{
+    if (weekday == "Monday") return 1;
+    if (weekday == "Tuesday") return 2;
+    if (weekday == "Wednesday") return 3;
+    if (weekday == "Thursday") return 4;
+    if (weekday == "Friday") return 5;
+}
+
+bool Slot::operator<(const Slot& slot) const{
+    if (weekday == slot.weekday){
+        return startHour < slot.startHour;
+    }
+    return weekdayToNum(weekday) < weekdayToNum(slot.getWeekday());
+}
+
+
