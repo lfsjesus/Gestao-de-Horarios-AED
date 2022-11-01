@@ -33,6 +33,25 @@ bool CourseUnit::operator==(const CourseUnit &courseUnit) const {
 CourseUnit::CourseUnit() {
     this->ucCode = "-";
 }
+bool CourseUnit::operator<(const CourseUnit &rhs) const {
+    if (ucCode < rhs.ucCode)
+        return true;
+    if (rhs.ucCode < ucCode)
+        return false;
+    return classes < rhs.classes;
+}
+
+bool CourseUnit::operator>(const CourseUnit &rhs) const {
+    return rhs < *this;
+}
+
+bool CourseUnit::operator<=(const CourseUnit &rhs) const {
+    return !(rhs < *this);
+}
+
+bool CourseUnit::operator>=(const CourseUnit &rhs) const {
+    return !(*this < rhs);
+}
 
 
 
