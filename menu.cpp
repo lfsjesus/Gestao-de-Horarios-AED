@@ -29,6 +29,23 @@ void Menu::getMenu() {
             case ALUNOS_MENU:
                 alunosMenu();
                 break;
+            case TURMAS_MENU:
+                turmasMenu();
+                break;
+            case TURMAS_CRESCENTE_MENU:
+                turmasCrescenteMenu();
+                break;
+            case TURMAS_DECRESCENTE_MENU:
+                turmasDecrescenteMenu();
+                break;
+            case UCS_MENU:
+                ucsMenu();
+                break;
+            case UCS_CRESCENTE_MENU:
+                ucsCrescenteMenu();
+                break;
+            case UCS_DECRESCENTE_MENU:
+                ucsDecrescenteMenu();
             case ESTUDANTES_MENU:
                 estudantesMenu();
                 break;
@@ -151,7 +168,7 @@ void Menu::consultasMenu() {
             break;
         }
         case 3: {
-            menuState.push(COURSE_UNITS_MENU);
+            menuState.push(UCS_MENU);
             break;
         }
         case 4: {
@@ -263,6 +280,193 @@ void Menu::alunosMenu() {
     }
     getMenu();
 }
+
+
+void Menu::turmasMenu() {
+
+    int escolha;
+    do {
+        cout << "=======================================" << endl;
+        cout << "\t[1] Listar Turmas por Ordem Decrescente de Nº de Alunos " << endl;
+        cout << "\t[2] Listar Turmas por Ordem Crescente de Nº de Alunos " << endl;
+
+        cout << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+
+
+        cout << "\tEscolha: ";
+        cin >> escolha;
+        cout << "=======================================" << endl;
+        if (escolha < 0 || escolha > 2) cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (escolha < 0 || escolha > 2);
+
+    switch (escolha) {
+        case 0:
+            menuState.pop();
+            break;
+        case 1:
+            menuState.push(TURMAS_DECRESCENTE_MENU);
+            break;
+        case 2:
+            menuState.push(TURMAS_CRESCENTE_MENU);
+            break;
+
+    }
+    getMenu();
+}
+
+void Menu::turmasCrescenteMenu(){
+
+    //listagem das turmas por ordem Crescente de n de alunos
+    vector<pair<int,Turma>> numberOfStudentsByClass;
+    for (Turma turma : m.getClasses()){
+        int count = 0;
+        for(Student* student : m.getStudents()){
+            for(Turma turmaStud : student->getClasses()){
+                if (turma == turmaStud){
+                    count++;
+                }
+            }
+        }
+        pair<int,Turma> tempPair(count,turma);
+        numberOfStudentsByClass.push_back(tempPair);
+    }
+
+    std::sort(numberOfStudentsByClass.begin(), numberOfStudentsByClass.end());
+
+    for(auto PAIR : numberOfStudentsByClass){
+        cout << "\t(" << PAIR.first << ") " << PAIR.second.getClassCode() << " | " << PAIR.second.getUcCode() << endl;
+    }
+    menuState.pop();
+    getMenu();
+
+}
+void Menu::turmasDecrescenteMenu(){
+    //listagem das turmas por ordem Decrescente de n de alunos
+    vector<pair<int,Turma>> numberOfStudentsByClass;
+    for (Turma turma : m.getClasses()){
+        int count = 0;
+        for(Student* student : m.getStudents()){
+            for(Turma turmaStud : student->getClasses()){
+                if (turma == turmaStud){
+                    count++;
+                }
+            }
+        }
+        pair<int,Turma> tempPair(count,turma);
+        numberOfStudentsByClass.push_back(tempPair);
+    }
+
+    std::sort(numberOfStudentsByClass.rbegin(), numberOfStudentsByClass.rend());
+
+    for(auto PAIR : numberOfStudentsByClass){
+        cout << "\t(" << PAIR.first << ") " << PAIR.second.getClassCode() << " | " << PAIR.second.getUcCode() << endl;
+    }
+    menuState.pop();
+    getMenu();
+
+
+}
+
+
+void Menu::ucsMenu() {
+
+    int escolha;
+    do {
+        cout << "=======================================" << endl;
+        cout << "\t[1] Listar UCs por Ordem Decrescente de Nº de Alunos " << endl;
+        cout << "\t[2] Listar UCs por Ordem Crescente de Nº de Alunos " << endl;
+
+        cout << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+
+
+        cout << "\tEscolha: ";
+        cin >> escolha;
+        cout << "=======================================" << endl;
+        if (escolha < 0 || escolha > 2) cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (escolha < 0 || escolha > 2);
+
+    switch (escolha) {
+        case 0:
+            menuState.pop();
+            break;
+        case 1:
+            menuState.push(UCS_DECRESCENTE_MENU);
+            break;
+        case 2:
+            menuState.push(UCS_CRESCENTE_MENU);
+            break;
+
+    }
+    getMenu();
+}
+
+void Menu::ucsCrescenteMenu(){
+
+    //listagem das turmas por ordem Crescente de n de alunos
+    vector<pair<int,CourseUnit>> numberOfStudentsByUc;
+
+    for(CourseUnit uc : m.getUcs()){ //para cada uc
+        int count = 0;
+        for(string turma : uc.getClasses()){ //para cada turma da uc
+            for(Student* student : m.getStudents()){ // em cada estudante
+                for(Turma turmaStud : student->getClasses()){ //em cada turma do estudante
+                    if (turma == turmaStud.getClassCode() && uc.getUcCode() == turmaStud.getUcCode()){ //se a turma for igual, conta++
+                        count++;
+                    }
+                }
+            }
+        }
+        pair<int, CourseUnit> tempPair(count, uc);
+        numberOfStudentsByUc.push_back(tempPair);
+
+    }
+
+    std::sort(numberOfStudentsByUc.begin(), numberOfStudentsByUc.end());
+    for(auto PAIR : numberOfStudentsByUc){
+        cout << "\t(" << PAIR.first << ") " << PAIR.second.getUcCode() << endl;
+    }
+    menuState.pop();
+    getMenu();
+
+
+}
+void Menu::ucsDecrescenteMenu(){
+
+    //listagem das turmas por ordem Crescente de n de alunos
+    vector<pair<int,CourseUnit>> numberOfStudentsByUc;
+
+    for(CourseUnit uc : m.getUcs()){ //para cada uc
+        int count = 0;
+        for(string turma : uc.getClasses()){ //para cada turma da uc
+            for(Student* student : m.getStudents()){ // em cada estudante
+                for(Turma turmaStud : student->getClasses()){ //em cada turma do estudante
+                    if (turma == turmaStud.getClassCode() && uc.getUcCode() == turmaStud.getUcCode()){ //se a turma for igual, conta++
+                        count++;
+                    }
+                }
+            }
+        }
+        pair<int, CourseUnit> tempPair(count, uc);
+        numberOfStudentsByUc.push_back(tempPair);
+
+    }
+
+    std::sort(numberOfStudentsByUc.rbegin(), numberOfStudentsByUc.rend());
+    for(auto PAIR : numberOfStudentsByUc){
+        cout << "\t(" << PAIR.first << ") " << PAIR.second.getUcCode() << endl;
+    }
+    menuState.pop();
+    getMenu();
+
+
+}
+
 void Menu::horariosMenu() {
     int escolha;
     vector<string> options = {
