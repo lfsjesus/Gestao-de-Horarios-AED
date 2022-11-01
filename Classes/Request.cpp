@@ -1,21 +1,24 @@
 #include "Request.h"
 
-Request::Request(unsigned int studentCode1, const vector<Turma> &newClasses) {
+Request::Request(unsigned int studentCode1, const vector<Turma> &newClasses, string &type) {
     this->studentCode1 = studentCode1;
     this->new_classes = newClasses;
+    this->type = type;
 
 }
 
-Request::Request(unsigned int studentCode1, string studentName, const vector<Turma> &newClasses) {
+Request::Request(unsigned int studentCode1, string studentName, const vector<Turma> &newClasses, string &type) {
     this->studentCode1 = studentCode1;
     this->studentName = studentName;
     this->new_classes = newClasses;
+    this->type = type;
 }
 
-Request::Request(unsigned int studentCode1, unsigned int studentCode2, const vector<Turma> &newClasses) {
+Request::Request(unsigned int studentCode1, unsigned int studentCode2, const vector<Turma> &newClasses, string &type) {
     this->studentCode1 = studentCode1;
     this->studentCode2 = studentCode2;
     this->new_classes = newClasses;
+    this->type = type;
 }
 
 unsigned int Request::getStudentCode1() const {

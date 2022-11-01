@@ -4,11 +4,11 @@
 
 class Request {
 public:
-    Request(unsigned int studentCode1, const vector<Turma> &newClasses);
+    Request(unsigned int studentCode1, const vector<Turma> &newClasses, string &type);
 
-    Request(unsigned int studentCode1, string studentName, const vector<Turma> &newClasses);
+    Request(unsigned int studentCode1, string studentName, const vector<Turma> &newClasses, string &type);
 
-    Request(unsigned int studentCode1, unsigned int studentCode2, const vector<Turma> &newClasses);
+    Request(unsigned int studentCode1, unsigned int studentCode2, const vector<Turma> &newClasses, string &type);
 
     unsigned int getStudentCode1() const;
 
@@ -27,6 +27,7 @@ private:
     string studentName; // in case the student is being registered for the first time
     unsigned int studentCode2 = 0;
     vector<Turma> new_classes;
+    string type;
 
 };
 

@@ -591,6 +591,7 @@ void Menu::turmaMenu() {
 
 //TODO: refactor disto e inserir turmas
 void Menu::inscreverAluno(){
+    string type = "Inscricao";
     unsigned upCode;
     string name;
     string courseUnit;
@@ -602,6 +603,11 @@ void Menu::inscreverAluno(){
 
     cout << "\tUP do aluno: ";
     cin >> upCode;
+
+    if (upCode == 0) {
+        menuState.pop();
+        return getMenu();
+    }
     cin.clear();
     cin.ignore(1000, '\n');
 
@@ -622,7 +628,7 @@ void Menu::inscreverAluno(){
                 break;
 
         }
-        m.addRequest(new Request(upCode, name, turmas));
+        m.addRequest(new Request(upCode, name, turmas, type));
     }
 
     else {
@@ -635,7 +641,7 @@ void Menu::inscreverAluno(){
             if (answer != 'S')
                 break;
         }
-        m.addRequest(new Request(upCode,  turmas));
+        m.addRequest(new Request(upCode,  turmas, type));
     }
     // Falta impedir que ele se inscreva numa turma que já esteja inscrito ou que já tenha no vector de novas turmas
 
@@ -780,15 +786,56 @@ void Menu::alunosUC() {
 
 void Menu::trocaSingular() {
     cout << "-------------TROCAR UM ESTUDANTE--------------" << endl;
+    string type = "Troca Singular";
     unsigned upcode;
+    string courseUnit;
+    unsigned choiceClass;
+    vector<Turma> turmas_novas;
 
+    set<Student *, studComp> students_set = m.getStudents();
+    auto student_it = students_set.begin();
     do {
         cout << "UP do estudante: ";
         cin >> upcode;
-    } while(m.getStudents().find(new Student(upcode)) == m.getStudents().end());
+        student_it = students_set.find(new Student(upcode));
+    } while (student_it == students_set.end());
 
-    // VERIFICAR SOBREPOSIÇÃO
-    // ADICIONAR PEDIDO A m.getRequests()
+    list<Turma> turmas = (*student_it)->getClasses();
+    auto it = turmas.begin();
+
+    int counter = 1;
+    for (Turma t: turmas) {
+        cout << "\t [" << counter << "] ";
+        t.printClass();
+        counter++;
+    }
+
+    do {
+        cout << "Escolha o conjunto que quer trocar: ";
+        cin >> choiceClass;
+    } while(choiceClass < 1 || choiceClass > turmas.size());
+
+    advance(it, choiceClass - 1);
+    Turma turma(*it);
+
+    string ucCode = turma.getUcCode();
+
+    set<CourseUnit> UCset = m.getUcs();
+    auto uc = UCset.find(CourseUnit(ucCode));
+    set<string> classes = uc->getClasses();
+
+    for (string c : classes)
+        cout << "\t" << c << endl;
+
+    string newClass;
+    do {
+        cout << "Para que turma deseja trocar: ";
+        cin >> newClass;
+    } while(classes.find(newClass) == classes.end());
+
+    m.addRequest(new Request(upcode, turmas_novas, type));
+    cout << "Pedido efetuado com sucesso!" << endl << endl;
+
     getMenu();
 }
 

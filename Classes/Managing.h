@@ -30,7 +30,7 @@ public:
 
     void setUcs(const set<string> &ucs);
 
-    set<CourseUnit> getUcs(char year);
+    set<CourseUnit> getUcs(char year = '0');
 
     list<string> get_student_schedule(unsigned int code);
 

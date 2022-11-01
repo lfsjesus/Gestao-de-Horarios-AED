@@ -196,6 +196,9 @@ void Managing::setUcs(const set<CourseUnit> &ucs) {
 
 
 set<CourseUnit> Managing::getUcs(char year) {
+    if (year == '0') {
+        return ucs;
+    }
     set<CourseUnit> filtered_ucs;
     
     for (auto uc : this->ucs) {
