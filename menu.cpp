@@ -629,6 +629,10 @@ void Menu::desinscreverAluno() {
         cin >> upcode;
         cin.clear();
         cin.ignore(1000, '\n');
+        if (upcode == 0) {
+            menuState.pop();
+            return getMenu();
+        }
     } while(m.getStudents().find(new Student(upcode)) == m.getStudents().end());
 
     Student* newStudent = *m.getStudents().find(new Student(upcode));
@@ -740,7 +744,6 @@ void Menu::alunosUC() {
         c.setUcCode(uc);
 
     } while( UCs.find(c) == UCs.end());
-
     for (Student* s : m.getStudents()) {
         for (Turma t : s->getClasses()) {
             if (t.getUcCode() == uc)
