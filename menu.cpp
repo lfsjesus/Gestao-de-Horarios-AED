@@ -857,21 +857,64 @@ void Menu::trocaDupla() {
     cout << "-------------TROCAR DOIS ESTUDANTES--------------" << endl;
     unsigned upcode1;
     unsigned upcode2;
+    string type = "Troca Dupla";
+    vector<Turma> novas_turmas;
+
+    set<Student *, studComp> students_set = m.getStudents();
+    auto student_iterator1 = students_set.begin();
+    auto student_iterator2 = students_set.begin();
 
     do {
         cout << "UP do estudante 1: ";
         cin >> upcode1;
-    } while(m.getStudents().find(new Student(upcode1)) == m.getStudents().end());
+        student_iterator1 = students_set.find(new Student(upcode1));
+    } while(student_iterator1 == students_set.end());
 
 
     do {
         cout << "UP do estudante 2: ";
         cin >> upcode2;
-    } while(m.getStudents().find(new Student(upcode2)) == m.getStudents().end() || upcode2 == upcode1);
+        student_iterator2 = students_set.find(new Student(upcode2));
+    } while(student_iterator2 == students_set.end() || upcode2 == upcode1);
 
-    // VERIFICAR SOBREPOSIÇÃO
-    // ADICIONAR PEDIDO A m.getRequests()
+    list<Turma> turmas_troca = (*student_iterator2)->getClasses();
+    auto itr_troca = turmas_troca.begin();
 
+    int counter = 1;
+    for (Turma turma : turmas_troca) {
+        cout << "\t[" << counter << "] ";
+        turma.printClass();
+        counter++;
+    }
+
+    cout << "\n\tEstas são as turmas do estudante 2." << endl;
+
+    int choice;
+    do {
+        cout << "\tQue conjunto pretende trocar? ";
+        cin >> choice;
+    } while(choice < 1 || choice > turmas_troca.size());
+
+    advance(itr_troca, choice - 1);
+    list<Turma> turmas_1 = (*student_iterator1)->getClasses();
+    set<CourseUnit> ucs_1;
+
+    bool possible = false;
+    for (Turma turma : turmas_1) {
+        if (turma.getUcCode() == (*itr_troca).getUcCode() && turma.getClassCode() != (*itr_troca).getClassCode())
+            possible = true;
+    }
+
+    if (!possible) {
+        cout << "\n\tERRO: O estudante 1 náo está inscrito nessa UC." << endl;
+        menuState.pop();
+        return getMenu();
+    }
+
+    cout << "\n\tPedido efetuado com sucesso!" << endl << endl;
+    m.addRequest(new Request(upcode1, upcode2, novas_turmas, type));
+
+    menuState.pop();
     getMenu();
 }
 
