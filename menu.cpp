@@ -298,8 +298,8 @@ void Menu::horarioAluno(){
     unsigned escolha;
     cout << "\t[0] Voltar atrás" << endl << endl;
 
-    set<Student*, studComp> students = m.getStudents();
-    set<Student*, studComp>::iterator myStudent;
+    set<Student*> students = m.getStudents();
+    set<Student*>::iterator myStudent;
     do {
         cout << "\tup do estudante: ";
         cin >> escolha;
@@ -315,7 +315,7 @@ void Menu::horarioAluno(){
 
     cout << (*myStudent)->getName() << endl;
 
-    set<Schedule*, schedComp> schedules = m.getSchedules();
+    set<Schedule*> schedules = m.getSchedules();
 
 
     Schedule studentSchedule = Schedule();
@@ -352,7 +352,7 @@ void Menu::horarioTurma(){
 
     } while (ano < '1' || ano > '3');
 
-    set<Turma, classComp> classesYear = m.getClassesByYear(ano);
+    set<Turma> classesYear = m.getClassesByYear(ano);
 
     //listagem das turmas
 
@@ -400,7 +400,7 @@ void Menu::horarioTurma(){
     }
 
 
-    set<Schedule*, schedComp> schedules = m.getSchedules();
+    set<Schedule*> schedules = m.getSchedules();
     Schedule classSchedule = Schedule();
     for(Turma _class : turmasParaHorario){
         auto mySchedule = schedules.find(new Schedule(_class));
@@ -437,7 +437,7 @@ void Menu::horarioUc(){
     cout << "\tUCs do " << ano << "º ano:" << "\n";
 
 
-    set<CourseUnit, ucComp> ucSet = m.getUcs(ano);
+    set<CourseUnit> ucSet = m.getUcs(ano);
     for (auto uc : ucSet)
         cout << "\t" << uc.getUcCode() << "\n";
 
@@ -461,7 +461,7 @@ void Menu::horarioUc(){
 
     string turma;
     cout << endl;
-    set<Schedule*, schedComp> schedules = m.getSchedules();
+    set<Schedule*> schedules = m.getSchedules();
     Schedule ucSchedule = Schedule(); //Devia ter so uma turma associada (tem mts)?
 
     for (auto TURMA : UC.getClasses()){
@@ -534,7 +534,7 @@ void Menu::turmaMenu() {
     cout << "\tUCs do " << ano << "º ano:" << "\n";
 
 
-    set<CourseUnit, ucComp> ucSet = m.getUcs(ano);
+    set<CourseUnit> ucSet = m.getUcs(ano);
     for (auto uc : ucSet)
         cout << "\t" << uc.getUcCode() << "\n";
 

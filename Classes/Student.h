@@ -1,5 +1,4 @@
-#ifndef AED_PROJ_STUDENT_H
-#define AED_PROJ_STUDENT_H
+#pragma once
 #include <iostream>
 #include <vector>
 #include <list>
@@ -33,11 +32,18 @@ public:
 
     void removeClass(Turma _class);
 
-    bool operator<(const Student &s) const;
-    bool operator==(const Student& student) const;
+        bool operator==(const Student& student) const;
 
     void printStudent();
     void printClasses();
+
+    bool operator<(const Student &rhs) const;
+
+    bool operator>(const Student &rhs) const;
+
+    bool operator<=(const Student &rhs) const;
+
+    bool operator>=(const Student &rhs) const;
 
     /*
     const Schedule &getSchedule() const; // O horário seria uma função geradora que faz um loop 
@@ -49,6 +55,3 @@ private:
     string name;
     list<Turma> classes; //turmas em que está em diferentes cadeiras
 };
-
-
-#endif //AED_PROJ_ESTUDANTE_H

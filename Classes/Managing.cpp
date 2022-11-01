@@ -18,7 +18,7 @@ void Managing::readFiles() {
 
 void Managing::readStudents() {
     // Reads the file about the students
-    set<Student *, studComp> _students = {};
+    set<Student *> _students = {};
     ifstream file(STUDENTS_FILE);
 
     list<Turma> studentclasses;
@@ -62,7 +62,7 @@ void Managing::readStudents() {
 
 void Managing::readSchedules() {
     // Reads the file about the students
-    set<Schedule*, schedComp> _schedules = {};
+    set<Schedule*> _schedules = {};
 
     ifstream file(CLASSES_FILE);
 
@@ -110,7 +110,7 @@ void Managing::readSchedules() {
 }
 
 void Managing::readCourseUnits() {
-    set<CourseUnit, ucComp> _ucs;
+    set<CourseUnit> _ucs;
     CourseUnit lastCourseUnit;
     ifstream file(COURSE_UNITS);
     if (file.is_open()) {
@@ -153,11 +153,11 @@ void Managing::readCourseUnits() {
 }
 
 
-const set<Student*, studComp> &Managing::getStudents() const {
+const set<Student*> &Managing::getStudents() const {
     return students;
 }
 
-void Managing::setStudents(const set<Student*, studComp> &students) {
+void Managing::setStudents(const set<Student*> &students) {
     Managing::students = students;
 }
 
@@ -174,11 +174,11 @@ bool Managing::addStudent(const Student* student) {
     return true; //TODO: if there is no problem
 }
 
-const set<Schedule*, schedComp> &Managing::getSchedules() const {
+const set<Schedule*> &Managing::getSchedules() const {
     return schedules;
 }
 
-void Managing::setSchedules(const set<Schedule*, schedComp> &schedules) {
+void Managing::setSchedules(const set<Schedule*> &schedules) {
     Managing::schedules = schedules;
 }
 
@@ -190,13 +190,13 @@ void Managing::setRequests(const queue<Request*> &requests) {
     Managing::requests = requests;
 }
 
-void Managing::setUcs(const set<CourseUnit, ucComp> &ucs) {
+void Managing::setUcs(const set<CourseUnit> &ucs) {
     Managing::ucs = ucs;
 }
 
 
-set<CourseUnit, ucComp> Managing::getUcs(char year) {
-    set<CourseUnit, ucComp> filtered_ucs;
+set<CourseUnit> Managing::getUcs(char year) {
+    set<CourseUnit> filtered_ucs;
     
     for (auto uc : this->ucs) {
         if ((*uc.getClasses().begin())[0] == year) {
@@ -206,8 +206,8 @@ set<CourseUnit, ucComp> Managing::getUcs(char year) {
     return filtered_ucs;
 }
 
-set<Turma, classComp> Managing::getClassesByYear(char year) {
-    set<Turma, classComp> filtered_classes;
+set<Turma> Managing::getClassesByYear(char year) {
+    set<Turma> filtered_classes;
 
     for (Turma turma : this->classes) {
         if (turma.getClassCode()[0] == year) {
@@ -221,15 +221,15 @@ void Managing::eraseStudent(Student *s) {
     students.erase(s);
 }
 
-const set<Turma, classComp> &Managing::getClasses() const {
+const set<Turma> &Managing::getClasses() const {
     return classes;
 }
 
-void Managing::setClasses(const set<Turma, classComp> &classes) {
+void Managing::setClasses(const set<Turma> &classes) {
     Managing::classes = classes;
 }
 
-set<Student*, studentByName> Managing::sortStudentsByName(const set<Student *, studComp> s) {
+set<Student*, studentByName> Managing::sortStudentsByName(const set<Student *> s) {
     set<Student*, studentByName> sortedByName;
     for (Student* student : s) {
         sortedByName.insert(student);

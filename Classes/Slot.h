@@ -1,6 +1,4 @@
-
-#ifndef AED_SLOT_H
-#define AED_SLOT_H
+#pragma once
 #include <iostream>
 #include "Turma.h"
 #include <algorithm>
@@ -48,6 +46,3 @@ private:
     float duration;
 
 };
-
-
-#endif //AED_SLOT_H

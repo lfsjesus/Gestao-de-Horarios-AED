@@ -41,9 +41,20 @@ void Turma::printClass() {
 bool Turma::operator==(const Turma &turma) const {
     return (ucCode == turma.ucCode && classCode == turma.classCode);
 }
-bool Turma::operator<(const Turma& turma) const {
-    if(ucCode == turma.ucCode){
-        return classCode < turma.classCode;
-    }
-    return ucCode < turma.ucCode;
+
+bool Turma::operator<(const Turma &rhs) const {
+    if (ucCode == rhs.ucCode) return classCode < rhs.classCode;
+    return ucCode < rhs.ucCode;
+}
+
+bool Turma::operator>(const Turma &rhs) const {
+    return rhs < *this;
+}
+
+bool Turma::operator<=(const Turma &rhs) const {
+    return !(rhs < *this);
+}
+
+bool Turma::operator>=(const Turma &rhs) const {
+    return !(*this < rhs);
 }

@@ -1,7 +1,4 @@
-
-
-#ifndef AED_COURSEUNIT_H
-#define AED_COURSEUNIT_H
+#pragma once
 #include <set>
 #include <iostream>
 using namespace std;
@@ -24,11 +21,15 @@ public:
 
     void insertClass(string &_class);
 
+    bool operator<(const CourseUnit &rhs) const;
+
+    bool operator>(const CourseUnit &rhs) const;
+
+    bool operator<=(const CourseUnit &rhs) const;
+
+    bool operator>=(const CourseUnit &rhs) const;
 
 private:
     string ucCode;
     set<string> classes;
 };
-
-
-#endif //AED_COURSEUNIT_H

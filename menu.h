@@ -1,5 +1,4 @@
-#ifndef AED_PROJ_MENU_H
-#define AED_PROJ_MENU_H
+#pragma once
 
 #include <stack>
 #include <algorithm>
@@ -53,6 +52,3 @@ private:
     std::stack<short int> menuState;
 
 };
-
-
-#endif //AED_PROJ_MENU_H

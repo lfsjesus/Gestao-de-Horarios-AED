@@ -45,12 +45,25 @@ void Schedule::addSlot(Slot slot) {
     slots.push_back(slot);
 }
 
-
-
 void Schedule::sort() {
     slots.sort();
     slots.unique(compareSlot);
+}
 
+bool Schedule::operator<(const Schedule &rhs) const {
+    return _class < rhs._class;
+}
+
+bool Schedule::operator>(const Schedule &rhs) const {
+    return rhs < *this;
+}
+
+bool Schedule::operator<=(const Schedule &rhs) const {
+    return !(rhs < *this);
+}
+
+bool Schedule::operator>=(const Schedule &rhs) const {
+    return !(*this < rhs);
 }
 
 
