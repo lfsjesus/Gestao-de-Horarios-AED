@@ -18,7 +18,7 @@
 #define HORARIO_UC 9
 #define TURMA_MENU 10
 #define TURMAS_MENU 11
-#define COURSE_UNITS_MENU 12
+#define UCS_MENU 12
 #define YEARS_MENU 13
 #define INSCREVER_ALUNO_MENU 14
 #define DESINSCREVER_ALUNO_MENU 15
@@ -27,7 +27,10 @@
 #define PERMUTACAO_MENU 18
 #define TROCA_SINGULAR 19
 #define TROCA_DUPLA 20
-
+#define TURMAS_DECRESCENTE_MENU 21
+#define TURMAS_CRESCENTE_MENU 22
+#define UCS_DECRESCENTE_MENU 23
+#define UCS_CRESCENTE_MENU 24
 class Menu {
 public:
 
@@ -39,6 +42,12 @@ private:
     void modificacoesMenu();
     void efetivacaoMenu();
     void alunosMenu();
+    void turmasMenu();
+    void turmasDecrescenteMenu();
+    void turmasCrescenteMenu();
+    void ucsMenu();
+    void ucsDecrescenteMenu();
+    void ucsCrescenteMenu();
     void horariosMenu();
     void horarioAluno();
     void horarioUc();
