@@ -110,16 +110,18 @@ void Menu::getMenu() {
 
 void Menu::mainMenu() {
 
-    cout << endl << "---------------------------------------------\n";
-    cout << "DEI - Departamento de Engenharia Informática" << endl;
-    cout << "\t\tGestão de Horários - FEUP" << endl;
-    cout << "---------------------------------------------\n";
+    cout << endl << "------------------------------------------------\n";
+    cout << "| DEI - Departamento de Engenharia Informática |" << endl;
+    cout << "|\t\tGestão de Horários - FEUP              |" << endl;
+    cout << "------------------------------------------------\n";
 
-    cout << "\t" << "[1] CONSULTAS\n";
-    cout << "\t" << "[2] MODIFICAR TURMAS DE ESTUDANTES\n";
-    cout << "\t" << "[3] GESTÃO DE PEDIDOS\n";
+    cout << "|\t" << "[1] CONSULTAS                              |\n";
+    cout << "|\t" << "[2] MODIFICAR TURMAS DE ESTUDANTES         |\n";
+    cout << "|\t" << "[3] GESTÃO DE PEDIDOS                      |\n";
 
-    cout << "\n\t" << "[0] Exit\n";
+    cout << "|                                              |";
+    cout << "\n|\t" << "[0] Exit                                   |" << endl;
+    cout << "------------------------------------------------" << endl;
 
     int escolha;
     cout << "\t" << "Escolha: ";
