@@ -56,6 +56,7 @@ void Student::printClasses() {
     for (Turma c : classes) {
         cout << "[" << i << "]" << " ";
         c.printClass();
+        cout << '\n';
         i++;
     }
 }

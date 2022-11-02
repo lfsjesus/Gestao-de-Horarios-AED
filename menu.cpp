@@ -579,7 +579,7 @@ void Menu::horarioTurma(){
         cout << "\tEscolha um ano (1, 2 ou 3): ";
         cin >> ano;
         cout << "\n";
-        if(ano == 0){
+        if(ano == '0'){
             menuState.pop();
             return getMenu();
         }
@@ -906,12 +906,12 @@ void Menu::desinscreverAluno() {
 
         if (newStudent->getClasses().size() == 0)
             m.eraseStudent(newStudent); // Remover totalmente o estudante se não estiver em nenhuma turma
-            cout << "\nEstudante desinscrito com sucesso!";
+            cout << "\nEstudante desinscrito com sucesso!" << endl;
     }
 
     else if (choice == newStudentClasses.size() + 1) {
         m.eraseStudent(newStudent);
-        cout << "\nEstudante desinscrito com sucesso!";
+        cout << "\nEstudante desinscrito com sucesso!" << endl;
     }
     m.writeStudents();
     getMenu();
@@ -1173,7 +1173,7 @@ void Menu::inscricao(char& year, string& courseUnit, string& turma, vector<Turma
         cout << "\t Pedido efetuado. Deseja inscrever em mais turmas? (S/N) ";
         cin >> answer;
 
-        if (answer != 'S')
+        if (answer != 'S' && answer != 's')
             break;
     }
 }
