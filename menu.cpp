@@ -320,19 +320,7 @@ void Menu::turmasMenu() {
 void Menu::turmasCrescenteMenu(){
 
     //listagem das turmas por ordem Crescente de n de alunos
-    vector<pair<int,Turma>> numberOfStudentsByClass;
-    for (Turma turma : m.getClasses()){
-        int count = 0;
-        for(Student* student : m.getStudents()){
-            for(Turma turmaStud : student->getClasses()){
-                if (turma == turmaStud){
-                    count++;
-                }
-            }
-        }
-        pair<int,Turma> tempPair(count,turma);
-        numberOfStudentsByClass.push_back(tempPair);
-    }
+    vector<pair<int,Turma>> numberOfStudentsByClass = m.getOcupacaoTurmas();
 
     std::sort(numberOfStudentsByClass.begin(), numberOfStudentsByClass.end());
 
@@ -345,19 +333,7 @@ void Menu::turmasCrescenteMenu(){
 }
 void Menu::turmasDecrescenteMenu(){
     //listagem das turmas por ordem Decrescente de n de alunos
-    vector<pair<int,Turma>> numberOfStudentsByClass;
-    for (Turma turma : m.getClasses()){
-        int count = 0;
-        for(Student* student : m.getStudents()){
-            for(Turma turmaStud : student->getClasses()){
-                if (turma == turmaStud){
-                    count++;
-                }
-            }
-        }
-        pair<int,Turma> tempPair(count,turma);
-        numberOfStudentsByClass.push_back(tempPair);
-    }
+    vector<pair<int,Turma>> numberOfStudentsByClass = m.getOcupacaoTurmas();
 
     std::sort(numberOfStudentsByClass.rbegin(), numberOfStudentsByClass.rend());
 
@@ -409,23 +385,7 @@ void Menu::ucsMenu() {
 void Menu::ucsCrescenteMenu(){
 
     //listagem das turmas por ordem Crescente de n de alunos
-    vector<pair<int,CourseUnit>> numberOfStudentsByUc;
-
-    for(CourseUnit uc : m.getUcs()){ //para cada uc
-        int count = 0;
-        for(string turma : uc.getClasses()){ //para cada turma da uc
-            for(Student* student : m.getStudents()){ // em cada estudante
-                for(Turma turmaStud : student->getClasses()){ //em cada turma do estudante
-                    if (turma == turmaStud.getClassCode() && uc.getUcCode() == turmaStud.getUcCode()){ //se a turma for igual, conta++
-                        count++;
-                    }
-                }
-            }
-        }
-        pair<int, CourseUnit> tempPair(count, uc);
-        numberOfStudentsByUc.push_back(tempPair);
-
-    }
+    vector<pair<int,CourseUnit>> numberOfStudentsByUc = m.getOcupacaoUCS();
 
     std::sort(numberOfStudentsByUc.begin(), numberOfStudentsByUc.end());
     for(auto PAIR : numberOfStudentsByUc){
@@ -439,23 +399,7 @@ void Menu::ucsCrescenteMenu(){
 void Menu::ucsDecrescenteMenu(){
 
     //listagem das turmas por ordem Crescente de n de alunos
-    vector<pair<int,CourseUnit>> numberOfStudentsByUc;
-
-    for(CourseUnit uc : m.getUcs()){ //para cada uc
-        int count = 0;
-        for(string turma : uc.getClasses()){ //para cada turma da uc
-            for(Student* student : m.getStudents()){ // em cada estudante
-                for(Turma turmaStud : student->getClasses()){ //em cada turma do estudante
-                    if (turma == turmaStud.getClassCode() && uc.getUcCode() == turmaStud.getUcCode()){ //se a turma for igual, conta++
-                        count++;
-                    }
-                }
-            }
-        }
-        pair<int, CourseUnit> tempPair(count, uc);
-        numberOfStudentsByUc.push_back(tempPair);
-
-    }
+    vector<pair<int,CourseUnit>> numberOfStudentsByUc = m.getOcupacaoUCS();
 
     std::sort(numberOfStudentsByUc.rbegin(), numberOfStudentsByUc.rend());
     for(auto PAIR : numberOfStudentsByUc){
@@ -526,18 +470,7 @@ void Menu::horarioAluno(){
 
     cout << (*myStudent)->getName() << endl;
 
-    set<Schedule*, schedComp> schedules = m.getSchedules();
-
-
-    Schedule studentSchedule = Schedule();
-    for(Turma _class : (*myStudent)->getClasses()){
-        auto mySchedule = schedules.find(new Schedule(_class));
-        if(mySchedule != schedules.end()){
-            for(Slot slot : (*mySchedule)->getSlots()){
-                studentSchedule.addSlot(slot);
-            }
-        }
-    }
+    Schedule studentSchedule = m.getStudentSchedule((*myStudent));
 
     cout << "Horário de: " << (*myStudent)->getName() << endl;
     studentSchedule.sort();

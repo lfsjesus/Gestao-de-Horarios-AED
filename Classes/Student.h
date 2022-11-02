@@ -2,7 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <set>
 #include "Turma.h"
+#include "Schedule.h"
 
 using namespace std;
 

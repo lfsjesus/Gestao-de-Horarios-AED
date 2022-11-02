@@ -314,4 +314,57 @@ bool Managing::addRequest(Request* request) {
     requests.push(request);
 }
 
+Schedule Managing::getStudentSchedule(Student *student) {
+    Schedule studentSchedule = Schedule();
+    for(Turma _class : student->getClasses()){
+        auto mySchedule = schedules.find(new Schedule(_class));
+        if(mySchedule != schedules.end()){
+            for(Slot slot : (*mySchedule)->getSlots()){
+                studentSchedule.addSlot(slot);
+            }
+        }
+    }
+    return studentSchedule;
+}
+
+vector<pair<int, Turma>> Managing::getOcupacaoTurmas() {
+    vector<pair<int,Turma>> numberOfStudentsByClass;
+    for (Turma turma : classes){
+        int count = 0;
+        for(Student* student : students){
+            for(Turma turmaStud : student->getClasses()){
+                if (turma == turmaStud){
+                    count++;
+                }
+            }
+        }
+        pair<int,Turma> tempPair(count,turma);
+        numberOfStudentsByClass.push_back(tempPair);
+    }
+    return numberOfStudentsByClass;
+}
+
+vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS() {
+    vector<pair<int,CourseUnit>> numberOfStudentsByUc;
+
+    for(CourseUnit uc : ucs) { //para cada uc
+        int count = 0;
+        for (string turma: uc.getClasses()) { //para cada turma da uc
+            for (Student *student: students) { // em cada estudante
+                for (Turma turmaStud: student->getClasses()) { //em cada turma do estudante
+                    if (turma == turmaStud.getClassCode() &&
+                        uc.getUcCode() == turmaStud.getUcCode()) { //se a turma for igual, conta++
+                        count++;
+                    }
+                }
+            }
+        }
+        pair<int, CourseUnit> tempPair(count, uc);
+        numberOfStudentsByUc.push_back(tempPair);
+    }
+    return numberOfStudentsByUc;
+}
+
+
+
 

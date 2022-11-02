@@ -28,11 +28,7 @@ public:
 
     void setRequests(const queue<Request*> &requests);
 
-    void setUcs(const set<string> &ucs);
-
     set<CourseUnit> getUcs(char year = '0');
-
-    list<string> get_student_schedule(unsigned int code);
 
     void setUcs(const set<CourseUnit> &ucs);
 
@@ -44,9 +40,15 @@ public:
 
     set<Turma> getClassesByYear(char year);
 
+    Schedule getStudentSchedule(Student* student);
+
+    vector<pair<int,Turma>> getOcupacaoTurmas();
+
+    vector<pair<int,CourseUnit>> getOcupacaoUCS();
+
     bool addRequest(Request* request);
 
-    set<Student*, studentByName> sortStudentsByName(const set<Student *> s);
+    set<Student*, studentByName> sortStudentsByName(set<Student *> s);
 
 
 
