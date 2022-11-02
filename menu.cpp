@@ -949,6 +949,7 @@ void Menu::trocaSingular() {
         for (Turma t: turmas) {
             cout << "\t [" << counter << "] ";
             t.printClass();
+            cout << endl;
             counter++;
         }
 
@@ -1024,6 +1025,7 @@ void Menu::trocaDupla() {
     for (Turma turma : turmas_troca) {
         cout << "\t[" << counter << "] ";
         turma.printClass();
+        cout << endl;
         counter++;
     }
 
