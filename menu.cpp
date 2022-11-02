@@ -46,6 +46,16 @@ void Menu::getMenu() {
                 break;
             case UCS_DECRESCENTE_MENU:
                 ucsDecrescenteMenu();
+                break;
+            case ANOS_MENU:
+                anosMenu();
+                break;
+            case ANOS_CRESCENTE_MENU:
+                anosCrescenteMenu();
+                break;
+            case ANOS_DECRESCENTE_MENU:
+                anosDecrescenteMenu();
+                break;
             case ESTUDANTES_MENU:
                 estudantesMenu();
                 break;
@@ -119,7 +129,7 @@ void Menu::mainMenu() {
         cin.clear();
         cin.ignore();
 
-        cout << endl << "\t" << "Introduza um número\n";
+        cout << endl << "\t" << "Erro! Introduza um número válido\n";
         cout << "\t" << "Escolha: ";
 
         cin >> escolha;
@@ -161,7 +171,7 @@ void Menu::consultasMenu() {
         cout << "\tEscolha: ";
         cin >> escolha;
         cout << "=======================================" << endl;
-        if (escolha < 0 || escolha > 6) cout << "Erro, por favor tente novamente!" << endl;
+        if (escolha < 0 || escolha > 5) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
     } while (escolha < 0 || escolha > 6);
@@ -181,7 +191,8 @@ void Menu::consultasMenu() {
             break;
         }
         case 4: {
-            menuState.push(YEARS_MENU);
+            menuState.push(ANOS_MENU);
+            break;
         }
         case 5: {
             menuState.push(HORARIOS_MENU);
@@ -429,7 +440,70 @@ void Menu::ucsDecrescenteMenu(){
 
 }
 
-void Menu::horariosMenu() {
+void Menu::anosMenu() {
+
+    int escolha;
+    do {
+        cout << "=======================================" << endl;
+        cout << "\t[1] Listar Anos por Ordem Decrescente de Nº de Alunos " << endl;
+        cout << "\t[2] Listar Anos por Ordem Crescente de Nº de Alunos " << endl;
+
+        cout << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+
+
+        cout << "\tEscolha: ";
+        cin >> escolha;
+        cout << "=======================================" << endl;
+        if (escolha < 0 || escolha > 2) cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (escolha < 0 || escolha > 2);
+
+    switch (escolha) {
+        case 0:
+            menuState.pop();
+            break;
+        case 1:
+            menuState.push(ANOS_DECRESCENTE_MENU);
+            break;
+        case 2:
+            menuState.push(ANOS_CRESCENTE_MENU);
+            break;
+
+    }
+    getMenu();
+}
+
+void Menu::anosCrescenteMenu(){
+
+    //listagem dos anos por ordem Crescente de n de alunos
+    vector<pair<int,string>> numberOfStudentsByYear = m.getOcupacaoYear();
+
+    std::sort(numberOfStudentsByYear.begin(), numberOfStudentsByYear.end());
+    for(auto PAIR : numberOfStudentsByYear){
+        cout << "\t(" << PAIR.first << ") " << PAIR.second << endl;
+    }
+    menuState.pop();
+    getMenu();
+
+
+}
+void Menu::anosDecrescenteMenu() {
+
+
+    //listagem dos anos por ordem Crescente de n de alunos
+    vector<pair<int, string>> numberOfStudentsByYear = m.getOcupacaoYear();
+
+    std::sort(numberOfStudentsByYear.rbegin(), numberOfStudentsByYear.rend());
+    for (auto PAIR: numberOfStudentsByYear) {
+        cout << "\t(" << PAIR.first << ") " << PAIR.second << endl;
+    }
+    menuState.pop();
+    getMenu();
+
+}
+void Menu::horariosMenu(){
     int escolha;
     vector<string> options = {
             "Listar Horário de um Aluno",

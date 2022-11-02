@@ -19,7 +19,7 @@
 #define TURMA_MENU 10
 #define TURMAS_MENU 11
 #define UCS_MENU 12
-#define YEARS_MENU 13
+#define ANOS_MENU 13
 #define INSCREVER_ALUNO_MENU 14
 #define DESINSCREVER_ALUNO_MENU 15
 #define ALUNOS_ANO 16
@@ -34,6 +34,8 @@
 #define LISTAR_PEDIDOS_MENU 25
 #define PEDIDOS_ARQUIVADOS_MENU 26
 #define EFETIVADOS_MENU 27
+#define ANOS_CRESCENTE_MENU 28
+#define ANOS_DECRESCENTE_MENU 29
 
 class Menu {
 public:
@@ -52,6 +54,9 @@ private:
     void ucsMenu();
     void ucsDecrescenteMenu();
     void ucsCrescenteMenu();
+    void anosMenu();
+    void anosCrescenteMenu();
+    void anosDecrescenteMenu();
     void horariosMenu();
     void horarioAluno();
     void horarioUc();

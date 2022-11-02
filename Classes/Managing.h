@@ -46,6 +46,8 @@ public:
 
     vector<pair<int,CourseUnit>> getOcupacaoUCS();
 
+    vector<pair<int,string>> getOcupacaoYear();
+
     bool addRequest(Request* request);
 
     set<Student*, studentByName> sortStudentsByName(set<Student *> s);
