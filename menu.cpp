@@ -1182,6 +1182,7 @@ void Menu::inscricao(char& year, string& courseUnit, string& turma, vector<Turma
         do{
         cout << "\tEm que ano quer inscrever: ";
         cin >> year;
+        cout << endl;
         } while (year < '1' || year > '3');
 
         set<CourseUnit> ucSet = m.getUcs(year);
@@ -1191,25 +1192,25 @@ void Menu::inscricao(char& year, string& courseUnit, string& turma, vector<Turma
             cout << "\t" << uc.getUcCode() << endl;
 
         do {
-            cout << "\tEscolha uma UC: ";
+            cout << "\n\tEscolha uma UC: ";
             cin >> courseUnit;
             CourseUnit tempUc(courseUnit);
             it = ucSet.find(courseUnit);
 
         } while (it == ucSet.end());
 
-
+        cout << endl;
         for (string s: (*it).getClasses())
             cout << "\t" << s << endl;
 
         do {
-            cout << "\tEscolha uma Turma: ";
+            cout << "\n\tEscolha uma Turma: ";
             cin >> turma;
         } while ((*it).getClasses().find(turma) == (*it).getClasses().end());
 
         turmas.push_back(Turma(turma, courseUnit));
         char answer;
-        cout << "\t Pedido efetuado. Deseja inscrever em mais turmas? (S/N) ";
+        cout << "\n\tPedido efetuado. Deseja inscrever em mais turmas? (S/N) ";
         cin >> answer;
 
         if (answer != 'S' && answer != 's')
