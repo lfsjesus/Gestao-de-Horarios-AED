@@ -2,6 +2,7 @@
 #define COURSE_UNITS "../Data/classes_per_uc.csv"
 #define STUDENTS_FILE "../Data/students_classes.csv"
 #define REQUESTS_FILE "../Data/requests.csv"
+#define REJECTED_FILE "../Data/rejected_requests.csv"
 #include <fstream>
 #include <sstream>
 #include <algorithm>
@@ -16,7 +17,8 @@ void Managing::readFiles() {
     readStudents();
     readSchedules();
     readCourseUnits();
-    // readRequests();
+    readRequests();
+    readRejectedRequests();
 }
 
 void Managing::readStudents() {
@@ -222,7 +224,67 @@ void Managing::readRequests() {
 
 }
 
+void Managing::readRejectedRequests() {
+    vector<Request *> _requests;
 
+    ifstream file(REJECTED_FILE);
+
+    if (file.is_open()) {
+        while (!file.eof()) {
+            string line;
+            string classes_line;
+
+            string studentCode1;
+            string studentCode2;
+            string name;
+            string type;
+            string ucCode;
+            string classCode;
+            vector<Turma> new_classes;
+
+            while (getline(file, line)) {
+                istringstream iss(line);
+
+                getline(iss, studentCode1, ',');
+                getline(iss, studentCode2, ',');
+                getline(iss, name, ',');
+                getline(iss, type, ',');
+                getline(iss, classes_line);
+
+                int pos = 0;
+                string delimiter = ",";
+
+
+                while ((pos = classes_line.find(delimiter)) != string::npos) {
+                    ucCode = classes_line.substr(0, pos);
+                    classes_line.erase(0, pos + delimiter.length());
+                    pos = classes_line.find(delimiter);
+                    classCode = classes_line.substr(0, pos);
+                    classes_line.erase(0, pos + delimiter.length());
+                    new_classes.push_back(Turma(classCode, ucCode));
+                }
+
+                if (!name.empty()) {
+                    _requests.push_back(new Request(stoi(studentCode1), name, new_classes, type));
+                    new_classes.clear();
+                    continue;
+                }
+
+                if (studentCode2.empty()) {
+                    _requests.push_back(new Request(stoi(studentCode1), new_classes, type));
+                    new_classes.clear();
+                    continue;
+                }
+
+                _requests.push_back(new Request(stoi(studentCode1), stoi(studentCode2), new_classes, type));
+                new_classes.clear();
+            }
+            file.close();
+            this->rejected_requests = _requests;
+        }
+
+    }
+}
 const set<Student*, studComp> &Managing::getStudents() const {
     return students;
 }
@@ -231,17 +293,9 @@ void Managing::setStudents(const set<Student*, studComp> &students) {
     Managing::students = students;
 }
 
-bool Managing::addStudent(const Student* student) {
+void Managing::addStudent(const Student* student) {
     students.insert(new Student(*student));
 
-    ofstream file(STUDENTS_FILE,ios::app);
-    //inserting multiple lines
-    for(Turma _class : student->getClasses()) {
-        file << student->getCode() << "," << student->getName() << "," << _class.getUcCode() << "," << _class.getClassCode() << endl;
-    }
-    file.close();
-
-    return true; //TODO: if there is no problem
 }
 
 const set<Schedule*, schedComp> &Managing::getSchedules() const {
@@ -312,6 +366,7 @@ set<Student*, studentByName> Managing::sortStudentsByName(const set<Student *> s
 
 bool Managing::addRequest(Request* request) {
     requests.push(request);
+    writeRequests();
 }
 
 Schedule Managing::getStudentSchedule(Student *student) {
@@ -556,6 +611,54 @@ const vector<Request *> &Managing::getRejectedRequests() const {
 void Managing::setRejectedRequests(const vector<Request *> &rejectedRequests) {
     rejected_requests = rejectedRequests;
 }
+
+void Managing::writeStudents() {
+    ofstream file(STUDENTS_FILE);
+    file << "StudentCode,StudentName,UcCode,ClassCode" << endl;
+    //inserting multiple lines
+    for (Student* s : students) {
+        for (Turma turma : s->getClasses())
+            file << s->getCode() << "," << s->getName() << "," << turma.getUcCode() << "," << turma.getClassCode() << "\r" << endl;
+    }
+    file.close();
+
+}
+
+void Managing::writeRequests() {
+    ofstream file(REQUESTS_FILE);
+    //inserting multiple lines
+    queue<Request*> aux_queue = requests;
+    while(!aux_queue.empty()) {
+        Request* request = aux_queue.front();
+        file << request->getStudentCode1() << "," << request->getStudentCode2()
+        << "," << request->getStudentName() << "," << request->getType();
+
+        for (auto t : request->getNewClasses()) {
+            file << "," << t.getUcCode() << "," << t.getClassCode();
+        }
+        file << endl;
+        aux_queue.pop();
+    }
+    file.close();
+}
+
+void Managing::writeRejectedRequests() {
+    ofstream file(REJECTED_FILE);
+    //inserting multiple lines
+    vector<Request*> aux_queue = rejected_requests;
+    for (Request* request : aux_queue) {
+        file << request->getStudentCode1() << "," << request->getStudentCode2()
+             << "," << request->getStudentName() << "," << request->getType();
+
+        for (auto t : request->getNewClasses()) {
+            file << "," << t.getUcCode() << "," << t.getClassCode();
+        }
+        file << endl;
+    }
+    file.close();
+}
+
+
 
 
 

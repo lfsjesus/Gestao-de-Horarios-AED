@@ -18,7 +18,7 @@ public:
 
     void setStudents(const set<Student*, studComp> &students);
 
-    bool addStudent(const Student* student);
+    void addStudent(const Student* student);
 
     const set<Schedule*, schedComp> &getSchedules() const;
 
@@ -62,6 +62,12 @@ public:
 
     void setRejectedRequests(const vector<Request *> &rejectedRequests);
 
+    void writeStudents();
+
+    void writeRequests();
+
+    void writeRejectedRequests();
+
 
 private:
   set<Student*, studComp> students;
@@ -75,5 +81,6 @@ private:
   void readSchedules();
   void readCourseUnits();
   void readRequests();
+  void readRejectedRequests();
 
 };

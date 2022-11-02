@@ -773,29 +773,15 @@ void Menu::inscreverAluno(){
         getline(cin, name);
         cin.clear();
         cin.ignore(1000, '\n');
-        while (true) {
-            inscricao(year, courseUnit, turma, turmas);
-            char answer;
-            cout << "\t Pedido efetuado. Deseja inscrever em mais turmas? (S/N) ";
-            cin >> answer;
 
-            if (answer != 'S')
-                break;
+        inscricao(year, courseUnit, turma, turmas);
 
-        }
+
         m.addRequest(new Request(upCode, name, turmas, type));
     }
 
     else {
-        while(true) {
-            inscricao(year, courseUnit, turma, turmas);
-            char answer;
-            cout << "\t Pedido efetuado. Deseja inscrever em mais turmas? (S/N) ";
-            cin >> answer;
-
-            if (answer != 'S')
-                break;
-        }
+        inscricao(year, courseUnit, turma, turmas);
         m.addRequest(new Request(upCode,  turmas, type));
     }
     // Falta impedir que ele se inscreva numa turma e UC que já esteja inscrito ou que já tenha no vector de novas turmas
@@ -1081,35 +1067,41 @@ void Menu::trocaDupla() {
 
 
 void Menu::inscricao(char& year, string& courseUnit, string& turma, vector<Turma>& turmas) {
-    cout << "\tEm que ano quer inscrever: ";
-    cin >> year;
+    while(true) {
+        cout << "\tEm que ano quer inscrever: ";
+        cin >> year;
 
-    set<CourseUnit> ucSet = m.getUcs(year);
-    auto it = ucSet.begin();
+        set<CourseUnit> ucSet = m.getUcs(year);
+        auto it = ucSet.begin();
 
-    for (CourseUnit uc: ucSet)
-        cout << "\t" << uc.getUcCode() << endl;
+        for (CourseUnit uc: ucSet)
+            cout << "\t" << uc.getUcCode() << endl;
 
-    do {
-        cout << "\tEscolha uma UC: ";
-        cin >> courseUnit;
-        CourseUnit tempUc(courseUnit);
-        it = ucSet.find(courseUnit);
+        do {
+            cout << "\tEscolha uma UC: ";
+            cin >> courseUnit;
+            CourseUnit tempUc(courseUnit);
+            it = ucSet.find(courseUnit);
 
-    } while (it == ucSet.end());
+        } while (it == ucSet.end());
 
 
+        for (string s: (*it).getClasses())
+            cout << "\t" << s << endl;
 
-    for (string s: (*it).getClasses())
-        cout << "\t" << s << endl;
+        do {
+            cout << "\tEscolha uma Turma: ";
+            cin >> turma;
+        } while ((*it).getClasses().find(turma) == (*it).getClasses().end());
 
-    do {
-        cout << "\tEscolha uma Turma: ";
-        cin >> turma;
-    } while ((*it).getClasses().find(turma) == (*it).getClasses().end());
+        turmas.push_back(Turma(turma, courseUnit));
+        char answer;
+        cout << "\t Pedido efetuado. Deseja inscrever em mais turmas? (S/N) ";
+        cin >> answer;
 
-    turmas.push_back(Turma(turma, courseUnit));
-
+        if (answer != 'S')
+            break;
+    }
 }
 
 void Menu::listarPedidos() {
@@ -1141,16 +1133,24 @@ void Menu::pedidosArquivados() {
 
 void Menu::efetivadosMenu() {
     queue<Request*> aux_queue = m.getRequests();
-    m.processRequests();
-
     if (aux_queue.empty()) {
         cout << "\n\tNÃO HÁ PEDIDOS NA FILA!" << endl << endl;
         return getMenu();
     }
 
+    m.processRequests();
+    m.writeStudents();
+    m.writeRequests();
+    m.writeRejectedRequests();
+
     if (!m.getRejectedRequests().empty()) {
         cout << "Foram rejeitados " << m.getRejectedRequests().size() << " pedidos." << endl << "Consulte os pedidos arquivados para saber mais." << endl << endl;
-        cout << "Os restantes pedidos foram corretamente processados.";
+        cout << "Os restantes pedidos foram corretamente processados." << endl;
     }
+    else {
+        cout << "Todos pedidos foram aceites." << endl;
+    }
+
+
 
 }
