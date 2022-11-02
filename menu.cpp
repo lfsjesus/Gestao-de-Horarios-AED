@@ -839,9 +839,7 @@ void Menu::desinscreverAluno() {
         m.eraseStudent(newStudent);
         cout << "\nEstudante desinscrito com sucesso!";
     }
-
-    // !!!!!!FALTA ATUALIZAR O FICHEIRO -> talvez seja util uma função updateFile() que atualize inscriçoes/desinscriçoes
-
+    m.writeStudents();
     getMenu();
 }
 
