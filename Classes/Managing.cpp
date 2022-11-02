@@ -47,7 +47,6 @@ void Managing::readStudents() {
             auto it = _students.find(new Student(stoi(studentCode)));
 
             Turma _class = Turma(classCode, ucCode);
-            this->classes.insert(_class);
 
             if (it != _students.end()) {
                 (*it)->addClass(_class);
@@ -134,6 +133,8 @@ void Managing::readCourseUnits() {
             getline(file, classCode);
             classCode.erase(classCode.size() - 1); // remove carriage return symbol \r
 
+            Turma _class = Turma(classCode, ucCode);
+            this->classes.insert(_class);
 
             if (lastCourseUnit.getUcCode() != ucCode) {
                 if (lastCourseUnit.getUcCode() != "-") {
