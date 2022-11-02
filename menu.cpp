@@ -986,7 +986,7 @@ void Menu::trocaSingular() {
     }
 
     m.addRequest(new Request(upcode, turmas_novas, type));
-    m.processRequests();
+
     menuState.pop();
     getMenu();
 }
@@ -1048,9 +1048,9 @@ void Menu::trocaDupla() {
         menuState.pop();
         return getMenu();
     }
-
-    cout << "\n\tPedido efetuado com sucesso!" << endl << endl;
+    novas_turmas.push_back(*itr_troca);
     m.addRequest(new Request(upcode1, upcode2, novas_turmas, type));
+    cout << "\n\tPedido efetuado com sucesso!" << endl << endl;
 
     menuState.pop();
     getMenu();

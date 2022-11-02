@@ -439,13 +439,51 @@ void Managing::processRequests() {
         }
 
         else if (type == "Troca Dupla") {
-            
+            while (it != turmas.end()) {
+                auto student_changing1 = students.find(new Student(request->getStudentCode1()));
+                auto student_changing2 = students.find(new Student(request->getStudentCode2()));
 
+                Turma turma_2; // turma that student2 will have after changing (from student1)
+
+                for (Turma c : (*student_changing1)->getClasses()) {
+                    if (c.getUcCode() == turmas[0].getUcCode()) {
+                        turma_2 = c;
+                        break;
+                    }
+                }
+
+                // no need to check balancing because number of students will still be the same, neither space
+                auto schedule1 = schedules.find(new Schedule((*it)));
+                auto schedule2 = schedules.find(new Schedule(turma_2));
+                bool overlap = checkScheduleOverlap((*student_changing1),(*schedule1)) && checkScheduleOverlap((*student_changing2), (*schedule2));
+
+                bool possible_change = false;
+
+                if (!overlap) {
+
+                    (*student_changing1)->addClass((*it));
+                    (*student_changing2)->addClass(turma_2);
+
+                    //remove previous classes from each of the students
+                    (*student_changing1)->removeClass(turma_2);
+                    (*student_changing2)->removeClass(*it);
+
+                    it = turmas.erase(it);
+
+                } else {
+                    it++;
+                }
+            }
+            if (turmas.empty()) {
+                requests.pop();
+            }
+            else {
+                requests.pop();
+                request->setNewClasses(turmas);
+                rejected_requests.push_back(request);
+            }
         }
-
-
     }
-
 }
 
 bool Managing::checkBalancing(CourseUnit courseUnit) {
