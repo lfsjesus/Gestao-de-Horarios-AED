@@ -14,6 +14,8 @@ public:
 
     Student(unsigned code);
 
+    Student(unsigned int code, const string &name);
+
     Student(unsigned code, const std::string &name, list<Turma> &classes);
 
     unsigned int getCode() const;

@@ -781,6 +781,7 @@ void Menu::inscreverAluno(){
         m.addRequest(new Request(upCode,  turmas, type));
     }
     // Falta impedir que ele se inscreva numa turma e UC que já esteja inscrito ou que já tenha no vector de novas turmas
+
     menuState.pop();
     getMenu();
 }
@@ -973,7 +974,7 @@ void Menu::trocaSingular() {
         } while (classes.find(newClass) == classes.end());
 
         turmas.erase(it); // Caso seja feita outra troca, impede trocar a já trocada
-        turmas_novas.push_back(Turma(newClass, courseUnit));
+        turmas_novas.push_back(Turma(newClass, ucCode));
 
         cout << "Pedido efetuado com sucesso!" << endl << endl;
         cout << "Pretende adicionar outra troca [o pedido é considerado único e só é possivel se todas as trocas forem possíveis]? (S/N)";
@@ -985,6 +986,7 @@ void Menu::trocaSingular() {
     }
 
     m.addRequest(new Request(upcode, turmas_novas, type));
+    m.processRequests();
     menuState.pop();
     getMenu();
 }

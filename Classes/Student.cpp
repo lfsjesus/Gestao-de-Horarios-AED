@@ -12,6 +12,8 @@ Student::Student(const unsigned code, const std::string &name, list<Turma> &clas
     this->classes = classes;
 }
 
+Student::Student(unsigned int code, const string &name) : code(code), name(name) {}
+
 unsigned int Student::getCode() const {
     return code;
 }
@@ -74,6 +76,8 @@ unsigned int Student::getYear() const {
 bool Student::operator<(const Student &rhs) const {
     return code < rhs.code;
 }
+
+
 
 
 

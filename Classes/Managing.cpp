@@ -370,48 +370,76 @@ void Managing::processRequests() {
         Request* request = requests.front();
         string type = request->getType();
         vector<Turma> turmas = request->getNewClasses();
-
+        auto it = turmas.begin();
         if (type == "Inscricao") {
-            if (request->getStudentName().empty()) {
-                    auto it = turmas.begin();
-                    while(it != turmas.end()) {
-                        bool balance = checkBalancing(CourseUnit((*it).getUcCode()));
-                        bool space = checkSpaceAvailable((*it));
-                        auto schedule = schedules.find(new Schedule((*it)));
-                        bool overlap = checkScheduleOverlap(*students.find(new Student(request->getStudentCode1())), (*schedule) );
-
-                        if (balance && space && !overlap) {
-                            auto student = students.find(new Student(request->getStudentCode1()));
-                            (*student)->addClass((*it));
-                            it = turmas.erase(it);
-
-                        }
-                        else {
-                            it++;
-                        }
-                    }
-                    if (turmas.empty()) {
-                        requests.pop();
-                    }
-                    else {
-                        requests.pop();
-                        request->setNewClasses(turmas);
-                        rejected_requests.push_back(request);
-                    }
-            }
-            else {
-
+            if (!request->getStudentName().empty()) {
+                addStudent(new Student(request->getStudentCode1(), request->getStudentName()));
             }
 
+            while (it != turmas.end()) {
+                bool balance = checkBalancing(CourseUnit((*it).getUcCode()));
+                bool space = checkSpaceAvailable((*it));
+                auto schedule = schedules.find(new Schedule((*it)));
+                bool overlap = checkScheduleOverlap(*students.find(new Student(request->getStudentCode1())),(*schedule));
+
+                if (balance && space && !overlap) {
+                    auto student = students.find(new Student(request->getStudentCode1()));
+                    (*student)->addClass((*it));
+                    it = turmas.erase(it);
+
+                } else {
+                    it++;
+                }
+            }
+
+            if (turmas.empty()) {
+                requests.pop();
+            } else {
+                requests.pop();
+                request->setNewClasses(turmas);
+                rejected_requests.push_back(request);
+            }
 
         }
 
         else if (type == "Troca Singular") {
+            while (it != turmas.end()) {
+                auto student_changing = students.find(new Student(request->getStudentCode1()));
+                bool balance = checkBalancing(CourseUnit((*it).getUcCode()));
+                bool space = checkSpaceAvailable((*it));
+                auto schedule = schedules.find(new Schedule((*it)));
+                bool overlap = checkScheduleOverlap((*student_changing),(*schedule));
+
+
+                if (balance && space && !overlap) {
+                    auto student = students.find(new Student(request->getStudentCode1()));
+                    (*student)->addClass((*it));
+
+                    //remove previous class
+                    for (Turma t : (*student_changing)->getClasses()) {
+                        if (t.getUcCode() == (*it).getUcCode()) {
+                            (*student_changing)->removeClass(t);
+                            break;
+                        }
+                    }
+                    it = turmas.erase(it);
+
+                } else {
+                    it++;
+                }
+            }
+            if (turmas.empty()) {
+                requests.pop();
+            } else {
+                requests.pop();
+                request->setNewClasses(turmas);
+                rejected_requests.push_back(request);
+            }
 
         }
 
         else if (type == "Troca Dupla") {
-
+            
 
         }
 
