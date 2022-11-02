@@ -50,7 +50,7 @@ public:
 
     bool addRequest(Request* request);
 
-    set<Student*, studentByName> sortStudentsByName(set<Student *> s);
+    set<Student*, studentByName> sortStudentsByName(set<Student *, studComp> s);
 
     void processRequests();
 

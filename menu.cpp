@@ -721,32 +721,47 @@ void Menu::horarioUc(){
 
 
 void Menu::estudantesMenu() {
-    int count = 0;
-    for (Student* student: m.getStudents()) {
-        count ++;
-        cout << '\t' << *student << endl;
-    }
-    cout << "\n\t" << "Total de alunos inscritos no curso: " << count << endl;
-
     int escolha;
     do {
         cout << "=======================================" << endl;
+        cout << "\t[1] Listar Alunos por Ordem Alfabética " << endl;
+        cout << "\t[2] Listar Alunos por UP " << endl;
+
+        cout << endl;
         cout << "\t[0] Voltar atrás" << endl;
 
 
         cout << "\tEscolha: ";
         cin >> escolha;
         cout << "=======================================" << endl;
-        if (escolha < 0 || escolha > 4) cout << "Erro, por favor tente novamente!" << endl;
+        if (escolha < 0 || escolha > 2) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
-    } while (escolha < 0 || escolha > 4);
+    } while (escolha < 0 || escolha > 2);
 
-    switch (escolha) {
-        case 0:
-            menuState.pop();
-            break;
+    if(escolha == 0){
+        menuState.pop();
+        return getMenu();
     }
+
+    int count = 0;
+    if(escolha == 2){
+        for (Student* student: m.getStudents()) {
+            count ++;
+            cout << '\t' << *student << endl;
+        }
+    }
+    else{
+        auto studentsSet = m.sortStudentsByName(m.getStudents());
+        for (Student* student: studentsSet) {
+            count ++;
+            cout << '\t' << *student << endl;
+        }
+    }
+
+    cout << "\n\t" << "Total de alunos inscritos no curso: " << count << endl;
+
+
     getMenu();
 
 }
@@ -858,7 +873,7 @@ void Menu::inscreverAluno(){
 
         cout << "\t ! Está a inscrever um aluno novo no sistema !" << endl << endl;
         cout << "\tNome do aluno: ";
-        getline(cin, name);
+        cin >> name;
         cin.clear();
         cin.ignore(1000, '\n');
 
@@ -1164,8 +1179,10 @@ void Menu::trocaDupla() {
 
 void Menu::inscricao(char& year, string& courseUnit, string& turma, vector<Turma>& turmas) {
     while(true) {
+        do{
         cout << "\tEm que ano quer inscrever: ";
         cin >> year;
+        } while (year < '1' || year > '3');
 
         set<CourseUnit> ucSet = m.getUcs(year);
         auto it = ucSet.begin();
@@ -1221,7 +1238,7 @@ void Menu::pedidosArquivados() {
         cout << "\n\t NÃO HÁ PEDIDOS ARQUIVADOS" << endl << endl;
         return getMenu();
     }
-    cout << "\n\tEstes pedidos foram arquivados porque não foi possível concretizá-los:" << endl << endl;
+    cout << "\n\tEstes pedidos foram arquivados porque não fora possível concretizá-los:" << endl << endl;
     for (Request* r : m.getRejectedRequests()) {
         cout << *r << endl << endl;
     }
@@ -1233,14 +1250,14 @@ void Menu::efetivadosMenu() {
         cout << "\n\tNÃO HÁ PEDIDOS NA FILA!" << endl << endl;
         return getMenu();
     }
-
+    int count = m.getRejectedRequests().size();
     m.processRequests();
     m.writeStudents();
     m.writeRequests();
     m.writeRejectedRequests();
 
-    if (!m.getRejectedRequests().empty()) {
-        cout << "Foram rejeitados " << m.getRejectedRequests().size() << " pedidos." << endl << "Consulte os pedidos arquivados para saber mais." << endl << endl;
+    if (m.getRejectedRequests().size() > count) {
+        cout << "Foram rejeitados " << m.getRejectedRequests().size() - count << " pedidos." << endl << "Consulte os pedidos arquivados para saber mais." << endl << endl;
         cout << "Os restantes pedidos foram corretamente processados." << endl;
     }
     else {

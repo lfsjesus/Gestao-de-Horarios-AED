@@ -357,7 +357,7 @@ void Managing::setClasses(const set<Turma> &classes) {
     Managing::classes = classes;
 }
 
-set<Student*, studentByName> Managing::sortStudentsByName(const set<Student *> s) {
+set<Student*, studentByName> Managing::sortStudentsByName(const set<Student *, studComp> s) {
     set<Student*, studentByName> sortedByName;
     for (Student* student : s) {
         sortedByName.insert(student);
