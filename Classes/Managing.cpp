@@ -16,7 +16,7 @@ void Managing::readFiles() {
     readStudents();
     readSchedules();
     readCourseUnits();
-    readRequests();
+    // readRequests();
 }
 
 void Managing::readStudents() {
@@ -363,6 +363,124 @@ vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS() {
         numberOfStudentsByUc.push_back(tempPair);
     }
     return numberOfStudentsByUc;
+}
+
+void Managing::processRequests() {
+    while (!requests.empty()) {
+        Request* request = requests.front();
+        string type = request->getType();
+        vector<Turma> turmas = request->getNewClasses();
+
+        if (type == "Inscricao") {
+            if (request->getStudentName().empty()) {
+                    auto it = turmas.begin();
+                    while(it != turmas.end()) {
+                        bool balance = checkBalancing(CourseUnit((*it).getUcCode()));
+                        bool space = checkSpaceAvailable((*it));
+                        auto schedule = schedules.find(new Schedule((*it)));
+                        bool overlap = checkScheduleOverlap(*students.find(new Student(request->getStudentCode1())), (*schedule) );
+
+                        if (balance && space && !overlap) {
+                            auto student = students.find(new Student(request->getStudentCode1()));
+                            (*student)->addClass((*it));
+                            it = turmas.erase(it);
+
+                        }
+                        else {
+                            it++;
+                        }
+                    }
+                    if (turmas.empty()) {
+                        requests.pop();
+                    }
+                    else {
+                        requests.pop();
+                        request->setNewClasses(turmas);
+                        rejected_requests.push_back(request);
+                    }
+            }
+            else {
+
+            }
+
+
+        }
+
+        else if (type == "Troca Singular") {
+
+        }
+
+        else if (type == "Troca Dupla") {
+
+
+        }
+
+
+    }
+
+}
+
+bool Managing::checkBalancing(CourseUnit courseUnit) {
+    /*
+
+     Esta funçao pega no vetor que tem a ocupaçao de todas as turmas
+     adiciona por ordem de ocupaçao a um vetor, todas as turmas da UC em questao
+     a diferença entre o primeiro e o ultimo é a diferença maxima. se não provocar desequilibrio, então não há desequilibrio
+
+     */
+    vector<pair<int,Turma>> turmas_ocupacao = getOcupacaoTurmas();
+    sort(turmas_ocupacao.begin(), turmas_ocupacao.end());
+    vector<pair<int,Turma>> turmas;
+
+    for (auto pair : turmas_ocupacao) {
+        if (pair.second.getUcCode() == courseUnit.getUcCode())
+            turmas.push_back(pair);
+    }
+
+    if (turmas.front().first - turmas.back().first >= 4)
+        return false;
+
+    return true;
+}
+
+bool Managing::checkSpaceAvailable(Turma turma) {
+    vector<pair<int,Turma>> turmas_ocupacao = getOcupacaoTurmas();
+
+    for (auto pair : turmas_ocupacao) {
+        if (pair.second == turma) {
+            if (pair.first + 1 >= 30)
+                return false;
+            else
+                return true;
+        }
+    }
+
+    return false;
+}
+
+bool Managing::checkScheduleOverlap(Student *student, Schedule* turma) {
+    Schedule studentSchedule = getStudentSchedule(student);
+
+    for (Slot slot : turma->getSlots()) {
+        if (slot.getType() != "T") {
+            for (Slot slot_student: studentSchedule.getSlots()) {
+                if (!(slot_student.getTurma().getUcCode() == turma->getClass().getUcCode())) {
+                    if (slot.getWeekday() == slot_student.getWeekday()) {
+                        if (slot.getStartHour() <= slot_student.getStartHour() &&
+                            slot.getStartHour() + slot.getDuration() > slot_student.getStartHour()) {
+                            return true; // há sobreposiçao
+                        }
+                        if (slot.getStartHour() < slot_student.getStartHour() + slot_student.getDuration()
+                            && slot.getStartHour() + slot.getDuration() >=
+                               slot_student.getStartHour() + slot_student.getDuration()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
 
 

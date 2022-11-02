@@ -780,8 +780,7 @@ void Menu::inscreverAluno(){
         }
         m.addRequest(new Request(upCode,  turmas, type));
     }
-    // Falta impedir que ele se inscreva numa turma que já esteja inscrito ou que já tenha no vector de novas turmas
-
+    // Falta impedir que ele se inscreva numa turma e UC que já esteja inscrito ou que já tenha no vector de novas turmas
     menuState.pop();
     getMenu();
 }

@@ -22,6 +22,14 @@ public:
 
     void setNewClasses(const vector<Turma> &newClasses);
 
+    const string &getStudentName() const;
+
+    void setStudentName(const string &studentName);
+
+    const string &getType() const;
+
+    void setType(const string &type);
+
 private:
     unsigned int studentCode1;
     string studentName; // in case the student is being registered for the first time

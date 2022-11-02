@@ -50,12 +50,22 @@ public:
 
     set<Student*, studentByName> sortStudentsByName(set<Student *> s);
 
+    void processRequests();
+
+    bool checkBalancing(CourseUnit courseUnit);
+
+    bool checkSpaceAvailable(Turma turma);
+
+    bool checkScheduleOverlap(Student* student, Schedule* turma);
+
+
 
 
 private:
   set<Student*, studComp> students;
   set<Schedule*, schedComp> schedules;
   queue<Request*> requests;
+  vector<Request*> rejected_requests;
   set<CourseUnit> ucs; //useful to show each year's UCs in menuTurma
   set<Turma> classes;
 

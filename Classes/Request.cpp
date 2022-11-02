@@ -45,4 +45,20 @@ void Request::setNewClasses(const vector<Turma> &newClasses) {
     new_classes = newClasses;
 }
 
+const string &Request::getStudentName() const {
+    return studentName;
+}
+
+void Request::setStudentName(const string &studentName) {
+    Request::studentName = studentName;
+}
+
+const string &Request::getType() const {
+    return type;
+}
+
+void Request::setType(const string &type) {
+    Request::type = type;
+}
+
 
