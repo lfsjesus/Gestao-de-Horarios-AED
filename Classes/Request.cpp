@@ -63,12 +63,12 @@ void Request::setType(const string &type) {
 
 ostream &operator<<(ostream &os, const Request &request) {
     if (request.type == "Inscricao") {
-        os << "Tipo de pedido: Inscrição" << endl;
-        os << "Estudante: " << request.studentCode1 << " ";
+        os << "\tTipo de pedido: Inscrição" << endl;
+        os << "\tEstudante: " << request.studentCode1 << " ";
         if (!request.studentName.empty())
             os << request.studentName;
         os << endl;
-        os << "Turmas: ";
+        os << "\tTurmas: ";
         for (auto t: request.new_classes) {
             t.printClass();
             os << ", ";
@@ -77,9 +77,9 @@ ostream &operator<<(ostream &os, const Request &request) {
     }
 
     else if (request.type == "Troca Singular") {
-        os << "Tipo de pedido: Troca de Turma" << endl;
-        os << "Estudante: " << request.studentCode1 << endl;
-        os << "Pretende trocar para as seguintes turmas: ";
+        os << "\tTipo de pedido: Troca de Turma" << endl;
+        os << "\tEstudante: " << request.studentCode1 << endl;
+        os << "\tPretende trocar para as seguintes turmas: ";
         for (auto t: request.new_classes) {
             t.printClass();
             os << " || ";
@@ -87,10 +87,10 @@ ostream &operator<<(ostream &os, const Request &request) {
     }
 
     else {
-        os << "Tipo de pedido: Troca de turma com outro estudante" << endl;
-        os << "Estudante que pretende trocar: " << request.studentCode1 << endl;
-        os << "Estudante 2: " << request.studentCode2 << endl;
-        os << "Pretende trocar para as turmas do estudante 2: ";
+        os << "\tTipo de pedido: Troca de turma com outro estudante" << endl;
+        os << "\tEstudante que pretende trocar: " << request.studentCode1 << endl;
+        os << "\tEstudante 2: " << request.studentCode2 << endl;
+        os << "\tPretende trocar para as turmas do estudante 2: ";
         for (auto t: request.new_classes) {
             t.printClass();
 
