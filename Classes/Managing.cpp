@@ -365,6 +365,30 @@ vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS() {
     return numberOfStudentsByUc;
 }
 
+vector<pair<int,string>> Managing::getOcupacaoYear(){
+    vector<pair<int,string>> numberOfStudentsByYear;
+    int count1 = 0, count2 = 0, count3 = 0;
+    for(Student* student : students){
+        if(student->getYear() == 1){
+            count1++;
+        }
+        else if(student->getYear() == 2) {
+            count2++;
+        }
+        else{
+            count3++;
+        }
+    }
+    pair<int, string> pair1(count1, "1º Ano");
+    numberOfStudentsByYear.push_back(pair1);
+    pair<int, string> pair2(count2, "2º Ano");
+    numberOfStudentsByYear.push_back(pair2);
+    pair<int, string> pair3(count3, "3º Ano");
+    numberOfStudentsByYear.push_back(pair3);
+
+    return numberOfStudentsByYear;
+}
+
 void Managing::processRequests() {
     while (!requests.empty()) {
         Request* request = requests.front();
