@@ -43,6 +43,12 @@ bool Turma::operator==(const Turma &turma) const {
 }
 
 bool Turma::operator<(const Turma &rhs) const {
-    if (classCode == rhs.classCode) return ucCode < rhs.ucCode;
+
+    if (classCode == rhs.classCode) {
+        if(ucCode == "UP001"){
+            return 1;
+        }
+        return ucCode < rhs.ucCode;
+    }
     return classCode < rhs.classCode;
 }

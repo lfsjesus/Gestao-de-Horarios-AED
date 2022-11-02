@@ -721,10 +721,12 @@ void Menu::horarioUc(){
 
 
 void Menu::estudantesMenu() {
-
+    int count = 0;
     for (Student* student: m.getStudents()) {
+        count ++;
         cout << '\t' << *student << endl;
     }
+    cout << "\n\t" << "Total de alunos inscritos no curso: " << count << endl;
 
     int escolha;
     do {
@@ -809,10 +811,22 @@ void Menu::turmaMenu() {
         itr = UC.getClasses().find(turma); //logarithmic
     } while(itr == UC.getClasses().end()); //ok
 
-    Turma Turma(turma, uc);
+    Turma turma1(turma, uc);
 
-    cout << "\n\tALunos da Turma " << Turma.getClassCode() << " da UC " << Turma.getUcCode() << ":" << endl;
+    cout << "\n\tALunos da Turma " << turma1.getClassCode() << " da UC " << turma1.getUcCode() << ":" << endl;
 
+    int count = 0;
+    for(Student* student : m.getStudents()){
+        for(Turma studTurma : student->getClasses()){
+            if(studTurma == turma1){
+                count++;
+                cout << "\t" << *student << endl;
+            }
+        }
+    }
+    cout << "\n\tTotal de alunos inscritos na turma ";
+    turma1.printClass();
+    cout << ": " << count << endl;
 
     menuState.pop();
     getMenu();
@@ -921,18 +935,20 @@ void Menu::desinscreverAluno() {
 void Menu::alunosAno() {
     unsigned year;
     do {
-        cout << "Introduza um ano: ";
+        cout << "\tIntroduza um ano: ";
         cin >> year;
+        cout << "\n";
 
     } while (year < 0 || year > 3);
 
-    int count = 1;
+    int count = 0;
     for (Student* s : m.getStudents()) {
         if (s->getYear() == year) {
-            cout << "\t[" << count << "] " << (*s) << endl;
+            cout << "\t" << (*s) << endl;
             count++;
         }
     }
+    cout << "\n\tTotal de estudantes inscritos no " << year << "º ano: " << count << endl;
     menuState.pop();
     getMenu();
 }
@@ -968,8 +984,9 @@ void Menu::alunosUC() {
     char year;
 
     do {
-        cout << "Introduza um ano: ";
+        cout << "\tIntroduza um ano: ";
         cin >> year;
+        cout << endl;
 
     } while (year < '0' || year > '3');
 
@@ -978,21 +995,26 @@ void Menu::alunosUC() {
     CourseUnit c;
 
     for (CourseUnit uc : UCs) {
-        cout << uc.getUcCode()<< endl;
+        cout <<"\t" << uc.getUcCode()<< endl;
     }
 
     do {
-        cout << "Escolha uma UC: ";
+        cout << "\n\tEscolha uma UC do " << year << "º ano: ";
         cin >> uc;
         c.setUcCode(uc);
 
     } while( UCs.find(c) == UCs.end());
+    int count = 0;
+
     for (Student* s : m.getStudents()) {
         for (Turma t : s->getClasses()) {
-            if (t.getUcCode() == uc)
-                cout << (*s) << endl;
+            if (t.getUcCode() == uc){
+                count++;
+                cout <<"\t" << (*s) << endl;
+            }
         }
     }
+    cout <<"\n\tTotal de estudantes inscritos na UC " << uc << ": " << count << endl;
     menuState.pop();
     getMenu();
 }
