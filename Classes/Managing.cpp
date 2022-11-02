@@ -3,6 +3,7 @@
 #define STUDENTS_FILE "../Data/students_classes.csv"
 #define REQUESTS_FILE "../Data/requests.csv"
 #include <fstream>
+#include <sstream>
 #include <algorithm>
 #include "Managing.h"
 #include "Student.h"
@@ -15,6 +16,7 @@ void Managing::readFiles() {
     readStudents();
     readSchedules();
     readCourseUnits();
+    readRequests();
 }
 
 void Managing::readStudents() {
@@ -160,15 +162,56 @@ void Managing::readRequests() {
 
     if(file.is_open()) {
         while(!file.eof()) {
+            string line;
+            string classes_line;
+
             string studentCode1;
             string studentCode2;
+            string name;
+            string type;
             string ucCode;
             string classCode;
             vector<Turma> new_classes;
 
-            getline(file, studentCode1, ',');
-            getline(file, studentCode2, ',');
-            
+            while (getline(file,line)) {
+                istringstream iss(line);
+
+                getline(iss, studentCode1, ',');
+                getline(iss, studentCode2, ',');
+                getline(iss, name, ',');
+                getline(iss, type, ',');
+                getline(iss, classes_line);
+
+                int pos = 0;
+                string delimiter = ",";
+
+
+                while((pos = classes_line.find(delimiter)) != string::npos) {
+                    ucCode = classes_line.substr(0, pos);
+                    classes_line.erase(0, pos + delimiter.length());
+                    pos = classes_line.find(delimiter);
+                    classCode = classes_line.substr(0, pos);
+                    classes_line.erase(0, pos + delimiter.length());
+                    new_classes.push_back(Turma(classCode, ucCode));
+                }
+
+                if (!name.empty()) {
+                    _requests.push(new Request(stoi(studentCode1), name, new_classes, type ));
+                    new_classes.clear();
+                    continue;
+                }
+
+                if (studentCode2.empty()) {
+                    _requests.push(new Request(stoi(studentCode1), new_classes, type ));
+                    new_classes.clear();
+                    continue;
+                }
+
+                _requests.push(new Request(stoi(studentCode1), stoi(studentCode2), new_classes, type ));
+                new_classes.clear();
+            }
+            file.close();
+            this->requests = _requests;
         }
 
 
