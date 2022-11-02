@@ -58,7 +58,9 @@ public:
 
     bool checkScheduleOverlap(Student* student, Schedule* turma);
 
+    const vector<Request *> &getRejectedRequests() const;
 
+    void setRejectedRequests(const vector<Request *> &rejectedRequests);
 
 
 private:

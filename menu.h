@@ -31,6 +31,10 @@
 #define TURMAS_CRESCENTE_MENU 22
 #define UCS_DECRESCENTE_MENU 23
 #define UCS_CRESCENTE_MENU 24
+#define LISTAR_PEDIDOS_MENU 25
+#define PEDIDOS_ARQUIVADOS_MENU 26
+#define EFETIVADOS_MENU 27
+
 class Menu {
 public:
 
@@ -63,5 +67,8 @@ private:
     void trocaSingular();
     void trocaDupla();
     void inscricao(char& year, string& courseUnit, string& turma, vector<Turma>& turmas);
+    void listarPedidos();
+    void pedidosArquivados();
+    void efetivadosMenu();
     std::stack<short int> menuState;
 };

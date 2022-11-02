@@ -35,7 +35,7 @@ void Turma::setUcCode(const string &ucCode) {
 }
 
 void Turma::printClass() {
-    cout << "Turma: " << classCode << " UC: " << ucCode << endl;
+    cout << "Turma: " << classCode << " UC: " << ucCode;
 }
 
 bool Turma::operator==(const Turma &turma) const {

@@ -549,6 +549,14 @@ bool Managing::checkScheduleOverlap(Student *student, Schedule* turma) {
     }
 }
 
+const vector<Request *> &Managing::getRejectedRequests() const {
+    return rejected_requests;
+}
+
+void Managing::setRejectedRequests(const vector<Request *> &rejectedRequests) {
+    rejected_requests = rejectedRequests;
+}
+
 
 
 

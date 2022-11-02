@@ -30,6 +30,8 @@ public:
 
     void setType(const string &type);
 
+    friend ostream& operator<<(ostream& os, const Request& request);
+
 private:
     unsigned int studentCode1;
     string studentName; // in case the student is being registered for the first time

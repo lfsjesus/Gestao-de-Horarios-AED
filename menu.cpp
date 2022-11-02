@@ -85,6 +85,15 @@ void Menu::getMenu() {
             case TROCA_DUPLA:
                 trocaDupla();
                 break;
+            case LISTAR_PEDIDOS_MENU:
+                listarPedidos();
+                break;
+            case PEDIDOS_ARQUIVADOS_MENU:
+                pedidosArquivados();
+                break;
+            case EFETIVADOS_MENU:
+                efetivadosMenu();
+                break;
         }
     }
 }
@@ -235,6 +244,15 @@ void Menu::efetivacaoMenu() {
 
     switch (escolha) {
         case 0: menuState.pop(); break;
+        case 1:
+            listarPedidos();
+            break;
+        case 2:
+            pedidosArquivados();
+            break;
+        case 3:
+            efetivadosMenu();
+            break;
     }
     getMenu();
 }
@@ -951,7 +969,7 @@ void Menu::trocaSingular() {
         }
 
         do {
-            cout << "Escolha o conjunto que quer trocar: ";
+            cout << "  \n\tEscolha o conjunto que quer trocar: ";
             cin >> choiceClass;
         } while (choiceClass < 1 || choiceClass > turmas.size());
 
@@ -1091,5 +1109,48 @@ void Menu::inscricao(char& year, string& courseUnit, string& turma, vector<Turma
     } while ((*it).getClasses().find(turma) == (*it).getClasses().end());
 
     turmas.push_back(Turma(turma, courseUnit));
+
+}
+
+void Menu::listarPedidos() {
+
+    if (m.getRequests().empty())
+        cout << "\n\tNão existem pedidos para processar!" << endl << endl;
+    else {
+        queue<Request*> aux_queue = m.getRequests();
+        while(!aux_queue.empty()) {
+            auto req = aux_queue.front();
+            cout << *req << endl << endl;
+            aux_queue.pop();
+        }
+    }
+
+    getMenu();
+}
+
+void Menu::pedidosArquivados() {
+    if (m.getRejectedRequests().empty()) {
+        cout << "\n\t NÃO HÁ PEDIDOS ARQUIVADOS" << endl << endl;
+        return getMenu();
+    }
+    cout << "\n\tEstes pedidos foram arquivados porque não foi possível concretizá-los:" << endl << endl;
+    for (Request* r : m.getRejectedRequests()) {
+        cout << *r << endl << endl;
+    }
+}
+
+void Menu::efetivadosMenu() {
+    queue<Request*> aux_queue = m.getRequests();
+    m.processRequests();
+
+    if (aux_queue.empty()) {
+        cout << "\n\tNÃO HÁ PEDIDOS NA FILA!" << endl << endl;
+        return getMenu();
+    }
+
+    if (!m.getRejectedRequests().empty()) {
+        cout << "Foram rejeitados " << m.getRejectedRequests().size() << " pedidos." << endl << "Consulte os pedidos arquivados para saber mais." << endl << endl;
+        cout << "Os restantes pedidos foram corretamente processados.";
+    }
 
 }
