@@ -55,6 +55,8 @@ public:
 
     set<Student*, studentByName> sortStudentsByName(set<Student *, studComp> s);
 
+    multiset<Student*, studentByNUCS> sortStudentsByNUCS(set<Student *, studComp> s);
+
     void processRequests();
 
     bool checkBalancing(CourseUnit courseUnit);
@@ -74,6 +76,8 @@ public:
     void writeRejectedRequests();
 
     set<Turma> getClassesByUc(string uc);
+
+    void emptyRejectedRequests();
 
 private:
   set<Student*, studComp> students;

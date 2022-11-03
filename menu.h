@@ -39,6 +39,7 @@
 #define TURMAS_ANO_MENU 30
 #define TURMAS_UC_MENU 31
 #define TURMAS_ORDEM_MENU 32
+#define ESTUDANTES_NUCS 33
 
 
 class Menu {
@@ -84,5 +85,6 @@ private:
     void efetivadosMenu();
     void listagensParciais(int& n);
     void chooseStudentsOrder(set<Student*, studComp>);
+    void estudantesNUCS();
     std::stack<short int> menuState;
 };

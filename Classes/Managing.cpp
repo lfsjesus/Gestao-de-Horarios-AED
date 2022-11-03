@@ -377,6 +377,14 @@ set<Student*, studentByName> Managing::sortStudentsByName(const set<Student *, s
     return sortedByName;
 }
 
+multiset<Student*, studentByNUCS> Managing::sortStudentsByNUCS(const set<Student *, studComp> s) {
+    multiset<Student*, studentByNUCS> sortedByNUCS;
+    for (Student* student : s) {
+        sortedByNUCS.insert(student);
+    }
+    return sortedByNUCS;
+}
+
 bool Managing::addRequest(Request* request) {
     requests.push(request);
     writeRequests();
@@ -744,6 +752,10 @@ set<Student*, studComp> Managing::getStudentsByYear(char year){
     }
     return studentsByYear;
 
+}
+
+void Managing::emptyRejectedRequests() {
+    rejected_requests.clear();
 }
 
 

@@ -156,6 +156,9 @@ void Menu::getMenu() {
             case EFETIVADOS_MENU:
                 efetivadosMenu();
                 break;
+            case ESTUDANTES_NUCS:
+                estudantesNUCS();
+                break;
         }
     }
 }
@@ -312,13 +315,13 @@ void Menu::efetivacaoMenu() {
             menuState.pop();
             break;
         case 1:
-            listarPedidos();
+            menuState.push(LISTAR_PEDIDOS_MENU);
             break;
         case 2:
-            pedidosArquivados();
+            menuState.push(PEDIDOS_ARQUIVADOS_MENU);
             break;
         case 3:
-            efetivadosMenu();
+            menuState.push(EFETIVADOS_MENU);
             break;
     }
     getMenu();
@@ -334,6 +337,7 @@ void Menu::alunosMenu() { //MENU COM TODAS AS OPÇÕES RELACIONADAS COM ALUNOS
         cout << "\t[2] Listar Alunos Iscritos por Ano" << endl;
         cout << "\t[3] Listar Alunos Inscritos por UC" << endl;
         cout << "\t[4] Listar Alunos Inscritos por Turma" << endl;
+        cout << "\t[5] Listar Alunos Inscritos em mais de n UCs" << endl;
         cout << endl;
         cout << "\t[0] Voltar atrás" << endl;
 
@@ -341,10 +345,10 @@ void Menu::alunosMenu() { //MENU COM TODAS AS OPÇÕES RELACIONADAS COM ALUNOS
         cout << "\tEscolha: ";
         cin >> escolha;
         cout << "=======================================" << endl;
-        if (escolha < 0 || escolha > 4) cout << "Erro, por favor tente novamente!" << endl;
+        if (escolha < 0 || escolha > 5) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
-    } while (escolha < 0 || escolha > 4);
+    } while (escolha < 0 || escolha > 5);
 
     switch (escolha) {
         case 0:
@@ -361,6 +365,9 @@ void Menu::alunosMenu() { //MENU COM TODAS AS OPÇÕES RELACIONADAS COM ALUNOS
             break;
         case 4:
             menuState.push(TURMA_MENU);
+            break;
+        case 5:
+            menuState.push(ESTUDANTES_NUCS);
             break;
     }
     getMenu();
@@ -481,6 +488,43 @@ void Menu::alunosUC() {
     getMenu();
 }
 
+void Menu::estudantesNUCS() {
+    multiset<Student*, studentByNUCS> studentsbyNUCS = m.sortStudentsByNUCS(m.getStudents());
+    auto set_it = studentsbyNUCS.begin();
+
+
+    int ucs_n;
+    do {
+        cout << "\n\t[0] Voltar atrás" << endl;
+        cout << "\n\tEstudantes com mais de quantas UCs? ";
+
+        cin >> ucs_n;
+
+        if (ucs_n == 0) {
+            menuState.pop();
+            return getMenu();
+        }
+    } while(ucs_n < 1);
+
+    list<Turma> fake_turmas;
+
+    for (int i = 0; i < ucs_n + 1; i++) {
+        fake_turmas.push_back(Turma());
+    }
+
+    set_it = studentsbyNUCS.find(new Student(0,"",fake_turmas)); // retorna iterador para o primeiro estudante com n ucs
+
+    int count = 0;
+    while (set_it != studentsbyNUCS.end()) {
+        count++;
+        cout << "\n\t" << (**set_it);
+        set_it++;
+    }
+
+    cout << "\n\n\tExiste um total de " << count << " estudantes com mais de " << ucs_n << " UCs." << endl;
+
+    getMenu();
+}
 
 void Menu::turmaMenu() {  //MENU PARA LISTAR ALUNOS DE UMA TURMA
     char year;
@@ -1546,25 +1590,51 @@ void Menu::listarPedidos() {
             aux_queue.pop();
         }
     }
-
+    menuState.pop();
     getMenu();
 }
 
 void Menu::pedidosArquivados() {
     if (m.getRejectedRequests().empty()) {
         cout << "\n\t NÃO HÁ PEDIDOS ARQUIVADOS" << endl << endl;
-        return getMenu();
     }
-    cout << "\n\tNÃO FOI POSSÍVEL CONCRETIZAR OS SEGUINTES PEDIDOS:" << endl << endl;
-    for (Request* r : m.getRejectedRequests()) {
-        cout << *r << endl << endl;
+
+    else {
+        cout << "\n\tNÃO FOI POSSÍVEL CONCRETIZAR OS SEGUINTES PEDIDOS:" << endl << endl;
+        for (Request *r: m.getRejectedRequests()) {
+            cout << *r << endl << endl;
+        }
     }
+
+    char option;
+
+    do {
+        cout << "\n\t[D] Apagar todos os pedidos arquivados." << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+        cout << "\n\tEscolha: ";
+        cin >> option;
+    } while (!(option == 'D' || option =='d' || option == '0'));
+
+    switch(option) {
+        case '0':
+            menuState.pop();
+            break;
+        case 'D':
+            m.emptyRejectedRequests();
+            m.writeRejectedRequests();
+            cout << "\n\tOperação executada com sucesso!" << endl << endl;
+            cout << "===========================================" << endl << endl;
+            break;
+    }
+
+    getMenu();
 }
 
 void Menu::efetivadosMenu() {
     queue<Request*> aux_queue = m.getRequests();
     if (aux_queue.empty()) {
         cout << "\n\tNÃO HÁ PEDIDOS NA FILA!" << endl << endl;
+        menuState.pop();
         return getMenu();
     }
     int count = m.getRejectedRequests().size();
@@ -1584,3 +1654,5 @@ void Menu::efetivadosMenu() {
 
 
 }
+
+
