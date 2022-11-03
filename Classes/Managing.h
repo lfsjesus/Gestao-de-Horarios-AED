@@ -43,6 +43,7 @@ public:
     Schedule getStudentSchedule(Student* student);
 
     vector<pair<int,Turma>> getOcupacaoTurmas();
+    vector<pair<int,Turma>> getOcupacaoTurmas(set<Turma> classes);
 
     vector<pair<int,CourseUnit>> getOcupacaoUCS();
 

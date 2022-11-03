@@ -400,6 +400,23 @@ vector<pair<int, Turma>> Managing::getOcupacaoTurmas() {
     return numberOfStudentsByClass;
 }
 
+vector<pair<int, Turma>> Managing::getOcupacaoTurmas(set<Turma> classes) {
+    vector<pair<int,Turma>> numberOfStudentsByClass;
+    for (Turma turma : classes){
+        int count = 0;
+        for(Student* student : students){
+            for(Turma turmaStud : student->getClasses()){
+                if (turma == turmaStud){
+                    count++;
+                }
+            }
+        }
+        pair<int,Turma> tempPair(count,turma);
+        numberOfStudentsByClass.push_back(tempPair);
+    }
+    return numberOfStudentsByClass;
+}
+
 vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS() {
     vector<pair<int,CourseUnit>> numberOfStudentsByUc;
 

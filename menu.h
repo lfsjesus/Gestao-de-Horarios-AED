@@ -36,6 +36,10 @@
 #define EFETIVADOS_MENU 27
 #define ANOS_CRESCENTE_MENU 28
 #define ANOS_DECRESCENTE_MENU 29
+#define TURMAS_ANO_MENU 30
+#define TURMAS_UC_MENU 31
+#define TURMAS_ORDEM_MENU 32
+
 
 class Menu {
 public:
@@ -49,8 +53,11 @@ private:
     void efetivacaoMenu();
     void alunosMenu();
     void turmasMenu();
+    void turmasOrdemMenu();
     void turmasDecrescenteMenu();
     void turmasCrescenteMenu();
+    void turmasAnoMenu();
+    void turmasUcMenu();
     void ucsMenu();
     void ucsDecrescenteMenu();
     void ucsCrescenteMenu();

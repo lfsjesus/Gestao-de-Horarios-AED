@@ -32,11 +32,20 @@ void Menu::getMenu() {
             case TURMAS_MENU:
                 turmasMenu();
                 break;
+            case TURMAS_ORDEM_MENU:
+                turmasOrdemMenu();
+                break;
             case TURMAS_CRESCENTE_MENU:
                 turmasCrescenteMenu();
                 break;
             case TURMAS_DECRESCENTE_MENU:
                 turmasDecrescenteMenu();
+                break;
+            case TURMAS_ANO_MENU:
+                turmasAnoMenu();
+                break;
+            case TURMAS_UC_MENU:
+                turmasUcMenu();
                 break;
             case UCS_MENU:
                 ucsMenu();
@@ -318,9 +327,48 @@ void Menu::turmasMenu() {
     int escolha;
     do {
         cout << "=======================================" << endl;
+        cout << "\t[1] Listar Todas as Turmas por Nº de Alunos " << endl;
+        cout << "\t[2] Listar as Turmas de um Ano por Nº de Alunos " << endl;
+        cout << "\t[3] Listar as Turmas de uma UC por Nº de Alunos " << endl;
+
+        cout << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+
+
+        cout << "\tEscolha: ";
+        cin >> escolha;
+        cout << "=======================================" << endl;
+        if (escolha < 0 || escolha > 3) cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (escolha < 0 || escolha > 3);
+
+    switch (escolha) {
+        case 0:
+            menuState.pop();
+            break;
+
+        case 1:
+            menuState.push(TURMAS_ORDEM_MENU);
+            break;
+        case 2:
+            menuState.push(TURMAS_ANO_MENU);
+            break;
+
+        case 3:
+            menuState.push(TURMAS_UC_MENU);
+            break;
+        }
+
+    getMenu();
+}
+
+void Menu::turmasOrdemMenu() {
+    int escolha;
+    do {
+        cout << "=======================================" << endl;
         cout << "\t[1] Listar Turmas por Ordem Decrescente de Nº de Alunos " << endl;
         cout << "\t[2] Listar Turmas por Ordem Crescente de Nº de Alunos " << endl;
-
         cout << endl;
         cout << "\t[0] Voltar atrás" << endl;
 
@@ -343,14 +391,13 @@ void Menu::turmasMenu() {
         case 2:
             menuState.push(TURMAS_CRESCENTE_MENU);
             break;
-
     }
     getMenu();
 }
 
 void Menu::turmasCrescenteMenu(){
 
-    //listagem das turmas por ordem Crescente de n de alunos
+    //listagem das turmas por ordem Crescente de num de alunos
     vector<pair<int,Turma>> numberOfStudentsByClass = m.getOcupacaoTurmas();
 
     std::sort(numberOfStudentsByClass.begin(), numberOfStudentsByClass.end());
@@ -363,7 +410,7 @@ void Menu::turmasCrescenteMenu(){
 
 }
 void Menu::turmasDecrescenteMenu(){
-    //listagem das turmas por ordem Decrescente de n de alunos
+    //listagem das turmas por ordem Decrescente de num de alunos
     vector<pair<int,Turma>> numberOfStudentsByClass = m.getOcupacaoTurmas();
 
     std::sort(numberOfStudentsByClass.rbegin(), numberOfStudentsByClass.rend());
@@ -376,7 +423,86 @@ void Menu::turmasDecrescenteMenu(){
 
 
 }
+void Menu::turmasAnoMenu() {
+    char year;
+    do {
+        cout << "\tEscolha uma ano (1, 2 ou 3): " << endl;
+        cout << endl;
+        cout << "\t[0] Voltar atrás" << endl;
 
+        cout << "\tEscolha: ";
+        cin >> year;
+        cout << "=======================================" << endl;
+        if (year < '0' || year > '3') cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (year < '0' || year > '3'); cout << endl;
+    if (year == '0') {
+        menuState.pop();
+        return getMenu();
+    }
+    set<Turma> classesByYear = m.getClassesByYear(year);
+
+    int escolha;
+    do {
+        cout << "\t[1] Listar Turmas por Ordem Decrescente de Nº de Alunos " << endl;
+        cout << "\t[2] Listar Turmas por Ordem Crescente de Nº de Alunos " << endl;
+        cout << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+
+
+        cout << "\tEscolha: ";
+        cin >> escolha;
+        cout << "=======================================" << endl;
+        if (escolha < 0 || escolha > 2) cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (escolha < 0 || escolha > 2);
+
+    //esta parte não dá para separar em vários menus porque eu estou sempre dependente do ano, e nao consigo passar o ano à stack dos menus
+
+    if (escolha == 0) {
+        menuState.pop();
+        return getMenu();
+    }
+    else if (escolha == 1) {
+        //listagem das turmas por ordem Crescente de num de alunos
+        vector<pair<int, Turma>> numOfStudByClass = m.getOcupacaoTurmas(classesByYear);
+
+        std::sort(numOfStudByClass.rbegin(), numOfStudByClass.rend());
+
+        for (auto PAIR: numOfStudByClass) {
+            cout << "\t(" << PAIR.first << ") " << PAIR.second.getClassCode() << " | " << PAIR.second.getUcCode()
+                 << endl;
+        }
+        cout << "=======================================" << endl;
+
+        getMenu();
+    }
+    else {
+        //listagem das turmas por ordem Crescente de num de alunos
+        vector<pair<int, Turma>> numOfStudByClass = m.getOcupacaoTurmas(classesByYear);
+        std::sort(numOfStudByClass.begin(), numOfStudByClass.end());
+
+        for (auto PAIR: numOfStudByClass) {
+            cout << "\t(" << PAIR.first << ") " << PAIR.second.getClassCode() << " | " << PAIR.second.getUcCode()
+                 << endl;
+        }
+
+        cout << "=======================================" << endl;
+        getMenu();
+    }
+
+    menuState.pop();
+    return getMenu();
+
+}
+
+
+void Menu::turmasUcMenu() {
+
+
+}
 
 void Menu::ucsMenu() {
 
