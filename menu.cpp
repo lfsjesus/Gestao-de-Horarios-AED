@@ -1378,7 +1378,7 @@ void Menu::pedidosArquivados() {
         cout << "\n\t NÃO HÁ PEDIDOS ARQUIVADOS" << endl << endl;
         return getMenu();
     }
-    cout << "\n\tEstes pedidos foram arquivados porque não fora possível concretizá-los:" << endl << endl;
+    cout << "\n\tNÃO FOI POSSÍVEL CONCRETIZAR OS SEGUINTES PEDIDOS:" << endl << endl;
     for (Request* r : m.getRejectedRequests()) {
         cout << *r << endl << endl;
     }

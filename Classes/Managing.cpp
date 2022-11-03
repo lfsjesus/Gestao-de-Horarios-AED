@@ -474,10 +474,25 @@ void Managing::processRequests() {
             }
 
             while (it != turmas.end()) {
+
+                auto student = students.find(new Student(request->getStudentCode1()));
+                bool already_enrolled = false;
+                for (Turma t : (*student)->getClasses()) {
+                    if (t.getUcCode() == (*it).getUcCode()) {
+                        already_enrolled = true;
+                        break;
+                    }
+                }
+
+                if (student == students.end() || already_enrolled) {
+                    it++;
+                    continue;
+                }
+
                 bool balance = checkBalancing(CourseUnit((*it).getUcCode()));
                 bool space = checkSpaceAvailable((*it));
                 auto schedule = schedules.find(new Schedule((*it)));
-                bool overlap = checkScheduleOverlap(*students.find(new Student(request->getStudentCode1())),(*schedule));
+                bool overlap = checkScheduleOverlap(*students.find(*student),(*schedule));
 
                 if (balance && space && !overlap) {
                     auto student = students.find(new Student(request->getStudentCode1()));
@@ -501,7 +516,13 @@ void Managing::processRequests() {
 
         else if (type == "Troca Singular") {
             while (it != turmas.end()) {
+
                 auto student_changing = students.find(new Student(request->getStudentCode1()));
+
+                if (student_changing == students.end()) {
+                    break;
+                }
+
                 bool balance = checkBalancing(CourseUnit((*it).getUcCode()));
                 bool space = checkSpaceAvailable((*it));
                 auto schedule = schedules.find(new Schedule((*it)));
@@ -539,6 +560,10 @@ void Managing::processRequests() {
             while (it != turmas.end()) {
                 auto student_changing1 = students.find(new Student(request->getStudentCode1()));
                 auto student_changing2 = students.find(new Student(request->getStudentCode2()));
+
+                if (student_changing1 == students.end() || student_changing2 == students.end()) {
+                    break;
+                }
 
                 Turma turma_2; // turma that student2 will have after changing (from student1)
 
