@@ -16,6 +16,8 @@ public:
 
     const set<Student*, studComp> &getStudents() const;
 
+    set<Student*, studComp> getStudentsByYear(char year);
+
     void setStudents(const set<Student*, studComp> &students);
 
     void addStudent(const Student* student);
@@ -73,6 +75,7 @@ public:
 
     void writeRejectedRequests();
 
+    set<Turma> getClassesByUc(string uc);
 
 private:
   set<Student*, studComp> students;

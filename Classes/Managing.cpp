@@ -345,6 +345,18 @@ set<Turma> Managing::getClassesByYear(char year) {
     return filtered_classes;
 }
 
+
+set<Turma> Managing::getClassesByUc(string uc) {
+    set<Turma> filtered_classes;
+
+    for (Turma turma : this->classes) {
+        if (turma.getUcCode() == uc) {
+            filtered_classes.insert(turma);
+        }
+    }
+    return filtered_classes;
+}
+
 void Managing::eraseStudent(Student *s) {
     students.erase(s);
 }
@@ -391,7 +403,7 @@ Schedule Managing::getStudentSchedule(Student *student) {
     return studentSchedule;
 }
 
-vector<pair<int, Turma>> Managing::getOcupacaoTurmas() {
+vector<pair<int, Turma>> Managing::getOcupacaoTurmas() { //usa o set turmas default
     vector<pair<int,Turma>> numberOfStudentsByClass;
     for (Turma turma : classes){
         int count = 0;
@@ -408,7 +420,7 @@ vector<pair<int, Turma>> Managing::getOcupacaoTurmas() {
     return numberOfStudentsByClass;
 }
 
-vector<pair<int, Turma>> Managing::getOcupacaoTurmas(set<Turma> classes) {
+vector<pair<int, Turma>> Managing::getOcupacaoTurmas(set<Turma> classes) { //usa um set de turmas passado por argumento, exemplo turmas só de um ano
     vector<pair<int,Turma>> numberOfStudentsByClass;
     for (Turma turma : classes){
         int count = 0;
@@ -730,6 +742,18 @@ void Managing::writeRejectedRequests() {
     }
     file.close();
 }
+
+set<Student*, studComp> Managing::getStudentsByYear(char year){
+    set<Student*, studComp> studentsByYear;
+    for(Student* student : students){
+        if(student->getYear() == year){
+            studentsByYear.insert(student);
+        }
+    }
+    return studentsByYear;
+
+}
+
 
 
 
