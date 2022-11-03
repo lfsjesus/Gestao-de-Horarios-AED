@@ -1508,7 +1508,7 @@ void Menu::listarPedidos() {
             aux_queue.pop();
         }
     }
-
+    menuState.pop();
     getMenu();
 }
 
