@@ -280,7 +280,7 @@ void Menu::efetivacaoMenu() {
 }
 
 
-void Menu::alunosMenu() {
+void Menu::alunosMenu() { //MENU COM TODAS AS OPÇÕES RELACIONADAS COM ALUNOS
 
     int escolha;
     do {
@@ -320,6 +320,207 @@ void Menu::alunosMenu() {
     }
     getMenu();
 }
+
+void Menu::estudantesMenu() { //MENU PARA LISTAR OS ESTUDANTES DO CURSO
+    int escolha;
+    do {
+        cout << "=======================================" << endl;
+        cout << "\t[1] Listar Alunos por Ordem Alfabética " << endl;
+        cout << "\t[2] Listar Alunos por UP " << endl;
+
+        cout << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+
+
+        cout << "\tEscolha: ";
+        cin >> escolha;
+        cout << "=======================================" << endl;
+        if (escolha < 0 || escolha > 2) cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (escolha < 0 || escolha > 2);
+
+    if(escolha == 0){
+        menuState.pop();
+        return getMenu();
+    }
+
+    int pages_option;
+    int count = 0;
+    if(escolha == 2){
+        set<Student*, studComp> students = m.getStudents();
+        int n_pages = students.size() % 10 == 0 ? students.size()/10 : students.size()/10 + 1;
+        for (Student* student : students) {
+            count ++;
+            cout << '\t' << *student << endl;
+            if(count % 10 == 0) {
+                cout << endl << "\t Página " << count / 10 << '/' << n_pages << endl;
+                cout << "\t [1] Página seguinte" << endl;
+                cout << "\t [0] Voltar atrás" << endl;
+                cout << "\t Escolha: ";
+                cin >> pages_option;
+                cout << endl;
+                if(pages_option == 0) break;
+            }
+        }
+    }
+    else{
+        auto studentsSet = m.sortStudentsByName(m.getStudents());
+        for (Student* student: studentsSet) {
+            count ++;
+            cout << '\t' << *student << endl;
+        }
+    }
+
+    cout << "\n\t" << "Total de alunos inscritos no curso: " << count << endl;
+
+
+    getMenu();
+}
+
+void Menu::alunosAno() { //Menu para listar alunos por ano
+    unsigned year;
+    do {
+        cout << "\tIntroduza um ano: ";
+        cin >> year;
+        cout << "\n";
+
+    } while (year < 0 || year > 3);
+
+    int count = 0;
+    for (Student* s : m.getStudents()) {
+        if (s->getYear() == year) {
+            cout << "\t" << (*s) << endl;
+            count++;
+        }
+    }
+    cout << "\n\tTotal de estudantes inscritos no " << year << "º ano: " << count << endl;
+    menuState.pop();
+    getMenu();
+}
+
+
+void Menu::alunosUC() {
+    char year;
+
+    do {
+        cout << "\tIntroduza um ano: ";
+        cin >> year;
+        cout << endl;
+
+    } while (year < '0' || year > '3');
+
+    string uc;
+    set<CourseUnit> UCs = m.getUcs(year);
+    CourseUnit c;
+
+    for (CourseUnit uc : UCs) {
+        cout <<"\t" << uc.getUcCode()<< endl;
+    }
+
+    do {
+        cout << "\n\tEscolha uma UC do " << year << "º ano: ";
+        cin >> uc;
+        c.setUcCode(uc);
+
+    } while( UCs.find(c) == UCs.end());
+    int count = 0;
+
+    for (Student* s : m.getStudents()) {
+        for (Turma t : s->getClasses()) {
+            if (t.getUcCode() == uc){
+                count++;
+                cout <<"\t" << (*s) << endl;
+            }
+        }
+    }
+    cout <<"\n\tTotal de estudantes inscritos na UC " << uc << ": " << count << endl;
+    menuState.pop();
+    getMenu();
+}
+
+
+void Menu::turmaMenu() {  //MENU PARA LISTAR ALUNOS DE UMA TURMA
+    char ano;
+    cout << "\t[0] Voltar atrás" << endl << endl;
+
+    do {
+        cout << "\tEscolha um ano (1, 2 ou 3): ";
+        cin >> ano;
+        cout << "\n";
+        if (ano == '0'){
+            cin.clear();
+            menuState.pop();
+            return getMenu(); //isto deu fix ao bug , alguem sabe pq? se virem isto perguntem me pela print que eu tirei -> Miguel
+
+        }
+    } while (ano < '1' || ano > '3');
+
+    //listagem das UCs
+
+    cout << "\tUCs do " << ano << "º ano:" << "\n";
+
+
+    set<CourseUnit> ucSet = m.getUcs(ano);
+    for (auto uc : ucSet)
+        cout << "\t" << uc.getUcCode() << "\n";
+
+    auto it = ucSet.begin();
+    string uc;
+    do {
+        cout << "\n\tescolha uma das UCs acima (código): ";
+        cin >> uc;
+        if (uc == "0"){
+            cin.clear();
+            menuState.pop();
+            return getMenu();
+        }
+        CourseUnit tempUc(uc);
+        it = ucSet.find(tempUc); //logarithmic
+    } while(it == ucSet.end());
+
+    CourseUnit UC = *it; // A UC escolhida pelo utilizador
+
+    //listagem das turmas da uc selecionada
+
+    string turma;
+    cout << endl;
+    for (auto TURMA : it->getClasses())
+        cout << "\t" << TURMA << "\n";
+
+    auto itr = UC.getClasses().begin();
+    do {
+        cout << "\n\tescolha uma turma: ";
+        cin >> turma;
+        if (turma == "0"){
+            cin.clear();
+            menuState.pop();
+            return getMenu();
+        }
+        itr = UC.getClasses().find(turma); //logarithmic
+    } while(itr == UC.getClasses().end()); //ok
+
+    Turma turma1(turma, uc);
+
+    cout << "\n\tALunos da Turma " << turma1.getClassCode() << " da UC " << turma1.getUcCode() << ":" << endl;
+
+    int count = 0;
+    for(Student* student : m.getStudents()){
+        for(Turma studTurma : student->getClasses()){
+            if(studTurma == turma1){
+                count++;
+                cout << "\t" << *student << endl;
+            }
+        }
+    }
+    cout << "\n\tTotal de alunos inscritos na ";
+    turma1.printClass();
+    cout << "-> " << count << endl;
+
+    menuState.pop();
+    getMenu();
+}
+
 
 
 void Menu::turmasMenu() {
@@ -501,6 +702,96 @@ void Menu::turmasAnoMenu() {
 
 void Menu::turmasUcMenu() {
 
+    char year;
+    do {
+        cout << "\tEscolha uma ano (1, 2 ou 3): " << endl;
+        cout << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+
+        cout << "\tEscolha: ";
+        cin >> year;
+        cout << "=======================================" << endl;
+        if (year < '0' || year > '3') cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (year < '0' || year > '3'); cout << endl;
+    if (year == '0') {
+        menuState.pop();
+        return getMenu();
+    }
+
+    set<CourseUnit> ucsByYear = m.getUcs(year);
+    cout << endl;
+    for(CourseUnit uc : ucsByYear){
+        cout << "\t" << uc.getUcCode() << "\n";
+    }
+    cout << endl;
+    auto it = ucsByYear.begin();
+    string uc;
+    do {
+        cout << "\n\tescolha uma das UCs acima (código): ";
+        cin >> uc;
+        if (uc == "0"){
+            cin.clear();
+            menuState.pop();
+            return getMenu();
+        }
+        CourseUnit tempUc(uc);
+        it = ucsByYear.find(tempUc); //logarithmic
+    } while(it == ucsByYear.end());
+
+    cout << "=======================================" << endl;
+
+    int escolha;
+    do {
+        cout << "\t[1] Listar Turmas por Ordem Decrescente de Nº de Alunos " << endl;
+        cout << "\t[2] Listar Turmas por Ordem Crescente de Nº de Alunos " << endl;
+        cout << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+
+
+        cout << "\tEscolha: ";
+        cin >> escolha;
+        cout << "=======================================" << endl;
+        if (escolha < 0 || escolha > 2) cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (escolha < 0 || escolha > 2);
+
+    //esta parte não dá para separar em vários menus porque eu estou sempre dependente do ano, e nao consigo passar o ano à stack dos menus
+    set<Turma> classesOfUc = m.getClassesByUc(uc);
+
+    if (escolha == 0) {
+        menuState.pop();
+        return getMenu();
+    }
+    else if (escolha == 2) {
+
+        //listagem das turmas por ordem crescente de num de alunos
+        vector<pair<int,Turma>> numberOfStudentsByClass = m.getOcupacaoTurmas(classesOfUc);
+
+        std::sort(numberOfStudentsByClass.begin(), numberOfStudentsByClass.end());
+
+        for(auto PAIR : numberOfStudentsByClass){
+            cout << "\t(" << PAIR.first << ") " << PAIR.second.getClassCode() << " | " << PAIR.second.getUcCode() << endl;
+        }
+        getMenu();
+
+    }
+    else {
+        //listagem das turmas por ordem decrescente de num de alunos
+        vector<pair<int,Turma>> numberOfStudentsByClass = m.getOcupacaoTurmas(classesOfUc);
+
+        std::sort(numberOfStudentsByClass.rbegin(), numberOfStudentsByClass.rend());
+
+        for(auto PAIR : numberOfStudentsByClass){
+            cout << "\t(" << PAIR.first << ") " << PAIR.second.getClassCode() << " | " << PAIR.second.getUcCode() << endl;
+        }
+        getMenu();
+    }
+
+    menuState.pop();
+    return getMenu();
 
 }
 
@@ -848,143 +1139,6 @@ void Menu::horarioUc(){
 }
 
 
-void Menu::estudantesMenu() {
-    int escolha;
-    do {
-        cout << "=======================================" << endl;
-        cout << "\t[1] Listar Alunos por Ordem Alfabética " << endl;
-        cout << "\t[2] Listar Alunos por UP " << endl;
-
-        cout << endl;
-        cout << "\t[0] Voltar atrás" << endl;
-
-
-        cout << "\tEscolha: ";
-        cin >> escolha;
-        cout << "=======================================" << endl;
-        if (escolha < 0 || escolha > 2) cout << "Erro, por favor tente novamente!" << endl;
-        cin.clear();
-        cin.ignore(1000, '\n');
-    } while (escolha < 0 || escolha > 2);
-
-    if(escolha == 0){
-        menuState.pop();
-        return getMenu();
-    }
-
-    int pages_option;
-    int count = 0;
-    if(escolha == 2){
-        set<Student*, studComp> students = m.getStudents();
-        int n_pages = students.size() % 10 == 0 ? students.size()/10 : students.size()/10 + 1;
-        for (Student* student : students) {
-            count ++;
-            cout << '\t' << *student << endl;
-            if(count % 10 == 0) {
-                cout << endl << "\t Página " << count / 10 << '/' << n_pages << endl;
-                cout << "\t [1] Página seguinte" << endl;
-                cout << "\t [0] Voltar atrás" << endl;
-                cout << "\t Escolha: ";
-                cin >> pages_option;
-                cout << endl;
-                if(pages_option == 0) break;
-            }
-        }
-    }
-    else{
-        auto studentsSet = m.sortStudentsByName(m.getStudents());
-        for (Student* student: studentsSet) {
-            count ++;
-            cout << '\t' << *student << endl;
-        }
-    }
-
-    cout << "\n\t" << "Total de alunos inscritos no curso: " << count << endl;
-
-
-    getMenu();
-}
-
-void Menu::turmaMenu() {
-    char ano;
-    cout << "\t[0] Voltar atrás" << endl << endl;
-
-    do {
-        cout << "\tEscolha um ano (1, 2 ou 3): ";
-        cin >> ano;
-        cout << "\n";
-        if (ano == '0'){
-            cin.clear();
-            menuState.pop();
-            return getMenu(); //isto deu fix ao bug , alguem sabe pq? se virem isto perguntem me pela print que eu tirei -> Miguel
-
-        }
-    } while (ano < '1' || ano > '3');
-
-    //listagem das UCs
-
-    cout << "\tUCs do " << ano << "º ano:" << "\n";
-
-
-    set<CourseUnit> ucSet = m.getUcs(ano);
-    for (auto uc : ucSet)
-        cout << "\t" << uc.getUcCode() << "\n";
-
-    auto it = ucSet.begin();
-    string uc;
-    do {
-        cout << "\n\tescolha uma das UCs acima (código): ";
-        cin >> uc;
-        if (uc == "0"){
-            cin.clear();
-            menuState.pop();
-            return getMenu();
-        }
-        CourseUnit tempUc(uc);
-        it = ucSet.find(tempUc); //logarithmic
-    } while(it == ucSet.end());
-
-    CourseUnit UC = *it; // A UC escolhida pelo utilizador
-
-    //listagem das turmas da uc selecionada
-
-    string turma;
-    cout << endl;
-    for (auto TURMA : it->getClasses())
-        cout << "\t" << TURMA << "\n";
-
-    auto itr = UC.getClasses().begin();
-    do {
-        cout << "\n\tescolha uma turma: ";
-        cin >> turma;
-        if (turma == "0"){
-            cin.clear();
-            menuState.pop();
-            return getMenu();
-        }
-        itr = UC.getClasses().find(turma); //logarithmic
-    } while(itr == UC.getClasses().end()); //ok
-
-    Turma turma1(turma, uc);
-
-    cout << "\n\tALunos da Turma " << turma1.getClassCode() << " da UC " << turma1.getUcCode() << ":" << endl;
-
-    int count = 0;
-    for(Student* student : m.getStudents()){
-        for(Turma studTurma : student->getClasses()){
-            if(studTurma == turma1){
-                count++;
-                cout << "\t" << *student << endl;
-            }
-        }
-    }
-    cout << "\n\tTotal de alunos inscritos na turma ";
-    turma1.printClass();
-    cout << ": " << count << endl;
-
-    menuState.pop();
-    getMenu();
-}
 
 //TODO: refactor disto e inserir turmas
 void Menu::inscreverAluno(){
@@ -1086,26 +1240,6 @@ void Menu::desinscreverAluno() {
 }
 
 
-void Menu::alunosAno() {
-    unsigned year;
-    do {
-        cout << "\tIntroduza um ano: ";
-        cin >> year;
-        cout << "\n";
-
-    } while (year < 0 || year > 3);
-
-    int count = 0;
-    for (Student* s : m.getStudents()) {
-        if (s->getYear() == year) {
-            cout << "\t" << (*s) << endl;
-            count++;
-        }
-    }
-    cout << "\n\tTotal de estudantes inscritos no " << year << "º ano: " << count << endl;
-    menuState.pop();
-    getMenu();
-}
 
 void Menu::permutacaoMenu() {
     cout << "----------------- TROCAS DE TURMAS ---------------------" << endl << endl;
@@ -1133,45 +1267,6 @@ void Menu::permutacaoMenu() {
     getMenu();
 }
 
-
-void Menu::alunosUC() {
-    char year;
-
-    do {
-        cout << "\tIntroduza um ano: ";
-        cin >> year;
-        cout << endl;
-
-    } while (year < '0' || year > '3');
-
-    string uc;
-    set<CourseUnit> UCs = m.getUcs(year);
-    CourseUnit c;
-
-    for (CourseUnit uc : UCs) {
-        cout <<"\t" << uc.getUcCode()<< endl;
-    }
-
-    do {
-        cout << "\n\tEscolha uma UC do " << year << "º ano: ";
-        cin >> uc;
-        c.setUcCode(uc);
-
-    } while( UCs.find(c) == UCs.end());
-    int count = 0;
-
-    for (Student* s : m.getStudents()) {
-        for (Turma t : s->getClasses()) {
-            if (t.getUcCode() == uc){
-                count++;
-                cout <<"\t" << (*s) << endl;
-            }
-        }
-    }
-    cout <<"\n\tTotal de estudantes inscritos na UC " << uc << ": " << count << endl;
-    menuState.pop();
-    getMenu();
-}
 
 void Menu::trocaSingular() {
     cout << "-------------TROCAR UM ESTUDANTE--------------" << endl;
