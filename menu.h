@@ -83,5 +83,6 @@ private:
     void pedidosArquivados();
     void efetivadosMenu();
     void listagensParciais(int& n);
+    void chooseStudentsOrder(set<Student*, studComp>);
     std::stack<short int> menuState;
 };
