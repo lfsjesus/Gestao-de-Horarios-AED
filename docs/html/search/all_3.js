@@ -5,5 +5,6 @@ var searchData=
   ['slot_7',['Slot',['../classSlot.html',1,'']]],
   ['studcomp_8',['studComp',['../structstudComp.html',1,'']]],
   ['student_9',['Student',['../classStudent.html',1,'']]],
-  ['studentbyname_10',['studentByName',['../structstudentByName.html',1,'']]]
+  ['studentbyname_10',['studentByName',['../structstudentByName.html',1,'']]],
+  ['studentbynucs_11',['studentByNUCS',['../structstudentByNUCS.html',1,'']]]
 ];
