@@ -486,10 +486,25 @@ void Managing::processRequests() {
             }
 
             while (it != turmas.end()) {
+
+                auto student = students.find(new Student(request->getStudentCode1()));
+                bool already_enrolled = false;
+                for (Turma t : (*student)->getClasses()) {
+                    if (t.getUcCode() == (*it).getUcCode()) {
+                        already_enrolled = true;
+                        break;
+                    }
+                }
+
+                if (student == students.end() || already_enrolled) {
+                    it++;
+                    continue;
+                }
+
                 bool balance = checkBalancing(CourseUnit((*it).getUcCode()));
                 bool space = checkSpaceAvailable((*it));
                 auto schedule = schedules.find(new Schedule((*it)));
-                bool overlap = checkScheduleOverlap(*students.find(new Student(request->getStudentCode1())),(*schedule));
+                bool overlap = checkScheduleOverlap(*students.find(*student),(*schedule));
 
                 if (balance && space && !overlap) {
                     auto student = students.find(new Student(request->getStudentCode1()));
@@ -513,7 +528,13 @@ void Managing::processRequests() {
 
         else if (type == "Troca Singular") {
             while (it != turmas.end()) {
+
                 auto student_changing = students.find(new Student(request->getStudentCode1()));
+
+                if (student_changing == students.end()) {
+                    break;
+                }
+
                 bool balance = checkBalancing(CourseUnit((*it).getUcCode()));
                 bool space = checkSpaceAvailable((*it));
                 auto schedule = schedules.find(new Schedule((*it)));
@@ -552,6 +573,10 @@ void Managing::processRequests() {
                 auto student_changing1 = students.find(new Student(request->getStudentCode1()));
                 auto student_changing2 = students.find(new Student(request->getStudentCode2()));
 
+                if (student_changing1 == students.end() || student_changing2 == students.end()) {
+                    break;
+                }
+
                 Turma turma_2; // turma that student2 will have after changing (from student1)
 
                 for (Turma c : (*student_changing1)->getClasses()) {
@@ -564,9 +589,7 @@ void Managing::processRequests() {
                 // no need to check balancing because number of students will still be the same, neither space
                 auto schedule1 = schedules.find(new Schedule((*it)));
                 auto schedule2 = schedules.find(new Schedule(turma_2));
-                bool overlap = checkScheduleOverlap((*student_changing1),(*schedule1)) && checkScheduleOverlap((*student_changing2), (*schedule2));
-
-                bool possible_change = false;
+                bool overlap = checkScheduleOverlap((*student_changing1),(*schedule1)) || checkScheduleOverlap((*student_changing2), (*schedule2));
 
                 if (!overlap) {
 
@@ -639,7 +662,7 @@ bool Managing::checkScheduleOverlap(Student *student, Schedule* turma) {
     for (Slot slot : turma->getSlots()) {
         if (slot.getType() != "T") {
             for (Slot slot_student: studentSchedule.getSlots()) {
-                if (!(slot_student.getTurma().getUcCode() == turma->getClass().getUcCode())) {
+                if (!(slot_student.getTurma().getUcCode() == turma->getClass().getUcCode()) && slot_student.getType() != "T") {
                     if (slot.getWeekday() == slot_student.getWeekday()) {
                         if (slot.getStartHour() <= slot_student.getStartHour() &&
                             slot.getStartHour() + slot.getDuration() > slot_student.getStartHour()) {
