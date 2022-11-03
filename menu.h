@@ -75,5 +75,6 @@ private:
     void listarPedidos();
     void pedidosArquivados();
     void efetivadosMenu();
+    void listagensParciais(int& n);
     std::stack<short int> menuState;
 };

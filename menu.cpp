@@ -746,11 +746,23 @@ void Menu::estudantesMenu() {
         return getMenu();
     }
 
+    int pages_option;
     int count = 0;
     if(escolha == 2){
-        for (Student* student: m.getStudents()) {
+        set<Student*, studComp> students = m.getStudents();
+        int n_pages = students.size() % 10 == 0 ? students.size()/10 : students.size()/10 + 1;
+        for (Student* student : students) {
             count ++;
             cout << '\t' << *student << endl;
+            if(count % 10 == 0) {
+                cout << endl << "\t Página " << count / 10 << '/' << n_pages << endl;
+                cout << "\t [1] Página seguinte" << endl;
+                cout << "\t [0] Voltar atrás" << endl;
+                cout << "\t Escolha: ";
+                cin >> pages_option;
+                cout << endl;
+                if(pages_option == 0) break;
+            }
         }
     }
     else{
@@ -765,7 +777,6 @@ void Menu::estudantesMenu() {
 
 
     getMenu();
-
 }
 
 void Menu::turmaMenu() {
