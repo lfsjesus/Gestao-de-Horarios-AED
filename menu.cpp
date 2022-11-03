@@ -446,6 +446,43 @@ void Menu::alunosUC() {
     getMenu();
 }
 
+void Menu::estudantesNUCS() {
+    multiset<Student*, studentByNUCS> studentsbyNUCS = m.sortStudentsByNUCS(m.getStudents());
+    auto set_it = studentsbyNUCS.begin();
+
+
+    int ucs_n;
+    do {
+        cout << "\n\t[0] Voltar atrás" << endl;
+        cout << "\n\tEstudantes com mais de quantas UCs? ";
+
+        cin >> ucs_n;
+
+        if (ucs_n == 0) {
+            menuState.pop();
+            return getMenu();
+        }
+    } while(ucs_n < 1);
+
+    list<Turma> fake_turmas;
+
+    for (int i = 0; i < ucs_n + 1; i++) {
+        fake_turmas.push_back(Turma());
+    }
+
+    set_it = studentsbyNUCS.find(new Student(0,"",fake_turmas)); // retorna iterador para o primeiro estudante com n ucs
+
+    int count = 0;
+    while (set_it != studentsbyNUCS.end()) {
+        count++;
+        cout << "\n\t" << (**set_it);
+        set_it++;
+    }
+
+    cout << "\n\n\tExiste um total de " << count << " estudantes com mais de " << ucs_n << " UCs." << endl;
+
+    getMenu();
+}
 
 void Menu::turmaMenu() {  //MENU PARA LISTAR ALUNOS DE UMA TURMA
     char ano;
@@ -1510,33 +1547,4 @@ void Menu::efetivadosMenu() {
 
 }
 
-void Menu::estudantesNUCS() {
-    multiset<Student*, studentByNUCS> studentsbyNUCS = m.sortStudentsByNUCS(m.getStudents());
-    auto set_it = studentsbyNUCS.begin();
 
-
-    int ucs_n;
-    do {
-       cout << "\n\tEstudantes com mais de quantas UCs? ";
-       cin >> ucs_n;
-    } while(ucs_n < 1);
-
-    list<Turma> fake_turmas;
-
-    for (int i = 0; i < ucs_n + 1; i++) {
-        fake_turmas.push_back(Turma());
-    }
-
-    set_it = studentsbyNUCS.find(new Student(0,"",fake_turmas)); // retorna iterador para o primeiro estudante com n ucs
-
-    int count = 0;
-    while (set_it != studentsbyNUCS.end()) {
-        count++;
-        cout << "\n\t" << (**set_it);
-        set_it++;
-    }
-
-    cout << "\n\n\tExiste um total de " << count << " estudantes com mais de " << ucs_n << " UCs." << endl;
-
-    getMenu();
-}
