@@ -1552,6 +1552,7 @@ void Menu::efetivadosMenu() {
     queue<Request*> aux_queue = m.getRequests();
     if (aux_queue.empty()) {
         cout << "\n\tNÃO HÁ PEDIDOS NA FILA!" << endl << endl;
+        menuState.pop();
         return getMenu();
     }
     int count = m.getRejectedRequests().size();
