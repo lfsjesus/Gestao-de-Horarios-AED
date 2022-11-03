@@ -270,13 +270,13 @@ void Menu::efetivacaoMenu() {
     switch (escolha) {
         case 0: menuState.pop(); break;
         case 1:
-            listarPedidos();
+            menuState.push(LISTAR_PEDIDOS_MENU);
             break;
         case 2:
-            pedidosArquivados();
+            menuState.push(PEDIDOS_ARQUIVADOS_MENU);
             break;
         case 3:
-            efetivadosMenu();
+            menuState.push(EFETIVADOS_MENU);
             break;
     }
     getMenu();
@@ -1515,12 +1515,37 @@ void Menu::listarPedidos() {
 void Menu::pedidosArquivados() {
     if (m.getRejectedRequests().empty()) {
         cout << "\n\t NÃO HÁ PEDIDOS ARQUIVADOS" << endl << endl;
-        return getMenu();
     }
-    cout << "\n\tNÃO FOI POSSÍVEL CONCRETIZAR OS SEGUINTES PEDIDOS:" << endl << endl;
-    for (Request* r : m.getRejectedRequests()) {
-        cout << *r << endl << endl;
+
+    else {
+        cout << "\n\tNÃO FOI POSSÍVEL CONCRETIZAR OS SEGUINTES PEDIDOS:" << endl << endl;
+        for (Request *r: m.getRejectedRequests()) {
+            cout << *r << endl << endl;
+        }
     }
+
+    char option;
+
+    do {
+        cout << "\n\t[D] Apagar todos os pedidos arquivados." << endl;
+        cout << "\t[0] Voltar atrás" << endl;
+        cout << "\n\tEscolha: ";
+        cin >> option;
+    } while (!(option == 'D' || option =='d' || option == '0'));
+
+    switch(option) {
+        case '0':
+            menuState.pop();
+            break;
+        case 'D':
+            m.emptyRejectedRequests();
+            m.writeRejectedRequests();
+            cout << "\n\tOperação executada com sucesso!" << endl << endl;
+            cout << "===========================================" << endl << endl;
+            break;
+    }
+
+    getMenu();
 }
 
 void Menu::efetivadosMenu() {

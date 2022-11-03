@@ -77,6 +77,8 @@ public:
 
     set<Turma> getClassesByUc(string uc);
 
+    void emptyRejectedRequests();
+
 private:
   set<Student*, studComp> students;
   set<Schedule*, schedComp> schedules;

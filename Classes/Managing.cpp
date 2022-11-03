@@ -754,6 +754,10 @@ set<Student*, studComp> Managing::getStudentsByYear(char year){
 
 }
 
+void Managing::emptyRejectedRequests() {
+    rejected_requests.clear();
+}
+
 
 
 
