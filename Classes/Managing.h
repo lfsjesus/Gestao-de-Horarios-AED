@@ -53,6 +53,8 @@ public:
 
     set<Student*, studentByName> sortStudentsByName(set<Student *, studComp> s);
 
+    multiset<Student*, studentByNUCS> sortStudentsByNUCS(set<Student *, studComp> s);
+
     void processRequests();
 
     bool checkBalancing(CourseUnit courseUnit);

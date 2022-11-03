@@ -113,6 +113,9 @@ void Menu::getMenu() {
             case EFETIVADOS_MENU:
                 efetivadosMenu();
                 break;
+            case ESTUDANTES_NUCS:
+                estudantesNUCS();
+                break;
         }
     }
 }
@@ -289,6 +292,7 @@ void Menu::alunosMenu() {
         cout << "\t[2] Listar Alunos Iscritos por Ano" << endl;
         cout << "\t[3] Listar Alunos Inscritos por UC" << endl;
         cout << "\t[4] Listar Alunos Inscritos por Turma" << endl;
+        cout << "\t[5] Listar Alunos Inscritos em mais de n UCs" << endl;
         cout << endl;
         cout << "\t[0] Voltar atrás" << endl;
 
@@ -296,10 +300,10 @@ void Menu::alunosMenu() {
         cout << "\tEscolha: ";
         cin >> escolha;
         cout << "=======================================" << endl;
-        if (escolha < 0 || escolha > 4) cout << "Erro, por favor tente novamente!" << endl;
+        if (escolha < 0 || escolha > 5) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
-    } while (escolha < 0 || escolha > 4);
+    } while (escolha < 0 || escolha > 5);
 
     switch (escolha) {
         case 0:
@@ -316,6 +320,9 @@ void Menu::alunosMenu() {
             break;
         case 4:
             menuState.push(TURMA_MENU);
+            break;
+        case 5:
+            menuState.push(ESTUDANTES_NUCS);
             break;
     }
     getMenu();
@@ -1406,4 +1413,35 @@ void Menu::efetivadosMenu() {
 
 
 
+}
+
+void Menu::estudantesNUCS() {
+    multiset<Student*, studentByNUCS> studentsbyNUCS = m.sortStudentsByNUCS(m.getStudents());
+    auto set_it = studentsbyNUCS.begin();
+
+
+    int ucs_n;
+    do {
+       cout << "\n\tEstudantes com mais de quantas UCs? ";
+       cin >> ucs_n;
+    } while(ucs_n < 1);
+
+    list<Turma> fake_turmas;
+
+    for (int i = 0; i < ucs_n + 1; i++) {
+        fake_turmas.push_back(Turma());
+    }
+
+    set_it = studentsbyNUCS.find(new Student(0,"",fake_turmas)); // retorna iterador para o primeiro estudante com n ucs
+
+    int count = 0;
+    while (set_it != studentsbyNUCS.end()) {
+        count++;
+        cout << "\n\t" << (**set_it);
+        set_it++;
+    }
+
+    cout << "\n\n\tExiste um total de " << count << " estudantes com mais de " << ucs_n << " UCs." << endl;
+
+    getMenu();
 }

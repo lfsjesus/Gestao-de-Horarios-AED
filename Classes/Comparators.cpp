@@ -20,3 +20,10 @@ struct studentByName
         return s1->getName() < s2->getName();
     }
 };
+
+struct studentByNUCS
+{
+    bool operator()(const Student* s1, const Student* s2) const {
+        return s1->getClasses().size() < s2->getClasses().size();
+    }
+};
