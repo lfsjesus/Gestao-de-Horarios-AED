@@ -926,8 +926,9 @@ void Menu::ucsMenu() {
     int escolha;
     do {
         cout << "=======================================" << endl << endl;
-        cout << "\t[1] Listar UCs por Ordem Decrescente de Nº de Alunos " << endl;
-        cout << "\t[2] Listar UCs por Ordem Crescente de Nº de Alunos " << endl;
+        cout << "\t[1] Listar Todas as UCs por Ordem Decrescente de Nº de Alunos " << endl;
+        cout << "\t[2] Listar Todas as UCs por Ordem Crescente de Nº de Alunos " << endl;
+        cout << "\t[3] Listar UCs de Um Ano por Nº de Alunos " << endl;
 
         cout << endl;
         cout << "\t[0] Voltar atrás" << endl;
@@ -936,10 +937,10 @@ void Menu::ucsMenu() {
         cout << "\tEscolha: ";
         cin >> escolha;
         cout << "=======================================" << endl;
-        if (escolha < 0 || escolha > 2) cout << "Erro, por favor tente novamente!" << endl;
+        if (escolha < 0 || escolha > 3) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
-    } while (escolha < 0 || escolha > 2);
+    } while (escolha < 0 || escolha > 3);
 
     switch (escolha) {
         case 0:
@@ -951,14 +952,76 @@ void Menu::ucsMenu() {
         case 2:
             menuState.push(UCS_CRESCENTE_MENU);
             break;
+        case 3:
+            char year;
+            do {
+                cout << "\tEscolha uma ano (1, 2 ou 3): " << endl;
+                cout << endl;
+                cout << "\t[0] Voltar atrás" << endl;
 
+                cout << "\tEscolha: ";
+                cin >> year;
+                cout << "=======================================" << endl;
+                if (year < '0' || year > '3') cout << "Erro, por favor tente novamente!" << endl;
+                cin.clear();
+                cin.ignore(1000, '\n');
+            } while (year < '0' || year > '3');
+            cout << endl;
+            if (year == '0') {
+                menuState.pop();
+                return getMenu();
+            }
+
+            int escolha;
+            do {
+                cout << "\t[1] Listar Anos por Ordem Decrescente de Nº de Alunos " << endl;
+                cout << "\t[2] Listar Anos por Ordem Crescente de Nº de Alunos " << endl;
+
+                cout << endl;
+                cout << "\t[0] Voltar atrás" << endl;
+
+
+                cout << "\tEscolha: ";
+                cin >> escolha;
+                cout << "=======================================" << endl;
+                if (escolha < 0 || escolha > 2) cout << "Erro, por favor tente novamente!" << endl;
+                cin.clear();
+                cin.ignore(1000, '\n');
+            } while (escolha < 0 || escolha > 2);
+
+            set<CourseUnit> ucsByYear = m.getUcs(year);
+            if (escolha == 0) {
+                menuState.pop();
+                return getMenu();
+            }
+
+            else if(escolha == 1){
+                    vector<pair<int,CourseUnit>> numberOfStudentsByUc = m.getOcupacaoUCS(ucsByYear);
+                    sort(numberOfStudentsByUc.rbegin(), numberOfStudentsByUc.rend());
+
+                    cout << "\n\t" << "UCs do " << year << "º ano: " <<endl;
+                    for(auto PAIR : numberOfStudentsByUc){
+                        cout << "\t(" << PAIR.first << ") " << PAIR.second.getUcCode() << endl;
+                    }
+                    cout << endl;
+            }
+            else{
+                    vector<pair<int,CourseUnit>> numberOfStudentsByUc = m.getOcupacaoUCS(ucsByYear);
+                    sort(numberOfStudentsByUc.begin(), numberOfStudentsByUc.end());
+
+                    cout << "\n\t" << "UCs do " << year << "º ano: " <<endl;
+                    for(auto PAIR : numberOfStudentsByUc){
+                        cout << "\t(" << PAIR.first << ") " << PAIR.second.getUcCode() << endl;
+                    }
+                    cout << endl;
+            }
+
+            getMenu();
     }
-    getMenu();
 }
-
 void Menu::ucsCrescenteMenu(){
 
-    //listagem das turmas por ordem Crescente de n de alunos
+    //listagem das ucs por ordem Crescente de num de alunos
     vector<pair<int,CourseUnit>> numberOfStudentsByUc = m.getOcupacaoUCS();
 
     std::sort(numberOfStudentsByUc.begin(), numberOfStudentsByUc.end());
@@ -972,7 +1035,7 @@ void Menu::ucsCrescenteMenu(){
 }
 void Menu::ucsDecrescenteMenu(){
 
-    //listagem das turmas por ordem Crescente de n de alunos
+    //listagem das UCs por ordem Decrescente de num de alunos
     vector<pair<int,CourseUnit>> numberOfStudentsByUc = m.getOcupacaoUCS();
 
     std::sort(numberOfStudentsByUc.rbegin(), numberOfStudentsByUc.rend());

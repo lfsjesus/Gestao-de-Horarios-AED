@@ -48,6 +48,7 @@ public:
     vector<pair<int,Turma>> getOcupacaoTurmas(set<Turma> classes);
 
     vector<pair<int,CourseUnit>> getOcupacaoUCS();
+    vector<pair<int,CourseUnit>> getOcupacaoUCS(set<CourseUnit> ucs);
 
     vector<pair<int,string>> getOcupacaoYear();
 

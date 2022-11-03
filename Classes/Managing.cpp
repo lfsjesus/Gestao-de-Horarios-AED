@@ -458,6 +458,28 @@ vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS() {
     return numberOfStudentsByUc;
 }
 
+vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS(set<CourseUnit> ucs) {
+    vector<pair<int,CourseUnit>> numberOfStudentsByUc;
+
+    for(CourseUnit uc : ucs) { //para cada uc
+        int count = 0;
+        for (string turma: uc.getClasses()) { //para cada turma da uc
+            for (Student *student: students) { // em cada estudante
+                for (Turma turmaStud: student->getClasses()) { //em cada turma do estudante
+                    if (turma == turmaStud.getClassCode() &&
+                        uc.getUcCode() == turmaStud.getUcCode()) { //se a turma for igual, conta++
+                        count++;
+                    }
+                }
+            }
+        }
+        pair<int, CourseUnit> tempPair(count, uc);
+        numberOfStudentsByUc.push_back(tempPair);
+    }
+    return numberOfStudentsByUc;
+}
+
+
 vector<pair<int,string>> Managing::getOcupacaoYear(){
     vector<pair<int,string>> numberOfStudentsByYear;
     int count1 = 0, count2 = 0, count3 = 0;
