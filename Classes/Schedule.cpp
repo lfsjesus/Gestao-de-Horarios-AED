@@ -18,7 +18,7 @@ ostream &operator<<(ostream &os, const Schedule &schedule) {
     os << setw(17) << setfill(' ') << "Dia da Semana"
        << setw(9) << setfill(' ') << "Tipo"
        << setw(10.5) << setfill(' ') << "Início"
-       << setw(13.5) << setfill(' ') << "Duração"
+       << setw(12.5) << setfill(' ') << "Fim"
        << setw(24) << setfill(' ') << "Turma" << endl;
     os << "  ----------------------------------------------------------------------------------------" << endl;
     for (Slot slot: schedule.slots) {

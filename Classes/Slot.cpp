@@ -41,11 +41,11 @@ bool Slot::operator==(const Slot &slot) const {
 }
 
 ostream &operator<<(ostream &os, const Slot &slot) {
-    os << setw(10) << slot.weekday
+    os << setw(10) << slot.to_portuguese(slot.weekday)
        << setw(10) << slot.type
-       << setw(10) << fixed << setprecision(1) << slot.startHour
-       << setw(10) << fixed << setprecision(1) << slot.duration
-       << setw(20) << "( Turma: " << slot.turma.getClassCode() << " | " << slot.turma.getUcCode() << " )";
+       << setw(10) << slot.convert_hours(slot.startHour)
+       << setw(14) << slot.convert_hours(slot.startHour + slot.duration)
+       << setw(15) << "( Turma: " << slot.turma.getClassCode() << " | " << slot.turma.getUcCode() << " )";
 
     return os;
 }
@@ -72,5 +72,24 @@ bool Slot::operator<(const Slot &slot) const {
     }
     return weekdayToNum(weekday) < weekdayToNum(slot.getWeekday());
 }
+
+string Slot::convert_hours(float _hours) const {
+    int hours = (int) floor(_hours);
+    int minutes = (int) (60.0 * (_hours - (float) hours));
+
+    if (minutes == 0)
+        return to_string(hours) + "h";
+
+    return to_string(hours) + "h" + to_string(minutes) + "m";
+}
+
+string Slot::to_portuguese(string weekday) const {
+    if (weekday == "Monday") return string("Segunda");
+    if (weekday == "Tuesday") return string("Terca");
+    if (weekday == "Wednesday") return string("Quarta");
+    if (weekday == "Thursday") return string("Quinta");
+    if (weekday == "Friday") return string("Sexta");
+}
+
 
 

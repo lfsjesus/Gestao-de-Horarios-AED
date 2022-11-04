@@ -24,3 +24,4 @@ struct studentByNUCS {
         return s1->getClasses().size() < s2->getClasses().size();
     }
 };
+

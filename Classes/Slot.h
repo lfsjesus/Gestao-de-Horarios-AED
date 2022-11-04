@@ -4,6 +4,7 @@
 #include "Turma.h"
 #include <algorithm>
 #include <iomanip>
+#include <cmath>
 
 
 using namespace std;
@@ -35,7 +36,11 @@ public:
 
     void setTurma(const Turma &turma);
 
-    unsigned weekdayToNum(const string weekday) const;
+    unsigned weekdayToNum(string weekday) const;
+
+    string convert_hours(float _hours) const;
+
+    string to_portuguese(string weekday) const;
 
     bool operator==(const Slot &slot) const;
 
