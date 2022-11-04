@@ -668,25 +668,23 @@ bool Managing::checkScheduleOverlap(Student *student, Schedule* turma) {
     Schedule studentSchedule = getStudentSchedule(student);
 
     for (Slot slot : turma->getSlots()) {
-        if (slot.getType() != "T") {
-            for (Slot slot_student: studentSchedule.getSlots()) {
-                if (!(slot_student.getTurma().getUcCode() == turma->getClass().getUcCode()) && slot_student.getType() != "T") {
-                    if (slot.getWeekday() == slot_student.getWeekday()) {
-                        if (slot.getStartHour() <= slot_student.getStartHour() &&
-                            slot.getStartHour() + slot.getDuration() > slot_student.getStartHour()) {
-                            return true; // há sobreposiçao
-                        }
-                        if (slot.getStartHour() < slot_student.getStartHour() + slot_student.getDuration()
-                            && slot.getStartHour() + slot.getDuration() >=
-                               slot_student.getStartHour() + slot_student.getDuration()) {
-                            return true;
-                        }
-                    }
-                }
+        for (Slot slot_student : studentSchedule.getSlots()) {
+            if (slot.getType() == "T" || slot_student.getType() == "T" || slot.getWeekday() != slot_student.getWeekday() || slot_student.getTurma().getUcCode() == turma->getClass().getUcCode()) {
+                return false;
+            }
+            if (slot.getStartHour() <= slot_student.getStartHour() &&
+                slot.getStartHour() + slot.getDuration() > slot_student.getStartHour()) {
+                return true; // há sobreposiçao
+            }
+            if (slot.getStartHour() < slot_student.getStartHour() + slot_student.getDuration()
+                && slot.getStartHour() + slot.getDuration() >=
+                   slot_student.getStartHour() + slot_student.getDuration()) {
+                return true;
             }
         }
-        return false;
     }
+    return false;
+
 }
 
 const vector<Request *> &Managing::getRejectedRequests() const {
