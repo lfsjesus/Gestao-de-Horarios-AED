@@ -442,16 +442,14 @@ vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS() {
 
     for(CourseUnit uc : ucs) { //para cada uc
         int count = 0;
-        for (string turma: uc.getClasses()) { //para cada turma da uc
             for (Student *student: students) { // em cada estudante
                 for (Turma turmaStud: student->getClasses()) { //em cada turma do estudante
-                    if (turma == turmaStud.getClassCode() &&
-                        uc.getUcCode() == turmaStud.getUcCode()) { //se a turma for igual, conta++
+                    if (turmaStud.getUcCode() == uc.getUcCode()) { //se a turma for igual, conta++
                         count++;
                     }
                 }
             }
-        }
+
         pair<int, CourseUnit> tempPair(count, uc);
         numberOfStudentsByUc.push_back(tempPair);
     }

@@ -974,8 +974,8 @@ void Menu::ucsMenu() {
 
             int escolha;
             do {
-                cout << "\t[1] Listar Anos por Ordem Decrescente de Nº de Alunos " << endl;
-                cout << "\t[2] Listar Anos por Ordem Crescente de Nº de Alunos " << endl;
+                cout << "\t[1] Listar UCs por Ordem Decrescente de Nº de Alunos " << endl;
+                cout << "\t[2] Listar UCs por Ordem Crescente de Nº de Alunos " << endl;
 
                 cout << endl;
                 cout << "\t[0] Voltar atrás" << endl;
@@ -1015,9 +1015,8 @@ void Menu::ucsMenu() {
                     }
                     cout << endl;
             }
-
-            getMenu();
     }
+    getMenu();
 }
 void Menu::ucsCrescenteMenu(){
 
