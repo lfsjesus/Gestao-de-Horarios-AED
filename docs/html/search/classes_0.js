@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['courseunit_42',['CourseUnit',['../classCourseUnit.html',1,'']]]
+  ['courseunit_44',['CourseUnit',['../classCourseUnit.html',1,'']]]
 ];

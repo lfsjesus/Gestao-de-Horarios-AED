@@ -104,11 +104,9 @@ const list&lt; <a class="el" href="classTurma.html">Turma</a> &gt; &amp;&#160;</
 <tr class="memitem:a2490d535dbcec09d8fc4f6e3ae3df39a"><td class="memItemLeft" align="right" valign="top"><a id="a2490d535dbcec09d8fc4f6e3ae3df39a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setClasses</b> (const list&lt; <a class="el" href="classTurma.html">Turma</a> &gt; &amp;classes)</td></tr>
 <tr class="separator:a2490d535dbcec09d8fc4f6e3ae3df39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acef74b1ebfa3c773d0444ad1d4314ef1"><td class="memItemLeft" align="right" valign="top"><a id="acef74b1ebfa3c773d0444ad1d4314ef1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addClass</b> (<a class="el" href="classTurma.html">Turma</a> _class)</td></tr>
+<tr class="memitem:acef74b1ebfa3c773d0444ad1d4314ef1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#acef74b1ebfa3c773d0444ad1d4314ef1">addClass</a> (<a class="el" href="classTurma.html">Turma</a> _class)</td></tr>
 <tr class="separator:acef74b1ebfa3c773d0444ad1d4314ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae985f8dad23f14ccb761c42abad433d8"><td class="memItemLeft" align="right" valign="top"><a id="ae985f8dad23f14ccb761c42abad433d8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeClass</b> (<a class="el" href="classTurma.html">Turma</a> _class)</td></tr>
+<tr class="memitem:ae985f8dad23f14ccb761c42abad433d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#ae985f8dad23f14ccb761c42abad433d8">removeClass</a> (<a class="el" href="classTurma.html">Turma</a> _class)</td></tr>
 <tr class="separator:ae985f8dad23f14ccb761c42abad433d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fa16bcc2db2fa13a47e729b6dbc7ab3"><td class="memItemLeft" align="right" valign="top"><a id="a9fa16bcc2db2fa13a47e729b6dbc7ab3"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classStudent.html">Student</a> &amp;student) const</td></tr>
@@ -126,6 +124,55 @@ Friends</h2></td></tr>
 ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (ostream &amp;os, const <a class="el" href="classStudent.html">Student</a> &amp;student)</td></tr>
 <tr class="separator:ab2261232b8a279d496d17ecdb9596452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="acef74b1ebfa3c773d0444ad1d4314ef1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acef74b1ebfa3c773d0444ad1d4314ef1">&#9670;&nbsp;</a></span>addClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Student::addClass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classTurma.html">Turma</a>&#160;</td>
+          <td class="paramname"><em>_class</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adiciona uma turma a um estudante. O(1). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_class</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae985f8dad23f14ccb761c42abad433d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae985f8dad23f14ccb761c42abad433d8">&#9670;&nbsp;</a></span>removeClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Student::removeClass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classTurma.html">Turma</a>&#160;</td>
+          <td class="paramname"><em>_class</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Elimina turma de um estudante. O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_class</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Classes/<a class="el" href="Student_8h_source.html">Student.h</a></li>
 <li>Classes/Student.cpp</li>
