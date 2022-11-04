@@ -612,7 +612,7 @@ bool Managing::checkBalancing(const Turma &turma) {
 
     sort(turmas.begin(), turmas.end());
 
-    bool already_unbalanced = turmas.back().first - turmas.back().first >= 4;
+    bool already_unbalanced = turmas.back().first - turmas.front().first >= 4;
 
     if (already_unbalanced) {
         if (this_turma_ocupation + 1 > turmas.back().first)
@@ -620,7 +620,7 @@ bool Managing::checkBalancing(const Turma &turma) {
         return true;
     }
 
-    return this_turma_ocupation + 1 <= turmas.back().first;
+    return this_turma_ocupation + 1 - turmas.front().first < 4;
 
 }
 
