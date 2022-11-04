@@ -86,98 +86,119 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="classManaging.html">Managing</a>();</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> readFiles();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">const</span> set&lt;Student *, studComp&gt; &amp;getStudents() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    set&lt;Student *, studComp&gt; getStudentsByYear(<span class="keywordtype">char</span> year);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> setStudents(<span class="keyword">const</span> set&lt;Student *, studComp&gt; &amp;students);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> addStudent(<span class="keyword">const</span> <a class="code" href="classStudent.html">Student</a> *student);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">const</span> set&lt;Schedule *, schedComp&gt; &amp;getSchedules() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> setSchedules(<span class="keyword">const</span> set&lt;Schedule *, schedComp&gt; &amp;schedules);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classManaging.html#ad3e6da8871b035bf10409858c43b847c">readFiles</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">const</span> set&lt;Student *, studComp&gt; &amp;getStudents() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    set&lt;Student *, studComp&gt; <a class="code" href="classManaging.html#ac0b9760bc399a6cf9dcd3cf41179d903">getStudentsByYear</a>(<span class="keywordtype">char</span> year);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">const</span> queue&lt;Request *&gt; &amp;getRequests() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> setStudents(<span class="keyword">const</span> set&lt;Student *, studComp&gt; &amp;students);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> setRequests(<span class="keyword">const</span> queue&lt;Request *&gt; &amp;requests);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    set&lt;CourseUnit&gt; getUcs(<span class="keywordtype">char</span> year = <span class="charliteral">&#39;0&#39;</span>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> setUcs(<span class="keyword">const</span> set&lt;CourseUnit&gt; &amp;ucs);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classManaging.html#a77cbcc6f287cb3acea37be3fa3d49f80">addStudent</a>(<span class="keyword">const</span> <a class="code" href="classStudent.html">Student</a> *student);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> eraseStudent(<a class="code" href="classStudent.html">Student</a> *s);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">const</span> set&lt;Schedule *, schedComp&gt; &amp;getSchedules() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">const</span> set&lt;Turma&gt; &amp;getClasses() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> setSchedules(<span class="keyword">const</span> set&lt;Schedule *, schedComp&gt; &amp;schedules);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> setClasses(<span class="keyword">const</span> set&lt;Turma&gt; &amp;classes);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">const</span> queue&lt;Request *&gt; &amp;getRequests() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    set&lt;Turma&gt; getClassesByYear(<span class="keywordtype">char</span> &amp;year);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> setRequests(<span class="keyword">const</span> queue&lt;Request *&gt; &amp;requests);</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classSchedule.html">Schedule</a> getStudentSchedule(<a class="code" href="classStudent.html">Student</a> *student);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    vector&lt;pair&lt;int, Turma&gt;&gt; getOcupacaoTurmas(set&lt;Turma&gt; _classes = {});</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    vector&lt;pair&lt;int, CourseUnit&gt;&gt; getOcupacaoUCS(set&lt;CourseUnit&gt; UCs = {});</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    vector&lt;pair&lt;int, string&gt;&gt; getOcupacaoYear();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> addRequest(<a class="code" href="classRequest.html">Request</a> *request);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    set&lt;Student *, studentByName&gt; sortStudentsByName(set&lt;Student *, studComp&gt; s);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    multiset&lt;Student *, studentByNUCS&gt; sortStudentsByNUCS(set&lt;Student *, studComp&gt; s);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> processRequests();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">bool</span> checkBalancing(<span class="keyword">const</span> <a class="code" href="classCourseUnit.html">CourseUnit</a> &amp;courseUnit);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">bool</span> checkSpaceAvailable(<a class="code" href="classTurma.html">Turma</a> &amp;turma);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">bool</span> checkScheduleOverlap(<a class="code" href="classStudent.html">Student</a> *student, <a class="code" href="classSchedule.html">Schedule</a> *turma);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">const</span> vector&lt;Request *&gt; &amp;getRejectedRequests() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> setRejectedRequests(<span class="keyword">const</span> vector&lt;Request *&gt; &amp;rejectedRequests);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    set&lt;CourseUnit&gt; <a class="code" href="classManaging.html#a884ef008ff62833997335a3f5e230c98">getUcs</a>(<span class="keywordtype">char</span> year = <span class="charliteral">&#39;0&#39;</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> setUcs(<span class="keyword">const</span> set&lt;CourseUnit&gt; &amp;ucs);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classManaging.html#a2df085f6af500aed96cb47ed5f219fe6">eraseStudent</a>(<a class="code" href="classStudent.html">Student</a> *s);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">const</span> set&lt;Turma&gt; &amp;getClasses() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> setClasses(<span class="keyword">const</span> set&lt;Turma&gt; &amp;classes);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    set&lt;Turma&gt; <a class="code" href="classManaging.html#abfe01f5e2f65116a4bdcc17189dc4629">getClassesByYear</a>(<span class="keywordtype">char</span> &amp;year);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> writeStudents();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> writeRequests();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> writeRejectedRequests();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    set&lt;Turma&gt; getClassesByUc(<span class="keywordtype">string</span> &amp;uc);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classSchedule.html">Schedule</a> <a class="code" href="classManaging.html#a4112ee69cb2e9ce59be8af7f1ff3e5ba">getStudentSchedule</a>(<a class="code" href="classStudent.html">Student</a> *student);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> emptyRejectedRequests();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    set&lt;Student *, studComp&gt; students;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    set&lt;Schedule *, schedComp&gt; schedules;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    queue&lt;Request *&gt; requests;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    vector&lt;Request *&gt; rejected_requests;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    set&lt;CourseUnit&gt; ucs;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    set&lt;Turma&gt; classes;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> readStudents();</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">void</span> readSchedules();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    vector&lt;pair&lt;int, Turma&gt;&gt; <a class="code" href="classManaging.html#a22eb75bd4b1e24724437e3b38d112905">getOcupacaoTurmas</a>(set&lt;Turma&gt; _classes = {});</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    vector&lt;pair&lt;int, CourseUnit&gt;&gt; <a class="code" href="classManaging.html#a32ef4d414d3c41cb11798bc791dfeff3">getOcupacaoUCS</a>(set&lt;CourseUnit&gt; UCs = {});</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">void</span> readCourseUnits();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> readRequests();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> readRejectedRequests();</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    vector&lt;pair&lt;int, string&gt;&gt; <a class="code" href="classManaging.html#a716bd0f8f1d8586bded48183a0b37d3e">getOcupacaoYear</a>();</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;};</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classManaging.html#aa5f3dfa87d0bbfd2c7630bfd31dd1448">addRequest</a>(<a class="code" href="classRequest.html">Request</a> *request);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    set&lt;Student *, studentByName&gt; <a class="code" href="classManaging.html#af15f5153b2a38ba7d3dfbc498062fc0a">sortStudentsByName</a>(set&lt;Student *, studComp&gt; s);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    multiset&lt;Student *, studentByNUCS&gt; <a class="code" href="classManaging.html#a22282f752cc045b3c8478bd97164cdf3">sortStudentsByNUCS</a>(set&lt;Student *, studComp&gt; s);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classManaging.html#a91cca520b0523f56e135d9128a2041f6">processRequests</a>();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classManaging.html#a06b6c969853fefdd989b408de202217e">checkBalancing</a>(<span class="keyword">const</span> <a class="code" href="classTurma.html">Turma</a> &amp;turma);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classManaging.html#a008ac44f4da29803de706d2a0a7fa933">checkSpaceAvailable</a>(<a class="code" href="classTurma.html">Turma</a> &amp;turma);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classManaging.html#a515c8e8b1ba6baea22bdf76f057e22e1">checkScheduleOverlap</a>(<a class="code" href="classStudent.html">Student</a> *student, <a class="code" href="classSchedule.html">Schedule</a> *turma);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keyword">const</span> vector&lt;Request *&gt; &amp;getRejectedRequests() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">void</span> setRejectedRequests(<span class="keyword">const</span> vector&lt;Request *&gt; &amp;rejectedRequests);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classManaging.html#a5ed62af601eb9a851d69bea8715d4b3a">writeStudents</a>();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classManaging.html#a22a90817268509f8c1a747ff37a5f4d9">writeRequests</a>();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classManaging.html#a1171b36eb2a8376ca0665fa1446c4b64">writeRejectedRequests</a>();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    set&lt;Turma&gt; <a class="code" href="classManaging.html#af1b990d1b48cb4f13e9523eefc52ff92">getClassesByUc</a>(<span class="keywordtype">string</span> &amp;uc);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keywordtype">void</span> emptyRejectedRequests();</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    set&lt;Student *, studComp&gt; students;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    set&lt;Schedule *, schedComp&gt; schedules;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    queue&lt;Request *&gt; requests;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    vector&lt;Request *&gt; rejected_requests;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    set&lt;CourseUnit&gt; ucs;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    set&lt;Turma&gt; classes;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keywordtype">void</span> readStudents();</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keywordtype">void</span> readSchedules();</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordtype">void</span> readCourseUnits();</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordtype">void</span> readRequests();</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordtype">void</span> readRejectedRequests();</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassCourseUnit_html"><div class="ttname"><a href="classCourseUnit.html">CourseUnit</a></div><div class="ttdef"><b>Definition:</b> CourseUnit.h:8</div></div>
+<div class="ttc" id="aclassManaging_html_af1b990d1b48cb4f13e9523eefc52ff92"><div class="ttname"><a href="classManaging.html#af1b990d1b48cb4f13e9523eefc52ff92">Managing::getClassesByUc</a></div><div class="ttdeci">set&lt; Turma &gt; getClassesByUc(string &amp;uc)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:343</div></div>
+<div class="ttc" id="aclassManaging_html_a716bd0f8f1d8586bded48183a0b37d3e"><div class="ttname"><a href="classManaging.html#a716bd0f8f1d8586bded48183a0b37d3e">Managing::getOcupacaoYear</a></div><div class="ttdeci">vector&lt; pair&lt; int, string &gt; &gt; getOcupacaoYear()</div><div class="ttdef"><b>Definition:</b> Managing.cpp:440</div></div>
+<div class="ttc" id="aclassManaging_html_ac0b9760bc399a6cf9dcd3cf41179d903"><div class="ttname"><a href="classManaging.html#ac0b9760bc399a6cf9dcd3cf41179d903">Managing::getStudentsByYear</a></div><div class="ttdeci">set&lt; Student *, studComp &gt; getStudentsByYear(char year)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:721</div></div>
+<div class="ttc" id="aclassManaging_html_ad3e6da8871b035bf10409858c43b847c"><div class="ttname"><a href="classManaging.html#ad3e6da8871b035bf10409858c43b847c">Managing::readFiles</a></div><div class="ttdeci">void readFiles()</div><div class="ttdef"><b>Definition:</b> Managing.cpp:17</div></div>
+<div class="ttc" id="aclassManaging_html_a22282f752cc045b3c8478bd97164cdf3"><div class="ttname"><a href="classManaging.html#a22282f752cc045b3c8478bd97164cdf3">Managing::sortStudentsByNUCS</a></div><div class="ttdeci">multiset&lt; Student *, studentByNUCS &gt; sortStudentsByNUCS(set&lt; Student *, studComp &gt; s)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:374</div></div>
+<div class="ttc" id="aclassManaging_html_abfe01f5e2f65116a4bdcc17189dc4629"><div class="ttname"><a href="classManaging.html#abfe01f5e2f65116a4bdcc17189dc4629">Managing::getClassesByYear</a></div><div class="ttdeci">set&lt; Turma &gt; getClassesByYear(char &amp;year)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:331</div></div>
+<div class="ttc" id="aclassManaging_html_a22eb75bd4b1e24724437e3b38d112905"><div class="ttname"><a href="classManaging.html#a22eb75bd4b1e24724437e3b38d112905">Managing::getOcupacaoTurmas</a></div><div class="ttdeci">vector&lt; pair&lt; int, Turma &gt; &gt; getOcupacaoTurmas(set&lt; Turma &gt; _classes={})</div><div class="ttdef"><b>Definition:</b> Managing.cpp:400</div></div>
+<div class="ttc" id="aclassManaging_html_aa5f3dfa87d0bbfd2c7630bfd31dd1448"><div class="ttname"><a href="classManaging.html#aa5f3dfa87d0bbfd2c7630bfd31dd1448">Managing::addRequest</a></div><div class="ttdeci">void addRequest(Request *request)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:382</div></div>
 <div class="ttc" id="aclassManaging_html"><div class="ttname"><a href="classManaging.html">Managing</a></div><div class="ttdef"><b>Definition:</b> Managing.h:12</div></div>
+<div class="ttc" id="aclassManaging_html_a32ef4d414d3c41cb11798bc791dfeff3"><div class="ttname"><a href="classManaging.html#a32ef4d414d3c41cb11798bc791dfeff3">Managing::getOcupacaoUCS</a></div><div class="ttdeci">vector&lt; pair&lt; int, CourseUnit &gt; &gt; getOcupacaoUCS(set&lt; CourseUnit &gt; UCs={})</div><div class="ttdef"><b>Definition:</b> Managing.cpp:419</div></div>
+<div class="ttc" id="aclassManaging_html_a515c8e8b1ba6baea22bdf76f057e22e1"><div class="ttname"><a href="classManaging.html#a515c8e8b1ba6baea22bdf76f057e22e1">Managing::checkScheduleOverlap</a></div><div class="ttdeci">bool checkScheduleOverlap(Student *student, Schedule *turma)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:642</div></div>
+<div class="ttc" id="aclassManaging_html_a884ef008ff62833997335a3f5e230c98"><div class="ttname"><a href="classManaging.html#a884ef008ff62833997335a3f5e230c98">Managing::getUcs</a></div><div class="ttdeci">set&lt; CourseUnit &gt; getUcs(char year='0')</div><div class="ttdef"><b>Definition:</b> Managing.cpp:317</div></div>
+<div class="ttc" id="aclassManaging_html_a2df085f6af500aed96cb47ed5f219fe6"><div class="ttname"><a href="classManaging.html#a2df085f6af500aed96cb47ed5f219fe6">Managing::eraseStudent</a></div><div class="ttdeci">void eraseStudent(Student *s)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:354</div></div>
 <div class="ttc" id="aclassSchedule_html"><div class="ttname"><a href="classSchedule.html">Schedule</a></div><div class="ttdef"><b>Definition:</b> Schedule.h:10</div></div>
 <div class="ttc" id="aclassRequest_html"><div class="ttname"><a href="classRequest.html">Request</a></div><div class="ttdef"><b>Definition:</b> Request.h:6</div></div>
+<div class="ttc" id="aclassManaging_html_a22a90817268509f8c1a747ff37a5f4d9"><div class="ttname"><a href="classManaging.html#a22a90817268509f8c1a747ff37a5f4d9">Managing::writeRequests</a></div><div class="ttdeci">void writeRequests()</div><div class="ttdef"><b>Definition:</b> Managing.cpp:687</div></div>
+<div class="ttc" id="aclassManaging_html_af15f5153b2a38ba7d3dfbc498062fc0a"><div class="ttname"><a href="classManaging.html#af15f5153b2a38ba7d3dfbc498062fc0a">Managing::sortStudentsByName</a></div><div class="ttdeci">set&lt; Student *, studentByName &gt; sortStudentsByName(set&lt; Student *, studComp &gt; s)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:366</div></div>
+<div class="ttc" id="aclassManaging_html_a06b6c969853fefdd989b408de202217e"><div class="ttname"><a href="classManaging.html#a06b6c969853fefdd989b408de202217e">Managing::checkBalancing</a></div><div class="ttdeci">bool checkBalancing(const Turma &amp;turma)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:600</div></div>
+<div class="ttc" id="aclassManaging_html_a008ac44f4da29803de706d2a0a7fa933"><div class="ttname"><a href="classManaging.html#a008ac44f4da29803de706d2a0a7fa933">Managing::checkSpaceAvailable</a></div><div class="ttdeci">bool checkSpaceAvailable(Turma &amp;turma)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:627</div></div>
+<div class="ttc" id="aclassManaging_html_a1171b36eb2a8376ca0665fa1446c4b64"><div class="ttname"><a href="classManaging.html#a1171b36eb2a8376ca0665fa1446c4b64">Managing::writeRejectedRequests</a></div><div class="ttdeci">void writeRejectedRequests()</div><div class="ttdef"><b>Definition:</b> Managing.cpp:705</div></div>
 <div class="ttc" id="aclassStudent_html"><div class="ttname"><a href="classStudent.html">Student</a></div><div class="ttdef"><b>Definition:</b> Student.h:12</div></div>
+<div class="ttc" id="aclassManaging_html_a5ed62af601eb9a851d69bea8715d4b3a"><div class="ttname"><a href="classManaging.html#a5ed62af601eb9a851d69bea8715d4b3a">Managing::writeStudents</a></div><div class="ttdeci">void writeStudents()</div><div class="ttdef"><b>Definition:</b> Managing.cpp:674</div></div>
 <div class="ttc" id="aclassTurma_html"><div class="ttname"><a href="classTurma.html">Turma</a></div><div class="ttdef"><b>Definition:</b> Turma.h:8</div></div>
+<div class="ttc" id="aclassManaging_html_a77cbcc6f287cb3acea37be3fa3d49f80"><div class="ttname"><a href="classManaging.html#a77cbcc6f287cb3acea37be3fa3d49f80">Managing::addStudent</a></div><div class="ttdeci">void addStudent(const Student *student)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:291</div></div>
+<div class="ttc" id="aclassManaging_html_a4112ee69cb2e9ce59be8af7f1ff3e5ba"><div class="ttname"><a href="classManaging.html#a4112ee69cb2e9ce59be8af7f1ff3e5ba">Managing::getStudentSchedule</a></div><div class="ttdeci">Schedule getStudentSchedule(Student *student)</div><div class="ttdef"><b>Definition:</b> Managing.cpp:387</div></div>
+<div class="ttc" id="aclassManaging_html_a91cca520b0523f56e135d9128a2041f6"><div class="ttname"><a href="classManaging.html#a91cca520b0523f56e135d9128a2041f6">Managing::processRequests</a></div><div class="ttdeci">void processRequests()</div><div class="ttdef"><b>Definition:</b> Managing.cpp:462</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

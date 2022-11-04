@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['readme_3',['README',['../md_README.html',1,'']]],
-  ['request_4',['Request',['../classRequest.html',1,'']]]
+  ['erasestudent_8',['eraseStudent',['../classManaging.html#a2df085f6af500aed96cb47ed5f219fe6',1,'Managing']]]
 ];

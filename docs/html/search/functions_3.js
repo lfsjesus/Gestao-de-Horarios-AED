@@ -1,7 +1,11 @@
 var searchData=
 [
-  ['readcourseunits_47',['readCourseUnits',['../classManaging.html#a1d0b9e4197d10b791674aeb661d11a09',1,'Managing']]],
-  ['readfiles_48',['readFiles',['../classManaging.html#ad3e6da8871b035bf10409858c43b847c',1,'Managing']]],
-  ['readschedules_49',['readSchedules',['../classManaging.html#a83faf67e090cbe57bb9b4336dd017788',1,'Managing']]],
-  ['readstudents_50',['readStudents',['../classManaging.html#a447ab4eb447360d1d038dcf34edeb7d9',1,'Managing']]]
+  ['getclassesbyuc_62',['getClassesByUc',['../classManaging.html#af1b990d1b48cb4f13e9523eefc52ff92',1,'Managing']]],
+  ['getclassesbyyear_63',['getClassesByYear',['../classManaging.html#abfe01f5e2f65116a4bdcc17189dc4629',1,'Managing']]],
+  ['getocupacaoturmas_64',['getOcupacaoTurmas',['../classManaging.html#a22eb75bd4b1e24724437e3b38d112905',1,'Managing']]],
+  ['getocupacaoucs_65',['getOcupacaoUCS',['../classManaging.html#a32ef4d414d3c41cb11798bc791dfeff3',1,'Managing']]],
+  ['getocupacaoyear_66',['getOcupacaoYear',['../classManaging.html#a716bd0f8f1d8586bded48183a0b37d3e',1,'Managing']]],
+  ['getstudentsbyyear_67',['getStudentsByYear',['../classManaging.html#ac0b9760bc399a6cf9dcd3cf41179d903',1,'Managing']]],
+  ['getstudentschedule_68',['getStudentSchedule',['../classManaging.html#a4112ee69cb2e9ce59be8af7f1ff3e5ba',1,'Managing']]],
+  ['getucs_69',['getUcs',['../classManaging.html#a884ef008ff62833997335a3f5e230c98',1,'Managing']]]
 ];

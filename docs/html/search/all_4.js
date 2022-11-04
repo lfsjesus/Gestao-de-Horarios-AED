@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['turma_12',['Turma',['../classTurma.html',1,'Turma'],['../classTurma.html#a6a14b1b9111131c5562f48493f9e674c',1,'Turma::Turma()']]]
+  ['insertclass_17',['insertClass',['../classCourseUnit.html#afd90dfb5759ff4c687330a78c230829a',1,'CourseUnit']]]
 ];

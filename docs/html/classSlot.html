@@ -107,14 +107,11 @@ const <a class="el" href="classTurma.html">Turma</a> &amp;&#160;</td><td class="
 <tr class="memitem:ac94da8e396bbca3e42579e9e13d4afca"><td class="memItemLeft" align="right" valign="top"><a id="ac94da8e396bbca3e42579e9e13d4afca"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setTurma</b> (const <a class="el" href="classTurma.html">Turma</a> &amp;turma)</td></tr>
 <tr class="separator:ac94da8e396bbca3e42579e9e13d4afca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31fa31a025ca632a11a61d65cf0aad4e"><td class="memItemLeft" align="right" valign="top"><a id="a31fa31a025ca632a11a61d65cf0aad4e"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>weekdayToNum</b> (string weekday) const</td></tr>
+<tr class="memitem:a31fa31a025ca632a11a61d65cf0aad4e"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSlot.html#a31fa31a025ca632a11a61d65cf0aad4e">weekdayToNum</a> (string weekday) const</td></tr>
 <tr class="separator:a31fa31a025ca632a11a61d65cf0aad4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8066ad050f01cf2031a88312655b0cb1"><td class="memItemLeft" align="right" valign="top"><a id="a8066ad050f01cf2031a88312655b0cb1"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>convert_hours</b> (float _hours) const</td></tr>
+<tr class="memitem:a8066ad050f01cf2031a88312655b0cb1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSlot.html#a8066ad050f01cf2031a88312655b0cb1">convert_hours</a> (float _hours) const</td></tr>
 <tr class="separator:a8066ad050f01cf2031a88312655b0cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d0de7b30d2d5c76cb5d2cf356347a61"><td class="memItemLeft" align="right" valign="top"><a id="a3d0de7b30d2d5c76cb5d2cf356347a61"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>to_portuguese</b> (string weekday) const</td></tr>
+<tr class="memitem:a3d0de7b30d2d5c76cb5d2cf356347a61"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSlot.html#a3d0de7b30d2d5c76cb5d2cf356347a61">to_portuguese</a> (string weekday) const</td></tr>
 <tr class="separator:a3d0de7b30d2d5c76cb5d2cf356347a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74e494f78c0b71a2ac348c731834da56"><td class="memItemLeft" align="right" valign="top"><a id="a74e494f78c0b71a2ac348c731834da56"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classSlot.html">Slot</a> &amp;slot) const</td></tr>
@@ -129,6 +126,82 @@ Friends</h2></td></tr>
 ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (ostream &amp;os, const <a class="el" href="classSlot.html">Slot</a> &amp;slot)</td></tr>
 <tr class="separator:a3d82539f54dfa182e5ba8a08dd912ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8066ad050f01cf2031a88312655b0cb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8066ad050f01cf2031a88312655b0cb1">&#9670;&nbsp;</a></span>convert_hours()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Slot::convert_hours </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>_hours</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Converte de decimal, para formato horário. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_hours</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string com as horas no formato habitual. </dd></dl>
+
+</div>
+</div>
+<a id="a3d0de7b30d2d5c76cb5d2cf356347a61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d0de7b30d2d5c76cb5d2cf356347a61">&#9670;&nbsp;</a></span>to_portuguese()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Slot::to_portuguese </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>weekday</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">weekday</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>dia da semana em português </dd></dl>
+
+</div>
+</div>
+<a id="a31fa31a025ca632a11a61d65cf0aad4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31fa31a025ca632a11a61d65cf0aad4e">&#9670;&nbsp;</a></span>weekdayToNum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned Slot::weekdayToNum </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>weekday</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permite comparar dias da semana mais facilmente, atribuindo-lhes um número. O(1). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">weekday</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>número do dia da semana </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Classes/<a class="el" href="Slot_8h_source.html">Slot.h</a></li>
 <li>Classes/Slot.cpp</li>
