@@ -30,7 +30,7 @@ public:
     void setStudents(const set<Student *, studComp> &students);
 
     /**
-     * adiciona um pointer estudante ao set de pointers de estudantes. O(1).
+     * adiciona um pointer estudante ao set de pointers de estudantes. O(n log(n)).
      * @param student
      */
     void addStudent(const Student *student);
