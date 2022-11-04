@@ -39,7 +39,7 @@ public:
     friend ostream &operator<<(ostream &os, const Schedule &schedule);
 
     /**
-    * ordena um horário, ordenando os slots respetivamente. O(n).
+    * ordena os slots de um horário e elimina slots iguais, caso existam (horários de uma UC, onde aparece a mesma aula teórica múltiplas vezes). O(n).
     */
     void sort();
 

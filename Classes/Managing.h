@@ -180,14 +180,34 @@ private:
     set<CourseUnit> ucs;
     set<Turma> classes;
 
+    /**
+     * lê o ficheiro dos estudantes.
+     * Complexidade temporal: O(n log(n))
+     */
     void readStudents();
 
+    /**
+     * lê o ficheiro dos horários
+     * Complexidade temporal: O(n log(n))
+     */
     void readSchedules();
 
+    /**
+     * lê o ficheiro das UCs/Turmas
+     * Complexidade temporal: O(n log(n))
+     */
     void readCourseUnits();
 
+    /**
+     * le o ficheiro dos pedidos
+     * Complexidade temporal: O(n²) - dependente das linhas do ficheiro (n) e, em cada linha, do número de novas turmas (o parser tem complexidade temporal O(n), sendo n o número de novas turmas no pedido)
+     */
     void readRequests();
 
+    /**
+     * le o ficheiro dos pedidos rejeitados
+     * Complexidade temporal: O(n²) - dependente das linhas do ficheiro (n) e, em cada linha, do número de novas turmas (o parser tem complexidade temporal O(n), sendo n o número de turmas cuja inscrição foi rejeitada)
+     */
     void readRejectedRequests();
 
 };

@@ -24,7 +24,7 @@ public:
     void setUcCode(const string &ucCode);
 
     /**
-     * imprime a turma no terminal
+     * Imprime a turma no terminal.
      */
     void printClass();
 

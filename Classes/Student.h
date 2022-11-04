@@ -33,8 +33,16 @@ public:
 
     void setClasses(const list<Turma> &classes);
 
+    /**
+     * Adiciona uma turma a um estudante. O(1).
+     * @param _class
+     */
     void addClass(Turma _class);
 
+    /**
+     * Elimina turma de um estudante. O(n).
+     * @param _class
+     */
     void removeClass(Turma _class);
 
     bool operator==(const Student &student) const;
