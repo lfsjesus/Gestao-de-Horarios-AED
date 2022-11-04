@@ -1794,6 +1794,8 @@ void Menu::efetivadosMenu() {
     } else {
         cout << "Todos pedidos foram aceites." << endl;
     }
+    menuState.pop();
+    getMenu();
 }
 
 
