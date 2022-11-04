@@ -26,10 +26,21 @@ public:
 
     void setSlots(const list<Slot> &slots);
 
+    /**
+    * adiciona um slot ao horário. O(1).
+    * @param slot
+    */
     void addSlot(Slot slot);
 
+    /**
+    * adiciona um slot ao horário. O(1).
+    * @param slot
+    */
     friend ostream &operator<<(ostream &os, const Schedule &schedule);
 
+    /**
+    * ordena um horário, ordenando os slots respetivamente. O(n).
+    */
     void sort();
 
 private:

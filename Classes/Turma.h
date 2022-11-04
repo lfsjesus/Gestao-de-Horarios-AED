@@ -23,6 +23,9 @@ public:
 
     void setUcCode(const string &ucCode);
 
+    /**
+     * imprime a turma no terminal
+     */
     void printClass();
 
     bool operator==(const Turma &turma) const;

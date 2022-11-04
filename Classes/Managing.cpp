@@ -486,7 +486,7 @@ void Managing::processRequests() {
                     continue;
                 }
 
-                bool balance = checkBalancing(CourseUnit((*it).getUcCode()));
+                bool balance = checkBalancing(*it);
                 bool space = checkSpaceAvailable((*it));
                 auto schedule = schedules.find(new Schedule((*it)));
                 bool overlap = checkScheduleOverlap(*students.find(*student), (*schedule));
@@ -518,7 +518,7 @@ void Managing::processRequests() {
                     break;
                 }
 
-                bool balance = checkBalancing(CourseUnit((*it).getUcCode()));
+                bool balance = checkBalancing(*it);
                 bool space = checkSpaceAvailable((*it));
                 auto schedule = schedules.find(new Schedule((*it)));
                 bool overlap = checkScheduleOverlap((*student_changing), (*schedule));
@@ -597,20 +597,31 @@ void Managing::processRequests() {
     }
 }
 
-bool Managing::checkBalancing(const CourseUnit &courseUnit) {
+bool Managing::checkBalancing(const Turma &turma) {
     vector<pair<int, Turma>> turmas_ocupacao = getOcupacaoTurmas();
-    sort(turmas_ocupacao.begin(), turmas_ocupacao.end());
+    int this_turma_ocupation; //turma que o estudante pretende
     vector<pair<int, Turma>> turmas;
 
     for (auto pair: turmas_ocupacao) {
-        if (pair.second.getUcCode() == courseUnit.getUcCode())
+        if (pair.second.getUcCode() == turma.getUcCode()) {
             turmas.push_back(pair);
+            if (turma == pair.second)
+                this_turma_ocupation = pair.first;
+        }
     }
 
-    if (turmas.front().first - turmas.back().first >= 4)
-        return false;
+    sort(turmas.begin(), turmas.end());
 
-    return true;
+    bool already_unbalanced = turmas.back().first - turmas.back().first >= 4;
+
+    if (already_unbalanced) {
+        if (this_turma_ocupation + 1 > turmas.back().first)
+            return false;
+        return true;
+    }
+
+    return this_turma_ocupation + 1 <= turmas.back().first;
+
 }
 
 bool Managing::checkSpaceAvailable(Turma &turma) {
@@ -618,14 +629,14 @@ bool Managing::checkSpaceAvailable(Turma &turma) {
 
     for (auto pair: turmas_ocupacao) {
         if (pair.second == turma) {
-            if (pair.first + 1 >= 30)
+            if (pair.first + 1 > 30)
                 return false;
             else
                 return true;
         }
     }
 
-    return false;
+    return true;
 }
 
 bool Managing::checkScheduleOverlap(Student *student, Schedule *turma) {
