@@ -1167,13 +1167,12 @@ void Menu::horarioAluno(){
         myStudent = students.find(new Student(escolha));
     } while (myStudent == students.end());
 
-    cout << (*myStudent)->getName() << endl;
-
     Schedule studentSchedule = m.getStudentSchedule((*myStudent));
 
     cout << "Horário de: " << (*myStudent)->getName() << endl;
     studentSchedule.sort();
-    cout << studentSchedule << endl;
+    cout << studentSchedule;
+    cout << "  ----------------------------------------------------------------------------------------" << endl;
 
     getMenu();
 }
@@ -1254,7 +1253,8 @@ void Menu::horarioTurma(){
         }
     }
     classSchedule.sort();
-    cout << '\t' << classSchedule << endl;
+    cout << '\t' << classSchedule;
+    cout << "  ----------------------------------------------------------------------------------------" << endl;
     menuState.pop();
     getMenu();
 }
@@ -1318,7 +1318,8 @@ void Menu::horarioUc(){
     }
     ucSchedule.sort(); //aqui ordena todos os slots da UC
     //o ucSchedule nao tem turma associada, uma vez que aqui estamos a falar de uma UC e nao de uma turma
-    cout << '\t' << ucSchedule << endl;
+    cout << '\t' << ucSchedule;
+    cout << "  ----------------------------------------------------------------------------------------" << endl << endl;
 
     menuState.pop();
     getMenu();

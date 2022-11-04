@@ -334,7 +334,7 @@ set<CourseUnit> Managing::getUcs(char year) {
     return filtered_ucs;
 }
 
-set<Turma> Managing::getClassesByYear(char year) {
+set<Turma> Managing::getClassesByYear(char& year) {
     set<Turma> filtered_classes;
 
     for (Turma turma : this->classes) {
@@ -346,7 +346,7 @@ set<Turma> Managing::getClassesByYear(char year) {
 }
 
 
-set<Turma> Managing::getClassesByUc(string uc) {
+set<Turma> Managing::getClassesByUc(string& uc) {
     set<Turma> filtered_classes;
 
     for (Turma turma : this->classes) {
@@ -385,7 +385,7 @@ multiset<Student*, studentByNUCS> Managing::sortStudentsByNUCS(const set<Student
     return sortedByNUCS;
 }
 
-bool Managing::addRequest(Request* request) {
+void Managing::addRequest(Request* request) {
     requests.push(request);
     writeRequests();
 }
@@ -403,9 +403,11 @@ Schedule Managing::getStudentSchedule(Student *student) {
     return studentSchedule;
 }
 
-vector<pair<int, Turma>> Managing::getOcupacaoTurmas() { //usa o set turmas default
+vector<pair<int, Turma>> Managing::getOcupacaoTurmas(set<Turma> _classes) { //usa um set de turmas passado por argumento, exemplo turmas só de um ano
     vector<pair<int,Turma>> numberOfStudentsByClass;
-    for (Turma turma : classes){
+    if (_classes.empty())
+        _classes = classes;
+    for (Turma turma : _classes){
         int count = 0;
         for(Student* student : students){
             for(Turma turmaStud : student->getClasses()){
@@ -420,27 +422,11 @@ vector<pair<int, Turma>> Managing::getOcupacaoTurmas() { //usa o set turmas defa
     return numberOfStudentsByClass;
 }
 
-vector<pair<int, Turma>> Managing::getOcupacaoTurmas(set<Turma> classes) { //usa um set de turmas passado por argumento, exemplo turmas só de um ano
-    vector<pair<int,Turma>> numberOfStudentsByClass;
-    for (Turma turma : classes){
-        int count = 0;
-        for(Student* student : students){
-            for(Turma turmaStud : student->getClasses()){
-                if (turma == turmaStud){
-                    count++;
-                }
-            }
-        }
-        pair<int,Turma> tempPair(count,turma);
-        numberOfStudentsByClass.push_back(tempPair);
-    }
-    return numberOfStudentsByClass;
-}
-
-vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS() {
+vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS(set<CourseUnit> UCs) {
     vector<pair<int,CourseUnit>> numberOfStudentsByUc;
-
-    for(CourseUnit uc : ucs) { //para cada uc
+    if (UCs.empty())
+        UCs = ucs;
+    for(CourseUnit uc : UCs) { //para cada uc
         int count = 0;
             for (Student *student: students) { // em cada estudante
                 for (Turma turmaStud: student->getClasses()) { //em cada turma do estudante
@@ -450,27 +436,6 @@ vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS() {
                 }
             }
 
-        pair<int, CourseUnit> tempPair(count, uc);
-        numberOfStudentsByUc.push_back(tempPair);
-    }
-    return numberOfStudentsByUc;
-}
-
-vector<pair<int, CourseUnit>> Managing::getOcupacaoUCS(set<CourseUnit> ucs) {
-    vector<pair<int,CourseUnit>> numberOfStudentsByUc;
-
-    for(CourseUnit uc : ucs) { //para cada uc
-        int count = 0;
-        for (string turma: uc.getClasses()) { //para cada turma da uc
-            for (Student *student: students) { // em cada estudante
-                for (Turma turmaStud: student->getClasses()) { //em cada turma do estudante
-                    if (turma == turmaStud.getClassCode() &&
-                        uc.getUcCode() == turmaStud.getUcCode()) { //se a turma for igual, conta++
-                        count++;
-                    }
-                }
-            }
-        }
         pair<int, CourseUnit> tempPair(count, uc);
         numberOfStudentsByUc.push_back(tempPair);
     }
@@ -646,7 +611,7 @@ void Managing::processRequests() {
     }
 }
 
-bool Managing::checkBalancing(CourseUnit courseUnit) {
+bool Managing::checkBalancing(const CourseUnit& courseUnit) {
     /*
 
      Esta funçao pega no vetor que tem a ocupaçao de todas as turmas
@@ -669,7 +634,7 @@ bool Managing::checkBalancing(CourseUnit courseUnit) {
     return true;
 }
 
-bool Managing::checkSpaceAvailable(Turma turma) {
+bool Managing::checkSpaceAvailable(Turma& turma) {
     vector<pair<int,Turma>> turmas_ocupacao = getOcupacaoTurmas();
 
     for (auto pair : turmas_ocupacao) {

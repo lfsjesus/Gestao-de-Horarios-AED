@@ -38,21 +38,19 @@ public:
 
     const set<Turma> &getClasses() const;
 
-    void setClasses(const set<Turma> &classes);
+    void setClasses(const set<Turma>& classes);
 
-    set<Turma> getClassesByYear(char year);
+    set<Turma> getClassesByYear(char& year);
 
     Schedule getStudentSchedule(Student* student);
 
-    vector<pair<int,Turma>> getOcupacaoTurmas();
-    vector<pair<int,Turma>> getOcupacaoTurmas(set<Turma> classes);
+    vector<pair<int,Turma>> getOcupacaoTurmas(set<Turma> _classes = {});
 
-    vector<pair<int,CourseUnit>> getOcupacaoUCS();
-    vector<pair<int,CourseUnit>> getOcupacaoUCS(set<CourseUnit> ucs);
+    vector<pair<int,CourseUnit>> getOcupacaoUCS(set<CourseUnit> UCs = {});
 
     vector<pair<int,string>> getOcupacaoYear();
 
-    bool addRequest(Request* request);
+    void addRequest(Request* request);
 
     set<Student*, studentByName> sortStudentsByName(set<Student *, studComp> s);
 
@@ -60,9 +58,9 @@ public:
 
     void processRequests();
 
-    bool checkBalancing(CourseUnit courseUnit);
+    bool checkBalancing(const CourseUnit& courseUnit);
 
-    bool checkSpaceAvailable(Turma turma);
+    bool checkSpaceAvailable(Turma& turma);
 
     bool checkScheduleOverlap(Student* student, Schedule* turma);
 
@@ -76,7 +74,7 @@ public:
 
     void writeRejectedRequests();
 
-    set<Turma> getClassesByUc(string uc);
+    set<Turma> getClassesByUc(string& uc);
 
     void emptyRejectedRequests();
 

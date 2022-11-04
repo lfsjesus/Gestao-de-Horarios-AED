@@ -39,7 +39,12 @@ bool Slot::operator==(const Slot& slot) const{
 }
 
 ostream& operator<<(ostream& os, const Slot& slot){
-    os << slot.weekday << " " << slot.type << " " << slot.startHour << " " << slot.duration << " ---> ( Turma: "<< slot.turma.getClassCode() << " | " << slot.turma.getUcCode() << " )";
+    os << setw(10) << slot.weekday
+    << setw(10) << slot.type
+    << setw(10) << fixed << setprecision(1) << slot.startHour
+    << setw(10) << fixed << setprecision(1) << slot.duration
+    << setw(20) << "( Turma: " << slot.turma.getClassCode() << " | " << slot.turma.getUcCode() << " )";
+
     return os;
 }
 
