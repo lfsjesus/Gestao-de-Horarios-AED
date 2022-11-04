@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include "Turma.h"
 #include <algorithm>
@@ -28,7 +29,7 @@ public:
 
     void setDuration(float duration);
 
-    friend ostream& operator<<(ostream& os, const Slot& slot);
+    friend ostream &operator<<(ostream &os, const Slot &slot);
 
     const Turma &getTurma() const;
 
@@ -36,12 +37,13 @@ public:
 
     unsigned weekdayToNum(const string weekday) const;
 
-    bool operator==(const Slot& slot) const;
-    bool operator<(const Slot& slot) const;
+    bool operator==(const Slot &slot) const;
+
+    bool operator<(const Slot &slot) const;
 
 
 private:
-    Turma turma; //CADA AULA (SLOT) TEM DE TER UMA TURMA ASSOCIADA, CASO CONTRARIO, NAO PODERIAM HAVER AULAS SIMULTANEAS, POIS SERIAM A MESMA AULA (EX FISICA ÀS 10 E AED ÀS 10 NAO SÃO O MESMO SLOT)
+    Turma turma;
     string type;
     string weekday;
     float startHour;

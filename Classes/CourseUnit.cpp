@@ -17,8 +17,8 @@ void CourseUnit::setClasses(const set<string> &classes) {
     CourseUnit::classes = classes;
 }
 
-CourseUnit::CourseUnit(string ucCode) {
-    this->ucCode = ucCode;
+CourseUnit::CourseUnit(string _ucCode) {
+    this->ucCode = _ucCode;
 }
 
 void CourseUnit::insertClass(string &_class) {
@@ -33,21 +33,9 @@ bool CourseUnit::operator==(const CourseUnit &courseUnit) const {
 CourseUnit::CourseUnit() {
     this->ucCode = "-";
 }
+
 bool CourseUnit::operator<(const CourseUnit &rhs) const {
     return ucCode < rhs.ucCode;
 }
-
-bool CourseUnit::operator>(const CourseUnit &rhs) const {
-    return rhs < *this;
-}
-
-bool CourseUnit::operator<=(const CourseUnit &rhs) const {
-    return !(rhs < *this);
-}
-
-bool CourseUnit::operator>=(const CourseUnit &rhs) const {
-    return !(*this < rhs);
-}
-
 
 

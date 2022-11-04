@@ -74,9 +74,7 @@ ostream &operator<<(ostream &os, const Request &request) {
             os << ", ";
         }
         os << " || ";
-    }
-
-    else if (request.type == "Troca Singular") {
+    } else if (request.type == "Troca Singular") {
         os << "\tTipo de pedido: Troca de Turma" << endl;
         os << "\tEstudante: " << request.studentCode1 << endl;
         os << "\tPretende trocar para as seguintes turmas: ";
@@ -84,9 +82,7 @@ ostream &operator<<(ostream &os, const Request &request) {
             t.printClass();
             os << " || ";
         }
-    }
-
-    else {
+    } else {
         os << "\tTipo de pedido: Troca de turma com outro estudante" << endl;
         os << "\tEstudante que pretende trocar: " << request.studentCode1 << endl;
         os << "\tEstudante 2: " << request.studentCode2 << endl;

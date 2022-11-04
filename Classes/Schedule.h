@@ -11,33 +11,29 @@ class Schedule {
 
 public:
     Schedule();
+
     Schedule(const Turma &);
+
     Schedule(const Turma &, const list<Slot> &scheduleClass);
 
     const Turma &getClass() const;
 
     bool operator<(const Schedule &rhs) const;
 
-    bool operator>(const Schedule &rhs) const;
-
-    bool operator<=(const Schedule &rhs) const;
-
-    bool operator>=(const Schedule &rhs) const;
-
     void setClass(const Turma &_class);
 
     const list<Slot> &getSlots() const;
+
     void setSlots(const list<Slot> &slots);
+
     void addSlot(Slot slot);
 
-    // Faz print de uma tabela toda bonita no terminal
+    friend ostream &operator<<(ostream &os, const Schedule &schedule);
 
-    friend ostream& operator<<(ostream& os, const Schedule& schedule);
     void sort();
 
 private:
-    //CourseUnit uc;
-    Turma _class; //ESTA CLASSE É PARA MOSTRAR O HORARIO DE CADA TURMA, MAS CADA AULA PRECISA DE ESTAR LIGADA A UMA TURMA - ver comentario da class Slot
-    list<Slot> slots; //falta ordenar esta lista amanha implementar uma função comparadar para dar sort da lista :D #forçaequipa
+    Turma _class;
+    list<Slot> slots;
 
 };

@@ -1,13 +1,15 @@
 #pragma once
+
 #include <set>
 #include <iostream>
+
 using namespace std;
 
 class CourseUnit {
 public:
     CourseUnit();
 
-    CourseUnit(string ucCode);
+    CourseUnit(string _ucCode);
 
     const string &getUcCode() const;
 
@@ -17,17 +19,12 @@ public:
 
     void setClasses(const set<string> &classes);
 
-    bool operator==(const CourseUnit& courseUnit) const;
+    bool operator==(const CourseUnit &courseUnit) const;
 
     void insertClass(string &_class);
 
     bool operator<(const CourseUnit &rhs) const;
 
-    bool operator>(const CourseUnit &rhs) const;
-
-    bool operator<=(const CourseUnit &rhs) const;
-
-    bool operator>=(const CourseUnit &rhs) const;
 
 private:
     string ucCode;

@@ -1,4 +1,5 @@
 #include "Slot.h"
+
 Slot::Slot(const Turma &turma, const string &type, const string &weekday, float startHour, float duration) : turma(
         turma), type(type), weekday(weekday), startHour(startHour), duration(duration) {}
 
@@ -34,16 +35,17 @@ void Slot::setDuration(float duration) {
     Slot::duration = duration;
 }
 
-bool Slot::operator==(const Slot& slot) const{
-    return (this->getWeekday() == slot.getWeekday() && this->getStartHour() == slot.getStartHour() && this->getDuration() == slot.getDuration() && this->getType() == slot.getType());
+bool Slot::operator==(const Slot &slot) const {
+    return (this->getWeekday() == slot.getWeekday() && this->getStartHour() == slot.getStartHour() &&
+            this->getDuration() == slot.getDuration() && this->getType() == slot.getType());
 }
 
-ostream& operator<<(ostream& os, const Slot& slot){
+ostream &operator<<(ostream &os, const Slot &slot) {
     os << setw(10) << slot.weekday
-    << setw(10) << slot.type
-    << setw(10) << fixed << setprecision(1) << slot.startHour
-    << setw(10) << fixed << setprecision(1) << slot.duration
-    << setw(20) << "( Turma: " << slot.turma.getClassCode() << " | " << slot.turma.getUcCode() << " )";
+       << setw(10) << slot.type
+       << setw(10) << fixed << setprecision(1) << slot.startHour
+       << setw(10) << fixed << setprecision(1) << slot.duration
+       << setw(20) << "( Turma: " << slot.turma.getClassCode() << " | " << slot.turma.getUcCode() << " )";
 
     return os;
 }
@@ -56,7 +58,7 @@ void Slot::setTurma(const Turma &turma) {
     Slot::turma = turma;
 }
 
-unsigned Slot::weekdayToNum(const string weekday) const{
+unsigned Slot::weekdayToNum(const string weekday) const {
     if (weekday == "Monday") return 1;
     if (weekday == "Tuesday") return 2;
     if (weekday == "Wednesday") return 3;
@@ -64,8 +66,8 @@ unsigned Slot::weekdayToNum(const string weekday) const{
     if (weekday == "Friday") return 5;
 }
 
-bool Slot::operator<(const Slot& slot) const{
-    if (weekday == slot.weekday){
+bool Slot::operator<(const Slot &slot) const {
+    if (weekday == slot.weekday) {
         return startHour < slot.startHour;
     }
     return weekdayToNum(weekday) < weekdayToNum(slot.getWeekday());

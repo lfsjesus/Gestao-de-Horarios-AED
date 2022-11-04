@@ -1,8 +1,10 @@
 #include "Schedule.h"
+
 using namespace std;
 
 Schedule::Schedule() {}
-Schedule::Schedule(const Turma &_class){
+
+Schedule::Schedule(const Turma &_class) {
     this->_class = _class;
 }
 
@@ -11,16 +13,15 @@ Schedule::Schedule(const Turma &_class, const list<Slot> &slots) {
     this->slots = slots;
 }
 
-ostream& operator<<(ostream& os, const Schedule& schedule)
-{
+ostream &operator<<(ostream &os, const Schedule &schedule) {
     os << "\n  ---------------------------------------------------------------------------------------- \n";
-    os << setw(17) << setfill(' ') <<  "Dia da Semana"
-    << setw(9) << setfill(' ') << "Tipo"
-    << setw(10.5) << setfill(' ') << "Início"
-    << setw(13.5) << setfill(' ') << "Duração"
-    << setw(24) << setfill(' ')  << "Turma" << endl;
+    os << setw(17) << setfill(' ') << "Dia da Semana"
+       << setw(9) << setfill(' ') << "Tipo"
+       << setw(10.5) << setfill(' ') << "Início"
+       << setw(13.5) << setfill(' ') << "Duração"
+       << setw(24) << setfill(' ') << "Turma" << endl;
     os << "  ----------------------------------------------------------------------------------------" << endl;
-    for(Slot slot : schedule.slots){
+    for (Slot slot: schedule.slots) {
 
         os << '\t' << slot << endl;
     }

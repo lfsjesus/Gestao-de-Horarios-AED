@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <vector>
 #include <list>
@@ -36,18 +37,14 @@ public:
 
     void removeClass(Turma _class);
 
-    bool operator==(const Student& student) const;
-    friend ostream& operator<<(ostream& os, const Student& student);
+    bool operator==(const Student &student) const;
+
+    friend ostream &operator<<(ostream &os, const Student &student);
 
     void printClasses();
 
     bool operator<(const Student &rhs) const;
 
-    bool operator>(const Student &rhs) const;
-
-    bool operator<=(const Student &rhs) const;
-
-    bool operator>=(const Student &rhs) const;
 private:
     unsigned int code;
     string name;

@@ -3,9 +3,11 @@
 Student::Student() {
 
 }
-Student::Student(unsigned code){
+
+Student::Student(unsigned code) {
     this->code = code;
 }
+
 Student::Student(const unsigned code, const std::string &name, list<Turma> &classes) {
     this->code = code;
     this->name = name;
@@ -42,18 +44,19 @@ void Student::setClasses(const list<Turma> &classes) {
 bool Student::operator==(const Student &student) const {
     return code == student.getCode();
 }
+
 void Student::addClass(Turma _class) {
     classes.push_back(_class);
 }
 
-ostream& operator<<(ostream& os, const Student& student){
+ostream &operator<<(ostream &os, const Student &student) {
     os << "(" << student.code << ") " << student.name;
     return os;
 }
 
 void Student::printClasses() {
     int i = 1;
-    for (Turma c : classes) {
+    for (Turma c: classes) {
         cout << "[" << i << "]" << " ";
         c.printClass();
         cout << '\n';
@@ -67,7 +70,7 @@ void Student::removeClass(Turma _class) {
 
 unsigned int Student::getYear() const {
     unsigned int max = 1;
-    for (Turma t : classes) {
+    for (Turma t: classes) {
         if (t.getClassCode().at(0) - '0' > max)
             max = t.getClassCode().at(0) - '0';
     }

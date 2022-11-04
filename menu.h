@@ -1,11 +1,8 @@
 #pragma once
-
 #include <stack>
 #include <algorithm>
 #include "Managing.h"
-/*
- * Menus' definition
- */
+
 #define MAIN_MENU 0
 #define CONSULTAS_MENU 1
 #define MODIFICACOES_MENU 2
@@ -44,7 +41,6 @@
 
 class Menu {
 public:
-
     Menu();
     void mainMenu();
 private:
@@ -71,7 +67,6 @@ private:
     void horarioTurma();
     void estudantesMenu();
     void turmaMenu();
-    void printSchedule(vector<Slot> slots);
     void inscreverAluno();
     void desinscreverAluno();
     void alunosAno();
@@ -83,8 +78,8 @@ private:
     void listarPedidos();
     void pedidosArquivados();
     void efetivadosMenu();
-    void listagensParciais(int& n);
     void chooseStudentsOrder(set<Student*, studComp>);
     void estudantesNUCS();
+
     std::stack<short int> menuState;
 };
