@@ -1,0 +1,4 @@
+/home/luis/Desktop/AED_Proj/cmake-build-debug-coverage/CMakeFiles/Doxygen.dir
+/home/luis/Desktop/AED_Proj/cmake-build-debug-coverage/CMakeFiles/AED.dir
+/home/luis/Desktop/AED_Proj/cmake-build-debug-coverage/CMakeFiles/edit_cache.dir
+/home/luis/Desktop/AED_Proj/cmake-build-debug-coverage/CMakeFiles/rebuild_cache.dir

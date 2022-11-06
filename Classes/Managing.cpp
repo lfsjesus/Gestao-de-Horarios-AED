@@ -489,7 +489,7 @@ void Managing::processRequests() {
                 bool balance = checkBalancing(*it);
                 bool space = checkSpaceAvailable((*it));
                 auto schedule = schedules.find(new Schedule((*it)));
-                bool overlap = checkScheduleOverlap(*students.find(*student), (*schedule));
+                bool overlap = checkScheduleOverlap((*student), (*schedule));
 
                 if (balance && space && !overlap) {
                     auto student = students.find(new Student(request->getStudentCode1()));
