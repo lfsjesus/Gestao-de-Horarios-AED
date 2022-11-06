@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['weekdaytonum_39',['weekdayToNum',['../classSlot.html#a31fa31a025ca632a11a61d65cf0aad4e',1,'Slot']]],
-  ['writerejectedrequests_40',['writeRejectedRequests',['../classManaging.html#a1171b36eb2a8376ca0665fa1446c4b64',1,'Managing']]],
-  ['writerequests_41',['writeRequests',['../classManaging.html#a22a90817268509f8c1a747ff37a5f4d9',1,'Managing']]],
-  ['writestudents_42',['writeStudents',['../classManaging.html#a5ed62af601eb9a851d69bea8715d4b3a',1,'Managing']]]
+  ['weekdaytonum_44',['weekdayToNum',['../classSlot.html#a31fa31a025ca632a11a61d65cf0aad4e',1,'Slot']]],
+  ['writerejectedrequests_45',['writeRejectedRequests',['../classManaging.html#a1171b36eb2a8376ca0665fa1446c4b64',1,'Managing']]],
+  ['writerequests_46',['writeRequests',['../classManaging.html#a22a90817268509f8c1a747ff37a5f4d9',1,'Managing']]],
+  ['writestudents_47',['writeStudents',['../classManaging.html#a5ed62af601eb9a851d69bea8715d4b3a',1,'Managing']]]
 ];
