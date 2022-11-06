@@ -34,13 +34,17 @@ public:
     void setClasses(const list<Turma> &classes);
 
     /**
-     * Adiciona uma turma a um estudante. O(1).
+     * O(1)
+     * @brief
+     * Adiciona uma turma a um estudante
      * @param _class
      */
     void addClass(Turma _class);
 
     /**
-     * Elimina turma de um estudante. O(n).
+     * O(n)
+     * @brief
+     * Elimina turma de um estudante
      * @param _class
      */
     void removeClass(Turma _class);

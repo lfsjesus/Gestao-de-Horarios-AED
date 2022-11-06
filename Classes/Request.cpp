@@ -70,9 +70,7 @@ ostream &operator<<(ostream &os, const Request &request) {
         os << endl;
         os << "\tTurmas: ";
         for (auto t: request.new_classes) {
-            cout << "(";
-            t.printClass();
-            cout << ") ";
+            cout << "(" << t << ") ";
         }
 
     } else if (request.type == "Troca Singular") {
@@ -80,10 +78,7 @@ ostream &operator<<(ostream &os, const Request &request) {
         os << "\tEstudante: " << request.studentCode1 << endl;
         os << "\tPretende trocar para as seguintes turmas: ";
         for (auto t: request.new_classes) {
-            cout << "(";
-            t.printClass();
-            cout << ") ";
-
+            cout << "(" << t << ") ";
         }
     } else {
         os << "\tTipo de pedido: Troca de turma com outro estudante" << endl;
@@ -91,9 +86,7 @@ ostream &operator<<(ostream &os, const Request &request) {
         os << "\tEstudante 2: " << request.studentCode2 << endl;
         os << "\tPretende trocar para as turmas do estudante 2: ";
         for (auto t: request.new_classes) {
-            cout << "(";
-            t.printClass();
-            cout << ") ";
+            cout << "(" << t << ") ";
         }
 
     }

@@ -27,19 +27,25 @@ public:
     void setSlots(const list<Slot> &slots);
 
     /**
-    * adiciona um slot ao horário. O(1).
+    * O(1)
+    * @brief
+    * Adiciona um slot ao horário
     * @param slot
     */
     void addSlot(Slot slot);
 
     /**
-    * adiciona um slot ao horário. O(1).
+    * O(1)
+    * @brief
+    * Adiciona um slot ao horário
     * @param slot
     */
     friend ostream &operator<<(ostream &os, const Schedule &schedule);
 
     /**
-    * ordena os slots de um horário e elimina slots iguais, caso existam (horários de uma UC, onde aparece a mesma aula teórica múltiplas vezes). O(n).
+    * O(n)
+    * @brief
+    * Ordena os slots de um horário e elimina slots iguais, caso existam (horários de uma UC, onde aparece a mesma aula teórica múltiplas vezes).
     */
     void sort();
 

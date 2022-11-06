@@ -23,10 +23,7 @@ public:
 
     void setUcCode(const string &ucCode);
 
-    /**
-     * Imprime a turma no terminal.
-     */
-    void printClass();
+    friend ostream &operator<<(ostream &os, const Turma &turma);
 
     bool operator==(const Turma &turma) const;
 

@@ -57,9 +57,7 @@ ostream &operator<<(ostream &os, const Student &student) {
 void Student::printClasses() {
     int i = 1;
     for (Turma c: classes) {
-        cout << "[" << i << "]" << " ";
-        c.printClass();
-        cout << '\n';
+        cout << "[" << i << "]" << " " << c << endl;
         i++;
     }
 }

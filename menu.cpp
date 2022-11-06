@@ -258,7 +258,6 @@ void Menu::consultasMenu() {
             menuState.push(HORARIOS_MENU);
             break;
         }
-
     }
     getMenu();
 }
@@ -1559,9 +1558,7 @@ void Menu::trocaSingular() {
 
         int counter = 1;
         for (Turma t: turmas) {
-            cout << "\t [" << counter << "] ";
-            t.printClass();
-            cout << endl;
+            cout << "\t [" << counter << "] " << t << endl;
             counter++;
         }
 
@@ -1595,8 +1592,7 @@ void Menu::trocaSingular() {
         turmas_novas.push_back(Turma(newClass, ucCode));
 
         cout << "Pedido efetuado com sucesso!" << endl << endl;
-        cout
-                << "Pretende adicionar outra troca [o pedido é considerado único e só é possivel se todas as trocas forem possíveis]? (S/N)";
+        cout << "Pretende adicionar outra troca [o pedido é considerado único e só é possivel se todas as trocas forem possíveis]? (S/N)";
 
         char answer;
         cin >> answer;
@@ -1641,9 +1637,7 @@ void Menu::trocaDupla() {
 
     int counter = 1;
     for (Turma turma: turmas_troca) {
-        cout << "\t[" << counter << "] ";
-        turma.printClass();
-        cout << endl;
+        cout << "\t[" << counter << "] " << turma << endl;
         counter++;
     }
 

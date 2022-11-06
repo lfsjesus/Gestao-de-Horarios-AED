@@ -22,7 +22,8 @@ public:
     bool operator==(const CourseUnit &courseUnit) const;
 
     /**
-     * insere o nome de uma turma (turma1, turma2, ...) no set de turmas da classe
+     * @brief
+     * Insere o nome de uma turma (turma1, turma2, ...) no set de turmas da classe
      * @param _class
      */
     void insertClass(string &_class);

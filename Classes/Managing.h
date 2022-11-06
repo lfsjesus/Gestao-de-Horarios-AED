@@ -14,14 +14,16 @@ public:
     Managing();
 
     /**
-     * lê todos os ficheiros
+     * @brief
+     * Lê todos os ficheiros TODO: quais?
      */
     void readFiles();
 
     const set<Student *, studComp> &getStudents() const;
 
     /**
-     * O(n² - chama outra função O(n) dentro do loop O(n)
+     * O(n² - chama outra função O(n) dentro do loop O(n) TODO: concluir
+     * @brief
      * @param year
      * @return set de pointers de estudantes de um dado ano ordenados por UP
      */
@@ -30,7 +32,9 @@ public:
     void setStudents(const set<Student *, studComp> &students);
 
     /**
-     * adiciona um pointer estudante ao set de pointers de estudantes. O(n log(n)).
+     * O(n log(n))
+     * @brief
+     * Adiciona um pointer estudante ao set de pointers de estudantes.
      * @param student
      */
     void addStudent(const Student *student);
@@ -53,7 +57,8 @@ public:
     void setUcs(const set<CourseUnit> &ucs);
 
     /**
-     * elimina estudante do set de pointers de estudantes
+     * @brief
+     * Elimina um estudante do set de pointers de estudantes
      * @param s um pointer de um estudante
      */
     void eraseStudent(Student *s);
@@ -98,34 +103,37 @@ public:
     vector<pair<int, string>> getOcupacaoYear();
 
     /**
-     * adiciona um pedido à fila de pedidos. O(1).
+     * @brief
+     * Adiciona um pedido à fila de pedidos. O(1).
      * @param request
      */
     void addRequest(Request *request);
 
     /**
-     * O(n log(n)).
+     * O(n log(n))
      * @param s set de pointers de estudantes ordenados por UPcode
      * @return set de pointers de estudantes ordenados alfabeticamente
      */
     set<Student *, studentByName> sortStudentsByName(set<Student *, studComp> s);
 
     /**
-     * O(n log(n)).
+     * O(n log(n))
      * @param s set de pointers de estudantes ordenados por UPcode
      * @return multiset de pointers de estudantes ordenados por número de UCs
      */
     multiset<Student *, studentByNUCS> sortStudentsByNUCS(set<Student *, studComp> s);
 
     /**
-     * processa todos os pedidos em espera.
+     * @brief
+     * Processa todos os pedidos em espera
      */
     void processRequests();
 
     /**
+     * @brief
      * Se já existia desiquilibrio inicial, só permite inscrição se for numa turma que não provoque mais desequilibrio. O(n).
      * @param courseUnit
-     * @return 1 se houver equilíbrio entre as turmas da UC (se a diferença entre quaisquer duas turmas for >= 4), else 0.
+     * @return verdadeiro se houver equilíbrio entre as turmas da UC (se a diferença entre quaisquer duas turmas for >= 4), else 0.
      */
     bool checkBalancing(const Turma &turma);
 
@@ -149,17 +157,20 @@ public:
     void setRejectedRequests(const vector<Request *> &rejectedRequests);
 
     /**
-     * atualiza o ficheiro dos students
+     *brief
+     * Atualiza o ficheiro dos students
      */
     void writeStudents();
 
     /**
-     * atualiza o ficheiro dos pedidos pendentes
+     * @brief
+     * Atualiza o ficheiro dos pedidos pendentes
      */
     void writeRequests();
 
     /**
-     * atualiza o ficheiro dos pedidos rejeitados
+     * @brief
+     * Atualiza o ficheiro dos pedidos rejeitados
      */
     void writeRejectedRequests();
 
@@ -181,32 +192,37 @@ private:
     set<Turma> classes;
 
     /**
-     * lê o ficheiro dos estudantes.
-     * Complexidade temporal: O(n log(n))
+     * O(n log(n))
+     * @brief
+     * Lê o ficheiro dos estudantes
      */
     void readStudents();
 
     /**
-     * lê o ficheiro dos horários
-     * Complexidade temporal: O(n log(n))
+     * O(n log(n))
+     * @brief
+     * Lê o ficheiro dos horários
      */
     void readSchedules();
 
     /**
-     * lê o ficheiro das UCs/Turmas
-     * Complexidade temporal: O(n log(n))
+     * O(n log(n))
+     * @brief
+     * Lê o ficheiro das UCs/Turmas
      */
     void readCourseUnits();
 
     /**
-     * le o ficheiro dos pedidos
-     * Complexidade temporal: O(n²) - dependente das linhas do ficheiro (n) e, em cada linha, do número de novas turmas (o parser tem complexidade temporal O(n), sendo n o número de novas turmas no pedido)
+     * O(n²) - dependente das linhas do ficheiro (n) e, em cada linha, do número de novas turmas (o parser tem complexidade temporal O(n), sendo n o número de novas turmas no pedido)
+     * @brief
+     * Lê o ficheiro dos pedidos
      */
     void readRequests();
 
     /**
-     * le o ficheiro dos pedidos rejeitados
-     * Complexidade temporal: O(n²) - dependente das linhas do ficheiro (n) e, em cada linha, do número de novas turmas (o parser tem complexidade temporal O(n), sendo n o número de turmas cuja inscrição foi rejeitada)
+     * O(n²) - dependente das linhas do ficheiro (n) e, em cada linha, do número de novas turmas (o parser tem complexidade temporal O(n), sendo n o número de turmas cuja inscrição foi rejeitada)
+     * @brief
+     * Lê o ficheiro dos pedidos rejeitados
      */
     void readRejectedRequests();
 
