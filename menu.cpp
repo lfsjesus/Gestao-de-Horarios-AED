@@ -1434,10 +1434,11 @@ void Menu::inscreverAluno() {
 
         cout << "\t ! Está a inscrever um aluno novo no sistema !" << endl << endl;
         cout << "\tNome do aluno: ";
-        
+
         getline(cin, name);
         cin.clear();
         cin.ignore(1000, '\n');
+
 
         inscricao(year, courseUnit, turma, turmas);
 
