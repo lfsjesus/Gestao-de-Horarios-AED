@@ -29,7 +29,7 @@ public:
     /**
     * O(1)
     * @brief
-    * Adiciona um slot ao horário
+    * Adiciona um slot ao horário.
     * @param slot
     */
     void addSlot(Slot slot);
@@ -37,7 +37,7 @@ public:
     /**
     * O(n)
     * @brief
-    * Imprime um horário
+    * Imprime um horário.
     * @param slot
     */
     friend ostream &operator<<(ostream &os, const Schedule &schedule);

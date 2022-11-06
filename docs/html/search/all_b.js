@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['readme_57',['README',['../md_README.html',1,'']]],
   ['readcourseunits_58',['readCourseUnits',['../classManaging.html#a1d0b9e4197d10b791674aeb661d11a09',1,'Managing']]],
   ['readfiles_59',['readFiles',['../classManaging.html#ad3e6da8871b035bf10409858c43b847c',1,'Managing']]],
   ['readrejectedrequests_60',['readRejectedRequests',['../classManaging.html#a228fc09f1d7610d30a1bccdfe8bea8b6',1,'Managing']]],
