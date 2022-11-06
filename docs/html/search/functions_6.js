@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['readcourseunits_79',['readCourseUnits',['../classManaging.html#a1d0b9e4197d10b791674aeb661d11a09',1,'Managing']]],
-  ['readfiles_80',['readFiles',['../classManaging.html#ad3e6da8871b035bf10409858c43b847c',1,'Managing']]],
-  ['readrejectedrequests_81',['readRejectedRequests',['../classManaging.html#a228fc09f1d7610d30a1bccdfe8bea8b6',1,'Managing']]],
-  ['readrequests_82',['readRequests',['../classManaging.html#ad63ab16c789f4649d9f54e0ee979604c',1,'Managing']]],
-  ['readschedules_83',['readSchedules',['../classManaging.html#a83faf67e090cbe57bb9b4336dd017788',1,'Managing']]],
-  ['readstudents_84',['readStudents',['../classManaging.html#a447ab4eb447360d1d038dcf34edeb7d9',1,'Managing']]],
-  ['removeclass_85',['removeClass',['../classStudent.html#ae985f8dad23f14ccb761c42abad433d8',1,'Student']]]
+  ['inscreveraluno_149',['inscreverAluno',['../classMenu.html#a2d24581f8c2b3c2aa7bd88dd739bf4ca',1,'Menu']]],
+  ['inscricao_150',['inscricao',['../classMenu.html#a6e55069e6226e0a80863a042965bfeea',1,'Menu']]],
+  ['insertclass_151',['insertClass',['../classCourseUnit.html#afd90dfb5759ff4c687330a78c230829a',1,'CourseUnit']]]
 ];

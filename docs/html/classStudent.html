@@ -24,7 +24,7 @@
    <div id="projectname">Gestor de Horários
    &#160;<span id="projectnumber">1</span>
    </div>
-   <div id="projectbrief">ThistoolisdesignedtomanageL.EICstudents&#39;schedules</div>
+   <div id="projectbrief">ThistoolisdesignedtomanageL.EICstudents&#39;schedules.</div>
   </td>
  </tr>
  </tbody>
@@ -87,8 +87,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7dd038b5fef613cb82889761a1978237"><td class="memItemLeft" align="right" valign="top"><a id="a7dd038b5fef613cb82889761a1978237"></a>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getCode</b> () const</td></tr>
 <tr class="separator:a7dd038b5fef613cb82889761a1978237"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbf078d558a79748b4356b0997759302"><td class="memItemLeft" align="right" valign="top"><a id="adbf078d558a79748b4356b0997759302"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getYear</b> () const</td></tr>
+<tr class="memitem:adbf078d558a79748b4356b0997759302"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#adbf078d558a79748b4356b0997759302">getYear</a> () const</td></tr>
+<tr class="memdesc:adbf078d558a79748b4356b0997759302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o ano curricular do estudante de acordo com o critério do SIGARRA: o ano do estudante é o ano da UC de maior ano. O(n).  <a href="classStudent.html#adbf078d558a79748b4356b0997759302">More...</a><br /></td></tr>
 <tr class="separator:adbf078d558a79748b4356b0997759302"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5342d43bffae7c3b2f80ff7d5bc35e4"><td class="memItemLeft" align="right" valign="top"><a id="ad5342d43bffae7c3b2f80ff7d5bc35e4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCode</b> (unsigned int code)</td></tr>
@@ -99,23 +99,24 @@ const string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName
 <tr class="memitem:a30d66913d32ac08f39bebc4bb48c5bc5"><td class="memItemLeft" align="right" valign="top"><a id="a30d66913d32ac08f39bebc4bb48c5bc5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (const string &amp;name)</td></tr>
 <tr class="separator:a30d66913d32ac08f39bebc4bb48c5bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56b393ec0e77123b97c1b373f43b9765"><td class="memItemLeft" align="right" valign="top"><a id="a56b393ec0e77123b97c1b373f43b9765"></a>
-const list&lt; <a class="el" href="classTurma.html">Turma</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getClasses</b> () const</td></tr>
+<tr class="memitem:a56b393ec0e77123b97c1b373f43b9765"><td class="memItemLeft" align="right" valign="top">const list&lt; <a class="el" href="classTurma.html">Turma</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#a56b393ec0e77123b97c1b373f43b9765">getClasses</a> () const</td></tr>
+<tr class="memdesc:a56b393ec0e77123b97c1b373f43b9765"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a lista de turmas do estudante. O(1).  <a href="classStudent.html#a56b393ec0e77123b97c1b373f43b9765">More...</a><br /></td></tr>
 <tr class="separator:a56b393ec0e77123b97c1b373f43b9765"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2490d535dbcec09d8fc4f6e3ae3df39a"><td class="memItemLeft" align="right" valign="top"><a id="a2490d535dbcec09d8fc4f6e3ae3df39a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setClasses</b> (const list&lt; <a class="el" href="classTurma.html">Turma</a> &gt; &amp;classes)</td></tr>
 <tr class="separator:a2490d535dbcec09d8fc4f6e3ae3df39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acef74b1ebfa3c773d0444ad1d4314ef1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#acef74b1ebfa3c773d0444ad1d4314ef1">addClass</a> (<a class="el" href="classTurma.html">Turma</a> _class)</td></tr>
-<tr class="memdesc:acef74b1ebfa3c773d0444ad1d4314ef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adiciona uma turma a um estudante.  <a href="classStudent.html#acef74b1ebfa3c773d0444ad1d4314ef1">More...</a><br /></td></tr>
+<tr class="memdesc:acef74b1ebfa3c773d0444ad1d4314ef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adiciona uma turma a um estudante. O(1).  <a href="classStudent.html#acef74b1ebfa3c773d0444ad1d4314ef1">More...</a><br /></td></tr>
 <tr class="separator:acef74b1ebfa3c773d0444ad1d4314ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae985f8dad23f14ccb761c42abad433d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#ae985f8dad23f14ccb761c42abad433d8">removeClass</a> (<a class="el" href="classTurma.html">Turma</a> _class)</td></tr>
-<tr class="memdesc:ae985f8dad23f14ccb761c42abad433d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina turma de um estudante.  <a href="classStudent.html#ae985f8dad23f14ccb761c42abad433d8">More...</a><br /></td></tr>
+<tr class="memdesc:ae985f8dad23f14ccb761c42abad433d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina turma de um estudante. O(n).  <a href="classStudent.html#ae985f8dad23f14ccb761c42abad433d8">More...</a><br /></td></tr>
 <tr class="separator:ae985f8dad23f14ccb761c42abad433d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fa16bcc2db2fa13a47e729b6dbc7ab3"><td class="memItemLeft" align="right" valign="top"><a id="a9fa16bcc2db2fa13a47e729b6dbc7ab3"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classStudent.html">Student</a> &amp;student) const</td></tr>
 <tr class="separator:a9fa16bcc2db2fa13a47e729b6dbc7ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d80c9a58b3725a433b5f7cdabe05ff4"><td class="memItemLeft" align="right" valign="top"><a id="a5d80c9a58b3725a433b5f7cdabe05ff4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printClasses</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStudent.html#a5d80c9a58b3725a433b5f7cdabe05ff4">printClasses</a> ()</td></tr>
+<tr class="memdesc:a5d80c9a58b3725a433b5f7cdabe05ff4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime as turmas de um estudante. <br /></td></tr>
 <tr class="separator:a5d80c9a58b3725a433b5f7cdabe05ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96da5fa2a4965284814f179731a11e2d"><td class="memItemLeft" align="right" valign="top"><a id="a96da5fa2a4965284814f179731a11e2d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (const <a class="el" href="classStudent.html">Student</a> &amp;rhs) const</td></tr>
@@ -156,13 +157,53 @@ ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;
       </table>
 </div><div class="memdoc">
 
-<p>Adiciona uma turma a um estudante. </p>
-<p>O(1) </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Adiciona uma turma a um estudante. O(1). </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_class</td><td></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a56b393ec0e77123b97c1b373f43b9765"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56b393ec0e77123b97c1b373f43b9765">&#9670;&nbsp;</a></span>getClasses()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const list&lt; <a class="el" href="classTurma.html">Turma</a> &gt; &amp; Student::getClasses </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retorna a lista de turmas do estudante. O(1). </p>
+<dl class="section return"><dt>Returns</dt><dd>lista de turmas do estudante. </dd></dl>
+
+</div>
+</div>
+<a id="adbf078d558a79748b4356b0997759302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf078d558a79748b4356b0997759302">&#9670;&nbsp;</a></span>getYear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Student::getYear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retorna o ano curricular do estudante de acordo com o critério do SIGARRA: o ano do estudante é o ano da UC de maior ano. O(n). </p>
+<dl class="section return"><dt>Returns</dt><dd>ano curricular do estudante. </dd></dl>
 
 </div>
 </div>
@@ -182,8 +223,8 @@ ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;
       </table>
 </div><div class="memdoc">
 
-<p>Elimina turma de um estudante. </p>
-<p>O(n) </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Elimina turma de um estudante. O(n). </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_class</td><td></td></tr>
   </table>

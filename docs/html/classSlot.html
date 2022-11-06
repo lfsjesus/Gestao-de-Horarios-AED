@@ -24,7 +24,7 @@
    <div id="projectname">Gestor de Horários
    &#160;<span id="projectnumber">1</span>
    </div>
-   <div id="projectbrief">ThistoolisdesignedtomanageL.EICstudents&#39;schedules</div>
+   <div id="projectbrief">ThistoolisdesignedtomanageL.EICstudents&#39;schedules.</div>
   </td>
  </tr>
  </tbody>
@@ -109,10 +109,10 @@ const <a class="el" href="classTurma.html">Turma</a> &amp;&#160;</td><td class="
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setTurma</b> (const <a class="el" href="classTurma.html">Turma</a> &amp;turma)</td></tr>
 <tr class="separator:ac94da8e396bbca3e42579e9e13d4afca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31fa31a025ca632a11a61d65cf0aad4e"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSlot.html#a31fa31a025ca632a11a61d65cf0aad4e">weekdayToNum</a> (string weekday) const</td></tr>
-<tr class="memdesc:a31fa31a025ca632a11a61d65cf0aad4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permite comparar dias da semana mais facilmente, atribuindo-lhes um número.  <a href="classSlot.html#a31fa31a025ca632a11a61d65cf0aad4e">More...</a><br /></td></tr>
+<tr class="memdesc:a31fa31a025ca632a11a61d65cf0aad4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permite comparar dias da semana mais facilmente, atribuindo-lhes um número. O(1).  <a href="classSlot.html#a31fa31a025ca632a11a61d65cf0aad4e">More...</a><br /></td></tr>
 <tr class="separator:a31fa31a025ca632a11a61d65cf0aad4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8066ad050f01cf2031a88312655b0cb1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSlot.html#a8066ad050f01cf2031a88312655b0cb1">convert_hours</a> (float _hours) const</td></tr>
-<tr class="memdesc:a8066ad050f01cf2031a88312655b0cb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converte de decimal para formato horário.  <a href="classSlot.html#a8066ad050f01cf2031a88312655b0cb1">More...</a><br /></td></tr>
+<tr class="memdesc:a8066ad050f01cf2031a88312655b0cb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converte de decimal para formato horário. O(1).  <a href="classSlot.html#a8066ad050f01cf2031a88312655b0cb1">More...</a><br /></td></tr>
 <tr class="separator:a8066ad050f01cf2031a88312655b0cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d0de7b30d2d5c76cb5d2cf356347a61"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSlot.html#a3d0de7b30d2d5c76cb5d2cf356347a61">to_portuguese</a> (string weekday) const</td></tr>
 <tr class="separator:a3d0de7b30d2d5c76cb5d2cf356347a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,7 +164,7 @@ ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;
       </table>
 </div><div class="memdoc">
 
-<p>Converte de decimal para formato horário. </p>
+<p>Converte de decimal para formato horário. O(1). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_hours</td><td></td></tr>
@@ -190,13 +190,13 @@ ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Converte o dia da semana em inglês, para português. O(1). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">weekday</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>dia da semana em português </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>dia da semana em português. </dd></dl>
 
 </div>
 </div>
@@ -216,14 +216,14 @@ ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;
       </table>
 </div><div class="memdoc">
 
-<p>Permite comparar dias da semana mais facilmente, atribuindo-lhes um número. </p>
-<p>O(1) </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Permite comparar dias da semana mais facilmente, atribuindo-lhes um número. O(1). </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">weekday</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>número do dia da semana </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>número do dia da semana. </dd></dl>
 
 </div>
 </div>

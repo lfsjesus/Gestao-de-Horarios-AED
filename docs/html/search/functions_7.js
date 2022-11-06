@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['sort_86',['sort',['../classSchedule.html#a408ad469ac6e5ee26567d689e5f7f841',1,'Schedule']]],
-  ['sortstudentsbyname_87',['sortStudentsByName',['../classManaging.html#af15f5153b2a38ba7d3dfbc498062fc0a',1,'Managing']]],
-  ['sortstudentsbynucs_88',['sortStudentsByNUCS',['../classManaging.html#a22282f752cc045b3c8478bd97164cdf3',1,'Managing']]]
+  ['listarpedidos_152',['listarPedidos',['../classMenu.html#af24355ce539155e8c61333641ae0ee8a',1,'Menu']]]
 ];

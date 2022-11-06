@@ -24,7 +24,7 @@
    <div id="projectname">Gestor de Horários
    &#160;<span id="projectnumber">1</span>
    </div>
-   <div id="projectbrief">ThistoolisdesignedtomanageL.EICstudents&#39;schedules</div>
+   <div id="projectbrief">ThistoolisdesignedtomanageL.EICstudents&#39;schedules.</div>
   </td>
  </tr>
  </tbody>
@@ -77,7 +77,7 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad3e6da8871b035bf10409858c43b847c"><td class="memItemLeft" align="right" valign="top"><a id="ad3e6da8871b035bf10409858c43b847c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManaging.html#ad3e6da8871b035bf10409858c43b847c">readFiles</a> ()</td></tr>
-<tr class="memdesc:ad3e6da8871b035bf10409858c43b847c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lê todos os ficheiros TODO: quais? <br /></td></tr>
+<tr class="memdesc:ad3e6da8871b035bf10409858c43b847c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lê todos os ficheiros: estudantes, horários, classes/UCs, requests e rejected requests. <br /></td></tr>
 <tr class="separator:ad3e6da8871b035bf10409858c43b847c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9738aa765432a7ae1c6c792f6c57453c"><td class="memItemLeft" align="right" valign="top"><a id="a9738aa765432a7ae1c6c792f6c57453c"></a>
 const set&lt; <a class="el" href="classStudent.html">Student</a> *, <a class="el" href="structstudComp.html">studComp</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getStudents</b> () const</td></tr>
@@ -150,7 +150,9 @@ const vector&lt; <a class="el" href="classRequest.html">Request</a> * &gt; &amp;
 <tr class="memitem:a0f235b0f7cf060f4a218dbaf584a44e3"><td class="memItemLeft" align="right" valign="top"><a id="a0f235b0f7cf060f4a218dbaf584a44e3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setRejectedRequests</b> (const vector&lt; <a class="el" href="classRequest.html">Request</a> * &gt; &amp;rejectedRequests)</td></tr>
 <tr class="separator:a0f235b0f7cf060f4a218dbaf584a44e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ed62af601eb9a851d69bea8715d4b3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManaging.html#a5ed62af601eb9a851d69bea8715d4b3a">writeStudents</a> ()</td></tr>
+<tr class="memitem:a5ed62af601eb9a851d69bea8715d4b3a"><td class="memItemLeft" align="right" valign="top"><a id="a5ed62af601eb9a851d69bea8715d4b3a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManaging.html#a5ed62af601eb9a851d69bea8715d4b3a">writeStudents</a> ()</td></tr>
+<tr class="memdesc:a5ed62af601eb9a851d69bea8715d4b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Atualiza o ficheiro dos students. <br /></td></tr>
 <tr class="separator:a5ed62af601eb9a851d69bea8715d4b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22a90817268509f8c1a747ff37a5f4d9"><td class="memItemLeft" align="right" valign="top"><a id="a22a90817268509f8c1a747ff37a5f4d9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManaging.html#a22a90817268509f8c1a747ff37a5f4d9">writeRequests</a> ()</td></tr>
@@ -336,7 +338,7 @@ set&lt; <a class="el" href="classTurma.html">Turma</a> &gt;&#160;</td><td class=
         </tr>
       </table>
 </div><div class="memdoc">
-<p>O(n) </p><dl class="params"><dt>Parameters</dt><dd>
+<p>O(n log(n)) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">turma</td><td></td></tr>
   </table>
@@ -437,7 +439,7 @@ set&lt; <a class="el" href="classTurma.html">Turma</a> &gt;&#160;</td><td class=
         </tr>
       </table>
 </div><div class="memdoc">
-<p>O(1) se não receber argumento. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>O(1) se não receber argumento. O(n³). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_classes</td><td></td></tr>
   </table>
@@ -462,7 +464,7 @@ set&lt; <a class="el" href="classTurma.html">Turma</a> &gt;&#160;</td><td class=
         </tr>
       </table>
 </div><div class="memdoc">
-<p>O(1) se não receber argumento. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>O(1) se não receber argumento. O(n³). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">UCs</td><td></td></tr>
   </table>
@@ -505,7 +507,7 @@ set&lt; <a class="el" href="classTurma.html">Turma</a> &gt;&#160;</td><td class=
         </tr>
       </table>
 </div><div class="memdoc">
-<p>O(n² - chama outra função O(n) dentro do loop O(n) TODO: concluir </p><dl class="params"><dt>Parameters</dt><dd>
+<p>O(n² - chama outra função O(n) dentro do loop O(n)). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">year</td><td></td></tr>
   </table>
@@ -752,24 +754,6 @@ set&lt; <a class="el" href="classTurma.html">Turma</a> &gt;&#160;</td><td class=
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>multiset de pointers de estudantes ordenados por número de UCs </dd></dl>
-
-</div>
-</div>
-<a id="a5ed62af601eb9a851d69bea8715d4b3a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ed62af601eb9a851d69bea8715d4b3a">&#9670;&nbsp;</a></span>writeStudents()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Managing::writeStudents </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>brief Atualiza o ficheiro dos students </p>
 
 </div>
 </div>

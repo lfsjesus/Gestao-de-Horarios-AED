@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['weekdaytonum_267',['weekdayToNum',['../classSlot.html#a31fa31a025ca632a11a61d65cf0aad4e',1,'Slot']]],
-  ['writerejectedrequests_268',['writeRejectedRequests',['../classManaging.html#a1171b36eb2a8376ca0665fa1446c4b64',1,'Managing']]],
-  ['writerequests_269',['writeRequests',['../classManaging.html#a22a90817268509f8c1a747ff37a5f4d9',1,'Managing']]],
-  ['writestudents_270',['writeStudents',['../classManaging.html#a5ed62af601eb9a851d69bea8715d4b3a',1,'Managing']]]
+  ['sort_166',['sort',['../classSchedule.html#a408ad469ac6e5ee26567d689e5f7f841',1,'Schedule']]],
+  ['sortstudentsbyname_167',['sortStudentsByName',['../classManaging.html#af15f5153b2a38ba7d3dfbc498062fc0a',1,'Managing']]],
+  ['sortstudentsbynucs_168',['sortStudentsByNUCS',['../classManaging.html#a22282f752cc045b3c8478bd97164cdf3',1,'Managing']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['erasestudent_68',['eraseStudent',['../classManaging.html#a2df085f6af500aed96cb47ed5f219fe6',1,'Managing']]]
+  ['desinscreveraluno_122',['desinscreverAluno',['../classMenu.html#a1bfd513b511f9cda960596df2cad0ba5',1,'Menu']]]
 ];
