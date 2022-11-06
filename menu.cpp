@@ -1433,12 +1433,15 @@ void Menu::inscreverAluno() {
     if (m.getStudents().find(new Student(upCode)) == m.getStudents().end()) {
 
         cout << "\t ! Está a inscrever um aluno novo no sistema !" << endl << endl;
+        cout <<"\t[Após escrever o nome, pressione duas vezes a tecla ENTER]" << endl;
         cout << "\tNome do aluno: ";
-        
         getline(cin, name);
         cin.clear();
         cin.ignore(1000, '\n');
-
+        if (name == "0") {
+            menuState.pop();
+            return getMenu();
+        }
         inscricao(year, courseUnit, turma, turmas);
 
 
@@ -1680,6 +1683,10 @@ void Menu::inscricao(char &year, string &courseUnit, string &turma, vector<Turma
         do {
             cout << "\tEm que ano quer inscrever: ";
             cin >> year;
+            if (year == '0'){
+                menuState.pop();
+                return getMenu();
+            }
             cout << endl;
 
         } while (year < '1' || year > '3');
@@ -1693,6 +1700,10 @@ void Menu::inscricao(char &year, string &courseUnit, string &turma, vector<Turma
         do {
             cout << "\n\tEscolha uma UC: ";
             cin >> courseUnit;
+            if (courseUnit == "0"){
+                menuState.pop();
+                return getMenu();
+            }
             CourseUnit tempUc(courseUnit);
             it = ucSet.find(courseUnit);
 
@@ -1705,6 +1716,10 @@ void Menu::inscricao(char &year, string &courseUnit, string &turma, vector<Turma
         do {
             cout << "\n\tEscolha uma Turma: ";
             cin >> turma;
+            if(turma == "0"){
+                menuState.pop();
+                return getMenu();
+            }
 
         } while ((*it).getClasses().find(turma) == (*it).getClasses().end());
 
