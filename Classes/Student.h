@@ -62,6 +62,7 @@ public:
     friend ostream &operator<<(ostream &os, const Student &student);
 
     /**
+     * O(n)
      * @brief
      * Imprime as turmas de um estudante.
      */
