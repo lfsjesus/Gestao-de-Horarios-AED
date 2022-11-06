@@ -15,14 +15,14 @@ public:
 
     /**
      * @brief
-     * Lê todos os ficheiros TODO: quais?
+     * Lê todos os ficheiros: estudantes, horários, classes/UCs, requests e rejected requests.
      */
     void readFiles();
 
     const set<Student *, studComp> &getStudents() const;
 
     /**
-     * O(n² - chama outra função O(n) dentro do loop O(n) TODO: concluir
+     * O(n² - chama outra função O(n) dentro do loop O(n)).
      * @brief
      * @param year
      * @return set de pointers de estudantes de um dado ano ordenados por UP
@@ -83,14 +83,14 @@ public:
 
 
     /**
-     * O(1) se não receber argumento.
+     * O(1) se não receber argumento. O(n³).
      * @param _classes
      * @return vector de pares, número de alunos & turma
      */
     vector<pair<int, Turma>> getOcupacaoTurmas(set<Turma> _classes = {});
 
     /**
-     * O(1) se não receber argumento.
+     * O(1) se não receber argumento. O(n³).
      * @param UCs
      * @return vector de pares, número de alunos & UC
      */
@@ -138,7 +138,7 @@ public:
     bool checkBalancing(const Turma &turma);
 
     /**
-     * O(n)
+     * O(n log(n))
      * @param turma
      * @return 1 se com a inscrição do aluno, o número de alunos for superior a 30 (CAP estipulado), else 0.
      */
@@ -157,7 +157,7 @@ public:
     void setRejectedRequests(const vector<Request *> &rejectedRequests);
 
     /**
-     *brief
+     * @brief
      * Atualiza o ficheiro dos students
      */
     void writeStudents();

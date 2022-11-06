@@ -21,6 +21,11 @@ public:
 
     unsigned int getCode() const;
 
+    /**
+     * @brief
+     * Retorna o ano curricular do estudante de acordo com o critério do SIGARRA: o ano do estudante é o ano da UC de maior ano. O(n).
+     * @return ano curricular do estudante.
+     */
     unsigned int getYear() const;
 
     void setCode(unsigned int code);
@@ -29,22 +34,25 @@ public:
 
     void setName(const string &name);
 
+    /**
+     * @brief
+     * Retorna a lista de turmas do estudante. O(1).
+     * @return lista de turmas do estudante.
+     */
     const list<Turma> &getClasses() const;
 
     void setClasses(const list<Turma> &classes);
 
     /**
-     * O(1)
      * @brief
-     * Adiciona uma turma a um estudante
+     * Adiciona uma turma a um estudante. O(1).
      * @param _class
      */
     void addClass(Turma _class);
 
     /**
-     * O(n)
      * @brief
-     * Elimina turma de um estudante
+     * Elimina turma de um estudante. O(n).
      * @param _class
      */
     void removeClass(Turma _class);
@@ -53,6 +61,10 @@ public:
 
     friend ostream &operator<<(ostream &os, const Student &student);
 
+    /**
+     * @brief
+     * Imprime as turmas de um estudante.
+     */
     void printClasses();
 
     bool operator<(const Student &rhs) const;

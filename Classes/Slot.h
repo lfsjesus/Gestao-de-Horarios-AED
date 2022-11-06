@@ -37,25 +37,25 @@ public:
     void setTurma(const Turma &turma);
 
     /**
-     * O(1)
      * @brief
-     * Permite comparar dias da semana mais facilmente, atribuindo-lhes um número
+     * Permite comparar dias da semana mais facilmente, atribuindo-lhes um número. O(1).
      * @param weekday
-     * @return número do dia da semana
+     * @return número do dia da semana.
      */
     unsigned weekdayToNum(string weekday) const;
 
     /**
      * @brief
-     * Converte de decimal para formato horário.
+     * Converte de decimal para formato horário. O(1).
      * @param _hours
      * @return string com as horas no formato habitual.
      */
     string convert_hours(float _hours) const;
 
     /**
+     * Converte o dia da semana em inglês, para português. O(1).
      * @param weekday
-     * @return dia da semana em português
+     * @return dia da semana em português.
      */
     string to_portuguese(string weekday) const;
 

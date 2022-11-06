@@ -1592,7 +1592,7 @@ void Menu::trocaSingular() {
         turmas_novas.push_back(Turma(newClass, ucCode));
 
         cout << "Pedido efetuado com sucesso!" << endl << endl;
-        cout << "Pretende adicionar outra troca [o pedido é considerado único e só é possivel se todas as trocas forem possíveis]? (S/N)";
+        cout << "Pretende adicionar outra troca? (S/N)";
 
         char answer;
         cin >> answer;
@@ -1786,7 +1786,7 @@ void Menu::efetivadosMenu() {
              << "Consulte os pedidos arquivados para saber mais." << endl << endl;
         cout << "Os restantes pedidos foram corretamente processados." << endl;
     } else {
-        cout << "Todos pedidos foram aceites." << endl;
+        cout << "Todos os pedidos foram aceites." << endl;
     }
     menuState.pop();
     getMenu();
