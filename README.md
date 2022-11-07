@@ -3,7 +3,7 @@
 
 
 O objetivo deste projeto prende-se com a criação de uma aplicação terminal-based que permita gerir os horários e as turmas dos alunos de Engenharia Informática e Computação. 
-A documentação do código pode ser encontrada [aqui](https://lfsjesus.github.io/AED_Horarios/html).
+A documentação do código pode ser encontrada [aqui](https://lfsjesus.github.io/Gestao-de-Horarios-AED/html).
 
 
 ### Funcionalidades implementadas:
