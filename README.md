@@ -1,4 +1,4 @@
-# Gestão de Horários de Engenharia Informãtica
+# Gestão de Horários de Engenharia Informática
 ## Projeto 1 - Algoritmos e Estruturas de Dados (AED)
 
 
