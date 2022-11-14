@@ -17,5 +17,5 @@ var searchData=
   ['getuccode_37',['getUcCode',['../classTurma.html#a69cd35d653a62b30e84cbd09a51e0081',1,'Turma']]],
   ['getucs_38',['getUcs',['../classManaging.html#a884ef008ff62833997335a3f5e230c98',1,'Managing']]],
   ['getyear_39',['getYear',['../classStudent.html#adbf078d558a79748b4356b0997759302',1,'Student']]],
-  ['gestão_20de_20horários_20de_20engenharia_20informãtica_40',['Gestão de Horários de Engenharia Informãtica',['../md_README.html',1,'']]]
+  ['gestão_20de_20horários_20de_20engenharia_20informática_40',['Gestão de Horários de Engenharia Informática',['../md_README.html',1,'']]]
 ];
